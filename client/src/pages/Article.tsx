@@ -12,14 +12,14 @@ import { useLanguage } from "@/providers/LanguageProvider";
 export default function ArticlePage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const [match, params] = useRoute("/subject/:subjectSlug/:slug");
+  const [match, params] = useRoute("/subject/:subjectSlug/:articleSlug");
   
   if (!match) return <NotFound />;
-  const { subjectSlug, slug } = params!;
+  const { subjectSlug, articleSlug } = params!;
   
   // Fetch article data
   const { data: article, isLoading: isLoadingArticle } = useQuery<Article>({
-    queryKey: [`/api/articles/${slug}`],
+    queryKey: [`/api/articles/${articleSlug}`],
   });
   
   // Fetch subject for breadcrumb
