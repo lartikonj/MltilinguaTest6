@@ -36,13 +36,8 @@ export default function Home() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">{t('hero.title')}</h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">{t('hero.subtitle')}</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/featured">
+              <Link href="/subject">
                 <button className="px-5 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">
-                  {t('start.reading')}
-                </button>
-              </Link>
-              <Link href="/subjects">
-                <button className="px-5 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border border-primary-600 dark:border-primary-500 rounded-lg font-medium hover:bg-primary-50 dark:hover:bg-gray-700 transition-colors">
                   {t('browse.subjects')}
                 </button>
               </Link>
