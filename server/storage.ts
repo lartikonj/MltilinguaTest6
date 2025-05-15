@@ -414,23 +414,23 @@ Le cycle de l’eau est un **système autonome** alimenté par le soleil. Il tra
     es: {
       title: "El Ciclo del Agua — Explicación Clara y Sencilla",
       excerpt: "Descubre cómo el agua se mueve por la naturaleza en un ciclo constante de evaporación, condensación, precipitación y recolección.",
-      content: `# El Ciclo del Agua — Explicación Clara y Sencilla
+      content: `## El Ciclo del Agua — Explicación Clara y Sencilla
 
 El agua es esencial para la vida y está en constante movimiento gracias al **ciclo del agua** o **ciclo hidrológico**. Este proceso natural transporta el agua por el medio ambiente, haciéndola accesible para plantas, animales y humanos.
 
-## 🌞 1. Evaporación
+### 🌞 1. Evaporación
 
 El sol calienta el agua de los océanos, ríos, lagos e incluso del suelo. Este calor provoca la **evaporación**, transformando el agua en vapor que sube a la atmósfera.
 
-## ☁️ 2. Condensación
+### ☁️ 2. Condensación
 
 El vapor asciende, se enfría y se convierte en gotas que forman **nubes**. A esto se le llama **condensación**.
 
-## 🌧️ 3. Precipitación
+### 🌧️ 3. Precipitación
 
 Cuando las nubes se saturan de agua, esta cae a la Tierra como **precipitación**: lluvia, nieve o granizo.
 
-## 💧 4. Recolección
+### 💧 4. Recolección
 
 El agua regresa a la superficie terrestre, se acumula en **océanos, ríos y lagos**, o se infiltra como **agua subterránea**. Luego puede **evaporarse** nuevamente y reiniciar el ciclo.
 
