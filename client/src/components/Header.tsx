@@ -120,28 +120,20 @@ export default function Header() {
           </div>
 
           {/* User controls */}
-          <div className="flex items-center space-x-2">
-            {/* Search Button */}
+          <div className="flex items-center gap-1 ml-auto">
+            <SearchDialog className="h-7 w-7" />
+            <LanguageSwitcher className="scale-75" />
+            <ThemeToggle className="scale-75" />
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 w-7 p-0"
-              asChild
+              className="md:hidden h-7 w-7 p-1 ml-1"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
             >
-              <SearchDialog />
+              <Menu className="h-4 w-4" />
             </Button>
-
-            {/* Language Switcher */}
-            <div className="scale-90">
-              <LanguageSwitcher />
-            </div>
-
-            {/* Theme Toggle */}
-            <div className="scale-90">
-              <ThemeToggle />
-            </div>
-
-        </div>
+          </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
