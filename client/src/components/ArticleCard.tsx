@@ -22,14 +22,14 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   const { language } = useLanguage();
   const { t } = useTranslation();
-  
+
   // Get the appropriate translation or fall back to English
   const translation = article.translations[language as keyof typeof article.translations] || 
                      article.translations.en;
-  
+
   // Format date
   const formattedDate = format(new Date(article.publishDate), "MMMM d, yyyy");
-  
+
   // Find subject by ID for badge
   const getSubjectName = (subjectId: number) => {
     const subjectMap: Record<number, { name: string, class: string }> = {
@@ -40,12 +40,12 @@ export default function ArticleCard({
       5: { name: "Arts & Culture", class: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" },
       6: { name: "Travel", class: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300" },
     };
-    
+
     return subjectMap[subjectId] || { name: "General", class: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300" };
   };
-  
+
   const subject = getSubjectName(article.subjectId);
-  
+
   if (variant === "horizontal") {
     return (
       <div className="flex items-start gap-4 pb-5 border-b border-gray-200 dark:border-gray-800">
@@ -68,7 +68,7 @@ export default function ArticleCard({
       </div>
     );
   }
-  
+
   if (variant === "featured") {
     return (
       <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800 transition-all hover:shadow-md">
@@ -112,10 +112,10 @@ export default function ArticleCard({
       </div>
     );
   }
-  
+
   // Default card
   return (
-    <Link href={`/subject/${subjectSlug}/${article.slug}`}  aria-label={`Read article: ${translation.title}`}>
+    <Link href={`/subject/${article.subject?.slug || subjectSlug}/${article.slug}`}  aria-label={`Read article: ${translation.title}`}>
       <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800 transition-all hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600 cursor-pointer">
         <img 
           src={article.imageUrl} 

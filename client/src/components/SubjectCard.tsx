@@ -11,13 +11,13 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   const { t, i18n } = useTranslation();
   const localizedTitle = t(`subjects.${subject.slug}`, { defaultValue: subject.name });
   const [, setUpdate] = useState({});
-  
+
   useEffect(() => {
     const handleLanguageChange = () => {
       // Force re-render when language changes
       window.dispatchEvent(new Event('contentRefresh'));
     };
-    
+
     window.addEventListener('languageChanged', handleLanguageChange);
     return () => window.removeEventListener('languageChanged', handleLanguageChange);
   }, []);
@@ -69,7 +69,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   const subjectName = t(subject.slug);
 
   return (
-    <Link href={`/subject/${subject.slug}`}>
+    <Link href={`/subject/${subject.slug || ''}`} className="block group">
       <div className="group flex flex-col items-center p-5 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary-400 dark:hover:border-primary-600 hover:shadow-md transition-all cursor-pointer">
         <div className={`w-12 h-12 rounded-full ${colorClass.bg} ${colorClass.hover} flex items-center justify-center mb-3 transition-colors`}>
           <i className={`${getIconClass(subject.icon)} text-xl ${colorClass.text}`}></i>
