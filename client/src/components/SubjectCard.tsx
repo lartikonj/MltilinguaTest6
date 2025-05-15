@@ -15,7 +15,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   useEffect(() => {
     const handleLanguageChange = () => {
       // Force re-render when language changes
-      forceUpdate({});
+      setUpdate({});
     };
     
     window.addEventListener('languageChanged', handleLanguageChange);
