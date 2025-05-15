@@ -32,9 +32,7 @@ export default function ArticlePage() {
   // Get the appropriate translation or fall back to English
   const translation = article?.translations[language as keyof typeof article.translations] || 
                      article?.translations.en;
-
-  const translation = article?.translations[language] || article?.translations.en;
-    const pageTitle = translation ? `${translation.title} | MultiLingua` : "Article | MultiLingua";
+  const pageTitle = translation ? `${translation.title} | MultiLingua` : "Article | MultiLingua";
     const pageDescription = translation?.excerpt || "Explore this article on MultiLingua in multiple languages";
 
     return (
