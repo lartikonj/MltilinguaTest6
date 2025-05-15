@@ -135,7 +135,7 @@ export default function Header() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0 top-16 z-50 max-h-screen overflow-y-auto">
-          <div className="py-3 px-3 space-y-1 shadow-lg">
+          <div className="py-3 px-3 space-y-1 shadow-lg pb-[env(safe-area-inset-bottom)]">
             {navItems.map((item) => (
               <Link
                 key={item.label}
