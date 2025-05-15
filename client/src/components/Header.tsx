@@ -59,20 +59,20 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
-      <div className="container mx-auto px-1">
-        <div className="flex h-12 items-center justify-between gap-1">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo and site name */}
-          <div className="flex items-center flex-shrink-0">
-            <Link href="/" className="flex items-center gap-0.5">
-              <div className="w-4 h-4 rounded-lg bg-orange-800 flex items-center justify-center">
-                <Globe className="h-2.5 w-2.5 text-white" />
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-1.5 md:space-x-2">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-orange-800 flex items-center justify-center">
+                <Globe className="h-4 w-4 md:h-5 md:w-5 text-white" />
               </div>
-              <span className="hidden sm:inline font-bold text-xs">{t('site.name', 'MultiLingua')}</span>
+              <span className="font-bold text-lg md:text-xl">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
           {/* Main navigation - Desktop */}
-          <nav className="hidden md:flex items-center space-x-3">
+          <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -106,29 +106,30 @@ export default function Header() {
             </DropdownMenu>
           </nav>
 
-          </div>
-
           {/* User controls */}
-          <div className="flex items-center gap-0.5">
-            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
-              <SearchDialog className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
-              <LanguageSwitcher className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
-              <ThemeToggle className="h-4 w-4" />
-            </Button>
+          <div className="flex items-center space-x-3">
+            {/* Search Button */}
+            <SearchDialog />
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Mobile Menu Button */}
             <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden h-7 w-7 p-0.5"
+              variant="default"
+              size="icon"
+              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-2"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
-              <Menu className="h-4 w-4 text-orange-800" />
+              <Menu className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
             </Button>
           </div>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
