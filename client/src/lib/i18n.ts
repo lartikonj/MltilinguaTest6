@@ -54,8 +54,18 @@ const resources = {
       'footer.privacy': 'Privacy Policy',
       'footer.terms': 'Terms of Service',
       'footer.contributors': 'Contributors',
-      'footer.copyright': '© 2023 MultiLingua. All rights reserved.',
-      'footer.cookies': 'Cookies'
+      'footer.copyright': '© 2025 MultiLingua. All rights reserved.',
+      'footer.cookies': 'Cookies',
+      'cta.title': 'Join us',
+      'cta.subtitle': 'We make knowledge fun!',
+      'learn.more': 'Learn more',
+      'footer.home': 'Home',
+      'popular': 'Popular',
+      'available.in': 'Available in',
+      'read.time': 'Read time',
+      'additional.resources': 'Additional resources',
+      'key.notes': 'Key notes',
+      'useful.resources': 'Useful resources',
     }
   },
   es: {
@@ -110,8 +120,18 @@ const resources = {
       'footer.privacy': 'Política de privacidad',
       'footer.terms': 'Términos de servicio',
       'footer.contributors': 'Colaboradores',
-      'footer.copyright': '© 2023 MultiLingua. Todos los derechos reservados.',
+      'footer.copyright': '© 2025 MultiLingua. Todos los derechos reservados.',
       'footer.cookies': 'Cookies'
+      'cta.title': 'Únete a nosotros',
+      'cta.subtitle': 'Hacemos que el conocimiento sea divertido!',
+      'learn.more': 'Saber más',
+      'footer.home': 'Home',
+      'popular': 'Popular',
+      'available.in': 'Disponible en',
+      'read.time': 'Tiempo de lectura',
+      'additional.resources': 'Recursos adicionales',
+      'key.notes': 'Notas clave',
+      'useful.resources': 'Recursos útiles',
     }
   },
   fr: {
@@ -168,6 +188,16 @@ const resources = {
       'footer.contributors': 'Contributeurs',
       'footer.copyright': '© 2023 MultiLingua. Tous droits réservés.',
       'footer.cookies': 'Cookies'
+      'cta.title': 'Rejoignez-nous',
+      'cta.subtitle': 'Nous rendons le savoir amusant!',
+      'learn.more': 'En savoir plus',
+      'footer.home': 'Accueil',
+      'popular': 'Populaire',
+      'available.in': 'Disponible en',
+      'read.time': 'Temps de lecture',
+      'additional.resources': 'Ressources supplémentaires',
+      'key.notes': 'Notes clés',
+      'useful.resources': 'Ressources utiles',
     }
   },
   ar: {
@@ -218,12 +248,20 @@ const resources = {
       'footer.languages': 'اللغات',
       'footer.about': 'حول',
       'footer.mission': 'مهمتنا',
-      'footer.contact': 'اتصل بنا',
-      'footer.privacy': 'سياسة الخصوصية',
       'footer.terms': 'شروط الخدمة',
       'footer.contributors': 'المساهمون',
-      'footer.copyright': '© 2023 مالتي لينجوا. جميع الحقوق محفوظة.',
+      'footer.copyright': '© 2025 مالتي لينجوا. جميع الحقوق محفوظة.',
       'footer.cookies': 'ملفات تعريف الارتباط'
+      'cta.title': 'انضم إلينا',
+      'cta.subtitle': '!نجعل من المعرفة متعة!',
+      'learn.more': 'تعرف على المزيد',
+      'footer.home': 'Accueil',
+      'popular': 'شائع',
+      'available.in': 'متوفر بـ',
+      'read.time': 'مدة القراءة',
+      'additional.resources': 'موارد إضافية',
+      'key.notes': 'ملاحظات أساسية',
+      'useful.resources': 'موارد مفيدة',
     }
   }
 };
