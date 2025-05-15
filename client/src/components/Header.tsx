@@ -59,15 +59,15 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between px-2">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex h-14 items-center justify-between">
           {/* Logo and site name */}
           <div className="flex items-center flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-1">
-              <div className="w-6 h-6 rounded-lg bg-orange-800 flex items-center justify-center">
-                <Globe className="h-3.5 w-3.5 text-white" />
+            <Link href="/" className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded-lg bg-orange-800 flex items-center justify-center">
+                <Globe className="h-3 w-3 text-white" />
               </div>
-              <span className="font-bold text-base">{t('site.name', 'MultiLingua')}</span>
+              <span className="font-bold text-sm">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
@@ -109,14 +109,14 @@ export default function Header() {
           </div>
 
           {/* User controls */}
-          <div className="flex items-center gap-1">
-            <SearchDialog className="h-6 w-6" />
-            <LanguageSwitcher className="scale-75" />
-            <ThemeToggle className="scale-75" />
+          <div className="flex items-center gap-0.5">
+            <SearchDialog className="h-5 w-5" />
+            <LanguageSwitcher className="scale-70" />
+            <ThemeToggle className="scale-70" />
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden h-6 w-6 p-0.5"
+              className="md:hidden h-5 w-5 p-0"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
