@@ -11,6 +11,10 @@ import { useLanguage } from "@/providers/LanguageProvider";
 export default function ArticlePage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
+  const [match, params] = useRoute("/subject/:subjectSlug/:slug");
+  
+  if (!match) return <NotFound />;
+  const { subjectSlug, slug } = params!;
   
   // Fetch article data
   const { data: article, isLoading: isLoadingArticle } = useQuery<Article>({
@@ -28,7 +32,6 @@ export default function ArticlePage() {
   // Get the appropriate translation or fall back to English
   const translation = article?.translations[language as keyof typeof article.translations] || 
                      article?.translations.en;
-  const [match, params] = useRoute("/subject/:subjectSlug/:slug");
   
   if (!match) return <NotFound />;
   const { subjectSlug, slug } = params!;
