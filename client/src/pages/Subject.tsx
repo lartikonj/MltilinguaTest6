@@ -32,8 +32,19 @@ export default function SubjectPage() {
 
   // If no slug is provided, show all subjects
   if (!slug) {
+    const pageTitle = subject 
+      ? `${t(subject.translationKey)} Articles | MultiLingua`
+      : `${t('nav.subjects')} | MultiLingua`;
+    const pageDescription = subject
+      ? `Explore articles about ${t(subject.translationKey)} in multiple languages`
+      : t('explore.description');
+    
     return (
-      <Layout>
+      <Layout
+        title={pageTitle}
+        description={pageDescription}
+        keywords={`${subject?.name || 'subjects'}, multilingual articles, education`}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
             <Breadcrumb 

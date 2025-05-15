@@ -101,7 +101,10 @@ export function SearchDialog() {
               <Link 
                 key={article.id} 
                 href={`/article/${article.slug}`}
-                onClick={closeDialog}
+                onClick={() => {
+                  closeDialog();
+                  window.scrollTo(0, 0);
+                }}
               >
                 <div className="p-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
                   <h3 className="font-medium">{translation.title}</h3>

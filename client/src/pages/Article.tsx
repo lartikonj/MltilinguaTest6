@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useRoute } from "wouter";
@@ -13,29 +12,37 @@ export default function ArticlePage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
   const [match, params] = useRoute("/subject/:subjectSlug/:articleSlug");
-  
+
   if (!match) return <NotFound />;
   const { subjectSlug, articleSlug } = params!;
-  
+
   // Fetch article data
   const { data: article, isLoading: isLoadingArticle } = useQuery<Article>({
     queryKey: [`/api/articles/${articleSlug}`],
   });
-  
+
   // Fetch subject for breadcrumb
   const { data: subject, isLoading: isLoadingSubject } = useQuery<Subject>({
     queryKey: [`/api/subjects/${article?.subjectId}`],
     enabled: !!article?.subjectId,
   });
-  
+
   const isLoading = isLoadingArticle || isLoadingSubject;
-  
+
   // Get the appropriate translation or fall back to English
   const translation = article?.translations[language as keyof typeof article.translations] || 
                      article?.translations.en;
 
-  return (
-    <Layout>
+  const translation = article?.translations[language] || article?.translations.en;
+    const pageTitle = translation ? `${translation.title} | MultiLingua` : "Article | MultiLingua";
+    const pageDescription = translation?.excerpt || "Explore this article on MultiLingua in multiple languages";
+
+    return (
+      <Layout
+        title={pageTitle}
+        description={pageDescription}
+        keywords={`${translation?.title}, multilingual article, education`}
+      >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -51,7 +58,7 @@ export default function ArticlePage() {
             ]} 
           />
         </div>
-        
+
         {isLoadingArticle ? (
           <div className="max-w-3xl mx-auto animate-pulse">
             <div className="h-10 bg-gray-200 dark:bg-gray-800 rounded w-3/4 mb-4"></div>
@@ -79,7 +86,7 @@ export default function ArticlePage() {
               <span className="px-2.5 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                 {t(subject?.slug || '')}
               </span>
-              
+
               {/* Read time */}
               <span className="text-gray-600 dark:text-gray-400">
                 {translation.readTime} {t('read.time')}
@@ -104,7 +111,7 @@ export default function ArticlePage() {
                 className="w-full object-cover h-auto" 
               />
             </div>
-            
+
             {/* Article content */}
             <div className="prose dark:prose-invert max-w-none mb-12">
               {translation.content.split('\n').map((paragraph, idx) => (
