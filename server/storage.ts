@@ -152,6 +152,276 @@ export class MemStorage implements IStorage {
     
     // Add articles
     const articles: InsertArticle[] = [
+      // Technology articles
+      {
+        title: "The Rise of Quantum Computing",
+        slug: "rise-quantum-computing",
+        excerpt: "Explore the revolutionary potential of quantum computers and how they're reshaping our technological landscape.",
+        content: "Quantum computing represents a fundamental shift in how we process information. Unlike classical computers that use bits, quantum computers leverage quantum bits or 'qubits' that can exist in multiple states simultaneously...",
+        imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 8,
+        subjectId: 1,
+        author: "Dr. Michael Chen",
+        authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-10-15"),
+        translations: {
+          en: {
+            title: "The Rise of Quantum Computing",
+            excerpt: "Explore the revolutionary potential of quantum computers and how they're reshaping our technological landscape.",
+            content: "Quantum computing represents a fundamental shift in how we process information...",
+            notes: ["Quantum computers use qubits instead of classical bits", "Can solve complex problems exponentially faster", "Major tech companies investing heavily in quantum research"],
+            resources: ["Introduction to Quantum Computing", "Latest Quantum Breakthroughs", "Quantum Computing Applications"]
+          },
+          es: {
+            title: "El Auge de la Computación Cuántica",
+            excerpt: "Explora el potencial revolucionario de las computadoras cuánticas y cómo están remodelando nuestro panorama tecnológico.",
+            content: "La computación cuántica representa un cambio fundamental en cómo procesamos la información...",
+            notes: ["Las computadoras cuánticas usan qubits en lugar de bits clásicos", "Pueden resolver problemas complejos exponencialmente más rápido", "Grandes empresas tecnológicas invierten en investigación cuántica"],
+            resources: ["Introducción a la Computación Cuántica", "Últimos Avances Cuánticos", "Aplicaciones de la Computación Cuántica"]
+          },
+          fr: {
+            title: "L'Essor de l'Informatique Quantique",
+            excerpt: "Découvrez le potentiel révolutionnaire des ordinateurs quantiques et comment ils transforment notre paysage technologique.",
+            content: "L'informatique quantique représente un changement fondamental dans notre façon de traiter l'information...",
+            notes: ["Les ordinateurs quantiques utilisent des qubits au lieu de bits classiques", "Peuvent résoudre des problèmes complexes exponentiellement plus rapidement", "Les grandes entreprises technologiques investissent massivement dans la recherche quantique"],
+            resources: ["Introduction à l'Informatique Quantique", "Dernières Avancées Quantiques", "Applications de l'Informatique Quantique"]
+          },
+          ar: {
+            title: "صعود الحوسبة الكمية",
+            excerpt: "اكتشف الإمكانات الثورية للحواسيب الكمية وكيف تعيد تشكيل مشهدنا التكنولوجي.",
+            content: "تمثل الحوسبة الكمية تحولاً أساسياً في كيفية معالجتنا للمعلومات...",
+            notes: ["تستخدم الحواسيب الكمية الكيوبتات بدلاً من البتات التقليدية", "يمكنها حل المشكلات المعقدة بشكل أسرع أسياً", "شركات التكنولوجيا الكبرى تستثمر بكثافة في البحث الكمي"],
+            resources: ["مقدمة في الحوسبة الكمية", "أحدث الاختراقات الكمية", "تطبيقات الحوسبة الكمية"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: true
+      },
+      // Science articles
+      {
+        title: "Breaking the Code of DNA",
+        slug: "breaking-code-dna",
+        excerpt: "Recent advancements in genetic research are revolutionizing our understanding of life itself.",
+        content: "The discovery of DNA's structure was just the beginning. Today, scientists are not only reading but writing genetic code, opening new frontiers in medicine and biotechnology...",
+        imageUrl: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 7,
+        subjectId: 2,
+        author: "Dr. Sarah Williams",
+        authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-10-01"),
+        translations: {
+          en: {
+            title: "Breaking the Code of DNA",
+            excerpt: "Recent advancements in genetic research are revolutionizing our understanding of life itself.",
+            content: "The discovery of DNA's structure was just the beginning...",
+            notes: ["DNA sequencing becoming more accessible", "CRISPR technology revolutionizing gene editing", "Implications for personalized medicine"],
+            resources: ["Understanding DNA Structure", "Advances in Genetic Research", "Future of Gene Therapy"]
+          },
+          es: {
+            title: "Descifrando el Código del ADN",
+            excerpt: "Los recientes avances en la investigación genética están revolucionando nuestra comprensión de la vida misma.",
+            content: "El descubrimiento de la estructura del ADN fue solo el comienzo...",
+            notes: ["La secuenciación del ADN es cada vez más accesible", "La tecnología CRISPR revoluciona la edición genética", "Implicaciones para la medicina personalizada"],
+            resources: ["Entendiendo la Estructura del ADN", "Avances en Investigación Genética", "Futuro de la Terapia Génica"]
+          },
+          fr: {
+            title: "Décoder l'ADN",
+            excerpt: "Les récentes avancées en recherche génétique révolutionnent notre compréhension de la vie elle-même.",
+            content: "La découverte de la structure de l'ADN n'était que le début...",
+            notes: ["Le séquençage de l'ADN devient plus accessible", "La technologie CRISPR révolutionne l'édition génétique", "Implications pour la médecine personnalisée"],
+            resources: ["Comprendre la Structure de l'ADN", "Avancées en Recherche Génétique", "Avenir de la Thérapie Génique"]
+          },
+          ar: {
+            title: "فك شفرة الحمض النووي",
+            excerpt: "التطورات الأخيرة في البحث الجيني تحدث ثورة في فهمنا للحياة نفسها.",
+            content: "كان اكتشاف بنية الحمض النووي مجرد البداية...",
+            notes: ["تسلسل الحمض النووي يصبح أكثر سهولة", "تقنية كريسبر تحدث ثورة في تحرير الجينات", "آثار على الطب الشخصي"],
+            resources: ["فهم بنية الحمض النووي", "التقدم في البحث الجيني", "مستقبل العلاج الجيني"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: true
+      },
+      // Environment articles
+      {
+        title: "Ocean Conservation Breakthroughs",
+        slug: "ocean-conservation-breakthroughs",
+        excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
+        content: "From plastic-eating bacteria to floating cleanup systems, scientists and engineers are developing groundbreaking solutions to address ocean pollution...",
+        imageUrl: "https://images.unsplash.com/photo-1583842761844-be1a5348c70a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 6,
+        subjectId: 3,
+        author: "Marina Costa",
+        authorImage: "https://images.unsplash.com/photo-1619967161441-78b613c7dd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-09-28"),
+        translations: {
+          en: {
+            title: "Ocean Conservation Breakthroughs",
+            excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
+            content: "From plastic-eating bacteria to floating cleanup systems...",
+            notes: ["New technologies for ocean cleanup", "Marine ecosystem restoration projects", "Community-led conservation efforts"],
+            resources: ["Ocean Conservation Guide", "Marine Protection Initiatives", "Sustainable Fishing Practices"]
+          },
+          es: {
+            title: "Avances en la Conservación Oceánica",
+            excerpt: "Están surgiendo soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
+            content: "Desde bacterias que comen plástico hasta sistemas flotantes de limpieza...",
+            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
+            resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
+          },
+          fr: {
+            title: "Avancées en Conservation des Océans",
+            excerpt: "Des solutions innovantes émergent pour protéger nos océans et la vie marine de la pollution et du changement climatique.",
+            content: "Des bactéries mangeuses de plastique aux systèmes flottants de nettoyage...",
+            notes: ["Nouvelles technologies pour le nettoyage des océans", "Projets de restauration des écosystèmes marins", "Efforts de conservation communautaires"],
+            resources: ["Guide de Conservation des Océans", "Initiatives de Protection Marine", "Pratiques de Pêche Durable"]
+          },
+          ar: {
+            title: "اختراقات في حماية المحيطات",
+            excerpt: "تظهر حلول مبتكرة لحماية محيطاتنا والحياة البحرية من التلوث وتغير المناخ.",
+            content: "من البكتيريا التي تأكل البلاستيك إلى أنظمة التنظيف العائمة...",
+            notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
+            resources: ["دليل حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: false
+      },
+      // Health articles 
+      {
+        title: "Mindfulness and Mental Health",
+        slug: "mindfulness-mental-health",
+        excerpt: "Research shows how mindfulness practices can significantly improve mental well-being and reduce stress.",
+        content: "Mindfulness meditation isn't just about relaxation - it's a powerful tool for mental health that's backed by scientific research...",
+        imageUrl: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 5,
+        subjectId: 4,
+        author: "Dr. Lisa Thompson",
+        authorImage: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-09-15"),
+        translations: {
+          en: {
+            title: "Mindfulness and Mental Health",
+            excerpt: "Research shows how mindfulness practices can significantly improve mental well-being and reduce stress.",
+            content: "Mindfulness meditation isn't just about relaxation...",
+            notes: ["Regular practice reduces anxiety", "Improves focus and concentration", "Helps with emotional regulation"],
+            resources: ["Getting Started with Mindfulness", "Scientific Research on Meditation", "Daily Mindfulness Exercises"]
+          },
+          es: {
+            title: "Mindfulness y Salud Mental",
+            excerpt: "La investigación muestra cómo las prácticas de mindfulness pueden mejorar significativamente el bienestar mental y reducir el estrés.",
+            content: "La meditación mindfulness no se trata solo de relajación...",
+            notes: ["La práctica regular reduce la ansiedad", "Mejora el enfoque y la concentración", "Ayuda con la regulación emocional"],
+            resources: ["Comenzando con Mindfulness", "Investigación Científica sobre Meditación", "Ejercicios Diarios de Mindfulness"]
+          },
+          fr: {
+            title: "Pleine Conscience et Santé Mentale",
+            excerpt: "La recherche montre comment les pratiques de pleine conscience peuvent améliorer significativement le bien-être mental et réduire le stress.",
+            content: "La méditation de pleine conscience n'est pas qu'une question de relaxation...",
+            notes: ["La pratique régulière réduit l'anxiété", "Améliore la concentration", "Aide à la régulation émotionnelle"],
+            resources: ["Débuter avec la Pleine Conscience", "Recherche Scientifique sur la Méditation", "Exercices Quotidiens de Pleine Conscience"]
+          },
+          ar: {
+            title: "اليقظة الذهنية والصحة النفسية",
+            excerpt: "تظهر الأبحاث كيف يمكن لممارسات اليقظة الذهنية أن تحسن بشكل كبير الصحة النفسية وتقلل التوتر.",
+            content: "تأمل اليقظة الذهنية لا يتعلق فقط بالاسترخاء...",
+            notes: ["الممارسة المنتظمة تقلل القلق", "تحسين التركيز والانتباه", "تساعد في التنظيم العاطفي"],
+            resources: ["البدء مع اليقظة الذهنية", "البحث العلمي حول التأمل", "تمارين اليقظة اليومية"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: false
+      },
+      // Arts & Culture articles
+      {
+        title: "Digital Art Revolution",
+        slug: "digital-art-revolution",
+        excerpt: "How NFTs and digital platforms are transforming the art world and creating new opportunities for artists.",
+        content: "The digital art revolution is changing how we create, collect, and value art. From NFTs to virtual galleries, technology is opening new frontiers for artistic expression...",
+        imageUrl: "https://images.unsplash.com/photo-1561735445-df7e2f9b504e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 7,
+        subjectId: 5,
+        author: "Alex Rivera",
+        authorImage: "https://images.unsplash.com/photo-1558203728-00f45181dd84?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-09-10"),
+        translations: {
+          en: {
+            title: "Digital Art Revolution",
+            excerpt: "How NFTs and digital platforms are transforming the art world and creating new opportunities for artists.",
+            content: "The digital art revolution is changing how we create, collect, and value art...",
+            notes: ["NFTs create new revenue streams", "Virtual galleries expand reach", "Digital tools democratize art creation"],
+            resources: ["Understanding NFTs", "Digital Art Platforms", "Getting Started in Digital Art"]
+          },
+          es: {
+            title: "La Revolución del Arte Digital",
+            excerpt: "Cómo los NFTs y las plataformas digitales están transformando el mundo del arte y creando nuevas oportunidades para los artistas.",
+            content: "La revolución del arte digital está cambiando cómo creamos, coleccionamos y valoramos el arte...",
+            notes: ["Los NFTs crean nuevas fuentes de ingresos", "Las galerías virtuales amplían el alcance", "Las herramientas digitales democratizan la creación artística"],
+            resources: ["Entendiendo los NFTs", "Plataformas de Arte Digital", "Comenzando en Arte Digital"]
+          },
+          fr: {
+            title: "La Révolution de l'Art Numérique",
+            excerpt: "Comment les NFT et les plateformes numériques transforment le monde de l'art et créent de nouvelles opportunités pour les artistes.",
+            content: "La révolution de l'art numérique change notre façon de créer, collectionner et valoriser l'art...",
+            notes: ["Les NFT créent de nouvelles sources de revenus", "Les galeries virtuelles élargissent la portée", "Les outils numériques démocratisent la création artistique"],
+            resources: ["Comprendre les NFT", "Plateformes d'Art Numérique", "Débuter dans l'Art Numérique"]
+          },
+          ar: {
+            title: "ثورة الفن الرقمي",
+            excerpt: "كيف تعمل الرموز غير القابلة للاستبدال والمنصات الرقمية على تحويل عالم الفن وخلق فرص جديدة للفنانين.",
+            content: "ثورة الفن الرقمي تغير كيفية إنشائنا وجمعنا وتقييمنا للفن...",
+            notes: ["تخلق NFTs مصادر دخل جديدة", "المعارض الافتراضية توسع النطاق", "الأدوات الرقمية تجعل إنشاء الفن ديمقراطياً"],
+            resources: ["فهم NFTs", "منصات الفن الرقمي", "البدء في الفن الرقمي"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: false
+      },
+      // Travel articles
+      {
+        title: "Sustainable Tourism Trends",
+        slug: "sustainable-tourism-trends",
+        excerpt: "Discover how eco-friendly travel practices are shaping the future of tourism and protecting destinations worldwide.",
+        content: "Sustainable tourism is more than just a trend - it's a necessary evolution in how we explore our world. From carbon-neutral accommodations to community-based tourism...",
+        imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 6,
+        subjectId: 6,
+        author: "Emma Wilson",
+        authorImage: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-09-05"),
+        translations: {
+          en: {
+            title: "Sustainable Tourism Trends",
+            excerpt: "Discover how eco-friendly travel practices are shaping the future of tourism and protecting destinations worldwide.",
+            content: "Sustainable tourism is more than just a trend - it's a necessary evolution in how we explore our world...",
+            notes: ["Rise of eco-friendly accommodations", "Community-based tourism growing", "Carbon offset programs becoming standard"],
+            resources: ["Eco-Tourism Guide", "Sustainable Travel Tips", "Green Accommodation Directory"]
+          },
+          es: {
+            title: "Tendencias en Turismo Sostenible",
+            excerpt: "Descubre cómo las prácticas de viaje ecológicas están dando forma al futuro del turismo y protegiendo destinos en todo el mundo.",
+            content: "El turismo sostenible es más que una tendencia - es una evolución necesaria en cómo exploramos nuestro mundo...",
+            notes: ["Aumento de alojamientos ecológicos", "Crecimiento del turismo comunitario", "Programas de compensación de carbono se vuelven estándar"],
+            resources: ["Guía de Ecoturismo", "Consejos de Viaje Sostenible", "Directorio de Alojamientos Verdes"]
+          },
+          fr: {
+            title: "Tendances du Tourisme Durable",
+            excerpt: "Découvrez comment les pratiques de voyage écologiques façonnent l'avenir du tourisme et protègent les destinations dans le monde entier.",
+            content: "Le tourisme durable est plus qu'une tendance - c'est une évolution nécessaire dans notre façon d'explorer le monde...",
+            notes: ["Essor des hébergements écologiques", "Croissance du tourisme communautaire", "Les programmes de compensation carbone deviennent la norme"],
+            resources: ["Guide d'Écotourisme", "Conseils de Voyage Durable", "Répertoire d'Hébergements Verts"]
+          },
+          ar: {
+            title: "اتجاهات السياحة المستدامة",
+            excerpt: "اكتشف كيف تشكل ممارسات السفر الصديقة للبيئة مستقبل السياحة وتحمي الوجهات في جميع أنحاء العالم.",
+            content: "السياحة المستدامة أكثر من مجرد اتجاه - إنها تطور ضروري في كيفية استكشافنا لعالمنا...",
+            notes: ["ازدهار أماكن الإقامة الصديقة للبيئة", "نمو السياحة المجتمعية", "برامج تعويض الكربون تصبح معياراً"],
+            resources: ["دليل السياحة البيئية", "نصائح السفر المستدام", "دليل الإقامة الخضراء"]
+          }
+        },
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: false
+      },
       {
         title: "The Future of Artificial Intelligence",
         slug: "future-of-artificial-intelligence",
