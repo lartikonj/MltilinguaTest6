@@ -102,30 +102,65 @@ export default function ArticlePage() {
               />
             </div>
             
-            {/* Author and date */}
-            <div className="flex items-center mb-8 border-b border-gray-200 dark:border-gray-800 pb-4">
-              {article.authorImage && (
-                <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                  <img 
-                    src={article.authorImage} 
-                    alt={article.author} 
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-              )}
-              <div>
-                <p className="font-medium">{article.author}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {format(new Date(article.publishDate), "MMMM d, yyyy")}
-                </p>
-              </div>
-            </div>
-            
             {/* Article content */}
-            <div className="prose dark:prose-invert max-w-none">
+            <div className="prose dark:prose-invert max-w-none mb-12">
               {translation.content.split('\n').map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
               ))}
+            </div>
+
+            {/* Notes and Resources */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-8 mb-8">
+              <h2 className="text-2xl font-bold mb-4">{t('additional.resources')}</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-medium mb-2">{t('key.notes')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400">
+                    {translation.notes?.map((note, idx) => (
+                      <li key={idx}>{note}</li>
+                    )) || (
+                      <li>{t('no.notes')}</li>
+                    )}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-medium mb-2">{t('useful.resources')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400">
+                    {translation.resources?.map((resource, idx) => (
+                      <li key={idx}>{resource}</li>
+                    )) || (
+                      <li>{t('no.resources')}</li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Author and date */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  {article.authorImage && (
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <img 
+                        src={article.authorImage} 
+                        alt={article.author} 
+                        className="w-full h-full object-cover" 
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-medium text-lg">{article.author}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {format(new Date(article.publishDate), "MMMM d, yyyy")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{t('share')}:</span>
+                  {/* Add social sharing buttons here if needed */}
+                </div>
+              </div>
             </div>
           </article>
         ) : (

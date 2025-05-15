@@ -69,6 +69,8 @@ export const translationSchema = z.object({
   title: z.string(),
   excerpt: z.string(),
   content: z.string(),
+  notes: z.string().array().optional(),
+  resources: z.string().array().optional(),
 });
 
 // Export types
