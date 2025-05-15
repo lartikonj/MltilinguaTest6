@@ -21,15 +21,12 @@ export default function About() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">{t('about.mission.title')}</h2>
             <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300">
-              <p>
-                At MultiLingua, we're revolutionizing language learning by providing 
-                authentic content in multiple languages. Our platform enables you to:
-              </p>
+              <p>{t('about.mission.content')}</p>
               <ul className="space-y-3 pl-5 list-disc">
-                <li>Read the same article in different languages side-by-side</li>
-                <li>Learn specialized vocabulary in context</li>
-                <li>Experience cultural nuances through native content</li>
-                <li>Track your language progress across diverse subjects</li>
+                <li>{t('about.features.multilingual.description')}</li>
+                <li>{t('about.features.subjects.description')}</li>
+                <li>{t('about.features.learning.description')}</li>
+                <li>{t('about.values.accessibility')}</li>
               </ul>
             </div>
           </section>

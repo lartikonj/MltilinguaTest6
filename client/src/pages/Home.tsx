@@ -187,6 +187,11 @@ export default function Home() {
                   showAuthor={true}
                 />
               )}
+              {!recentArticles?.length && (
+                <div className="text-center py-12">
+                  <p className="text-gray-500 dark:text-gray-400">{t('no.articles.found')}</p>
+                </div>
+              )}
               
               {/* Sidebar with recent articles list */}
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">

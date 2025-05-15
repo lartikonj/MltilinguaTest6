@@ -81,6 +81,23 @@ const resources = {
       'articles': 'articles',
       
       // CTA section
+      // Subject page
+      'no.articles.found': 'No articles found in this subject',
+      'available.in.multiple.languages': 'available in multiple languages',
+      'explore.subjects': 'Explore Subjects',
+      'subjects': 'Subjects',
+
+      // Article page
+      'additional.resources': 'Additional Resources',
+      'key.notes': 'Key Notes',
+      'useful.resources': 'Useful Resources',
+      'no.notes': 'No notes available',
+      'no.resources': 'No resources available',
+      'read.time': 'min read',
+      'author': 'Author',
+      'published.on': 'Published on',
+
+      // CTA section
       'cta.title': 'Ready to explore in your language?',
       'cta.subtitle': 'Enhance your learning experience by reading content in multiple languages. Start your journey today.',
       'get.started': 'Get Started',

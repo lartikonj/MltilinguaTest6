@@ -70,8 +70,30 @@ export default function ArticlePage() {
           <article className="max-w-3xl mx-auto">
             {/* Article header */}
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{translation.title}</h1>
-            
+
+            {/* Metadata */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
+              {/* Subject badge */}
+              <span className="px-2.5 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                {t(subject?.slug || '')}
+              </span>
+              
+              {/* Read time */}
+              <span className="text-gray-600 dark:text-gray-400">
+                {translation.readTime} {t('read.time')}
+              </span>
+            </div>
+
+            {/* Article content */}
+            <div className="prose dark:prose-invert max-w-none">
+              {translation.content}
+            </div>
+
+            {/* Author and date */}
+            <div className="mt-8 flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+              <span>{t('author')}: {translation.author}</span>
+              <span>{t('published.on')}: {new Date(translation.publishedAt).toLocaleDateString()}</span>
+            </div>-center gap-3 mb-6">
               {/* Subject badge */}
               <span className="px-2.5 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                 {t(subject?.slug || '')}
