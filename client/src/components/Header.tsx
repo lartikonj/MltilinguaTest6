@@ -187,4 +187,3 @@ export default function Header() {
     </header>
   );
 }
-```Okay, I will continue generating the code from where I left off.
