@@ -433,7 +433,7 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
   },
   availableLanguages: ["en", "fr", "ar", "es"],
   featured: true
-}
+},
 
       // Environment articles
       {
