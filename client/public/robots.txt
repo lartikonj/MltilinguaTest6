@@ -1,4 +1,8 @@
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
+# Primary sitemap
 Sitemap: https://multilingua.replit.app/sitemap.xml
