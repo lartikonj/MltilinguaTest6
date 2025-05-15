@@ -247,7 +247,7 @@ export class MemStorage implements IStorage {
         slug: "the-water-cycle-a-clear-and-simple-explanation",
         excerpt: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives",
         content: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives.",
-        imageUrl: <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Watercyclesummary.jpg" alt="Diagram of the water cycle" style="max-width:100%; height:auto;" />,
+        imageUrl:"https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
         readTime: 6,
         subjectId: 2,
         author: "Multiligua Editorial",
