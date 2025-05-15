@@ -242,50 +242,137 @@ export class MemStorage implements IStorage {
         availableLanguages: ["en", "es", "fr", "ar"],
         featured: true
       },
-      {
-        title: "The Water Cycle — A Clear and Simple Explanation",
-        slug: "the-water-cycle-a-clear-and-simple-explanation",
-        excerpt: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives",
-        content: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives.",
-        imageUrl:"https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
-        readTime: 6,
-        subjectId: 2,
-        author: "Multiligua Editorial",
-        authorImage: "https://images.unsplash.com/photo-1619967161441-78b613c7dd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
-        publishDate: new Date("2023-09-28"),
-        translations: {
-          en: {
-            title: "The Water Cycle — A Clear and Simple Explanation",
-            excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
-            content: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives. But the water we drink, bathe with, or see falling as rain doesn’t stay still. It constantly moves through an elegant and powerful process known as the water cycle or hydrological cycle.",
-            resources: ["NASA Earth Science: The Water Cycle : https://earthobservatory.nasa.gov/features/Water A comprehensive educational article from NASA explaining each phase with visuals.", "USGS (United States Geological Survey): The Water Cycle : https://www.usgs.gov/special-topics/water-science-school/science/water-cycle, An authoritative source on water science used by educators worldwide.", "BBC Bitesize: Water Cycle for Kids"],
-            notes: ["Ocean Conservation Guide", "Marine Protection Initiatives", "Sustainable Fishing Practices"]
-          },
-          es: {
-            title: "Avances en la Conservación Oceánica",
-            excerpt: "Están surgiendo soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
-            content: "Desde bacterias que comen plástico hasta sistemas flotantes de limpieza...",
-            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
-            resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
-          },
-          fr: {
-            title: "Avancées en Conservation des Océans",
-            excerpt: "Des solutions innovantes émergent pour protéger nos océans et la vie marine de la pollution et du changement climatique.",
-            content: "Des bactéries mangeuses de plastique aux systèmes flottants de nettoyage...",
-            notes: ["Nouvelles technologies pour le nettoyage des océans", "Projets de restauration des écosystèmes marins", "Efforts de conservation communautaires"],
-            resources: ["Guide de Conservation des Océans", "Initiatives de Protection Marine", "Pratiques de Pêche Durable"]
-          },
-          ar: {
-            title: "اختراقات في حماية المحيطات",
-            excerpt: "تظهر حلول مبتكرة لحماية محيطاتنا والحياة البحرية من التلوث وتغير المناخ.",
-            content: "من البكتيريا التي تأكل البلاستيك إلى أنظمة التنظيف العائمة...",
-            notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
-            resources: ["دليل حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
-          }
-        },    
-        availableLanguages: ["en", "es", "fr", "ar"],
-        featured: false
-      },    
+      // Science articles
+{
+  title: "The Water Cycle — A Clear and Simple Explanation",
+  slug: "water-cycle-explained",
+  excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+  content: "Water on Earth is always moving — it’s in a continuous journey known as the water cycle. This natural system includes four key stages: evaporation (when the sun heats water turning it into vapor), condensation (when water vapor cools and forms clouds), precipitation (when water falls as rain, snow, or hail), and collection (where water gathers in oceans, rivers, lakes, and underground). This cycle supports all life on Earth and helps regulate climate, making it one of the planet’s most vital processes.",
+  imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+  readTime: 5,
+  subjectId: 2,
+  author: "Multilingua Science Team",
+  authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+  publishDate: new Date("2023-12-01"),
+  translations: {
+    en: {
+      title: "The Water Cycle — A Clear and Simple Explanation",
+      excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+      content: `The water cycle, also known as the hydrological cycle, is nature’s way of recycling water. It is a continuous and essential process that sustains life on Earth.
+
+**1. Evaporation**  
+The cycle begins with the sun heating up water from oceans, rivers, and lakes. This causes the water to evaporate, turning it into vapor that rises into the atmosphere.
+
+**2. Condensation**  
+As the water vapor rises and cools, it turns back into tiny droplets, forming clouds. This process is known as condensation.
+
+**3. Precipitation**  
+When the clouds become heavy with water, the droplets fall back to the Earth as precipitation — in the form of rain, snow, sleet, or hail.
+
+**4. Collection**  
+The fallen water collects in bodies of water such as rivers, lakes, and oceans, and some seeps underground, replenishing aquifers. Eventually, this water may evaporate again, and the cycle continues.
+
+The water cycle helps regulate Earth’s temperature and supports ecosystems, agriculture, and weather patterns. It's an invisible engine that makes life possible.`,
+      notes: [
+        "The water cycle is powered by solar energy.",
+        "It connects oceans, the atmosphere, and the land.",
+        "Essential for drinking water, agriculture, and weather systems."
+      ],
+      resources: [
+        "NASA Earth Science: https://earthobservatory.nasa.gov/features/Water",
+        "USGS Water Cycle: https://www.usgs.gov/special-topics/water-science-school/science/water-cycle",
+        "BBC Bitesize: https://www.bbc.co.uk/bitesize/topics/zkgg87h/articles/z3wpp39"
+      ]
+    },
+    fr: {
+      title: "Le cycle de l’eau — Une explication claire et accessible",
+      excerpt: "Découvrez comment l’eau circule dans la nature : évaporation, condensation, précipitations et collecte.",
+      content: `Le cycle de l’eau, aussi appelé cycle hydrologique, est le moyen par lequel la nature recycle l’eau. C’est un processus continu et essentiel qui soutient la vie sur Terre.
+
+**1. Évaporation**  
+Le cycle commence lorsque le soleil chauffe l’eau des océans, des rivières et des lacs. L’eau s’évapore alors et se transforme en vapeur qui monte dans l’atmosphère.
+
+**2. Condensation**  
+En montant, la vapeur d’eau se refroidit et se transforme en fines gouttelettes qui forment les nuages. C’est la condensation.
+
+**3. Précipitations**  
+Lorsque les nuages deviennent trop chargés en eau, celle-ci retombe sur Terre sous forme de précipitations : pluie, neige, grêle ou bruine.
+
+**4. Collecte**  
+L’eau tombée s’accumule dans les rivières, les lacs et les océans. Une partie s’infiltre aussi dans le sol pour alimenter les nappes phréatiques. Ensuite, l’eau peut de nouveau s’évaporer, et le cycle recommence.
+
+Ce cycle régule la température de la Terre, nourrit les écosystèmes, soutient l’agriculture et influence les conditions météorologiques. C’est un mécanisme naturel indispensable à la vie.`,
+      notes: [
+        "Le cycle de l’eau est alimenté par l’énergie solaire.",
+        "Il relie les océans, l’atmosphère et la terre.",
+        "Essentiel pour l’eau potable, l’agriculture et les systèmes météorologiques."
+      ],
+      resources: [
+        "CNRS : https://www.insu.cnrs.fr/fr/le-cycle-de-leau",
+        "Futura Sciences : https://www.futura-sciences.com/planete/definitions/developpement-durable-cycle-eau-1531/"
+      ]
+    },
+    ar: {
+      title: "دورة الماء — شرح مبسّط وواضح",
+      excerpt: "اكتشف كيف يتحرك الماء في الطبيعة من خلال التبخر والتكاثف والهطول والتجمع.",
+      content: `تُعرف دورة الماء، أو الدورة الهيدرولوجية، بأنها الطريقة التي تُعيد بها الطبيعة تدوير المياه. إنها عملية مستمرة وأساسية تدعم الحياة على الأرض.
+
+**1. التبخر**  
+تبدأ الدورة عندما تسخن الشمس الماء الموجود في المحيطات والأنهار والبحيرات، مما يؤدي إلى تبخره وتحوله إلى بخار يصعد إلى الغلاف الجوي.
+
+**2. التكاثف**  
+عند صعود بخار الماء ولقائه بالهواء البارد، يتكاثف ويتحول إلى قطرات صغيرة تُشكّل السحب.
+
+**3. الهطول**  
+عندما تصبح السحب ممتلئة بالماء، ينزل على شكل أمطار أو ثلوج أو برد.
+
+**4. التجمع**  
+يتجمع الماء في الأنهار والبحيرات والمحيطات، وقد يتسرب جزء منه إلى باطن الأرض ليغذي المياه الجوفية. بعد ذلك، يمكن أن يتبخر مرة أخرى ويبدأ الدورة من جديد.
+
+تُعد هذه الدورة ضرورية لتنظيم مناخ الأرض، ودعم الزراعة، وتوفير مياه الشرب. إنها آلية طبيعية تحافظ على الحياة.`,
+      notes: [
+        "تعتمد دورة الماء على طاقة الشمس.",
+        "تربط بين المحيطات والغلاف الجوي واليابسة.",
+        "ضرورية لمياه الشرب والزراعة والطقس."
+      ],
+      resources: [
+        "اليونسكو: https://ar.unesco.org/themes/water-security/hydrology",
+        "الجزيرة: https://www.aljazeera.net/encyclopedia/events/2015/3/22/دورة-الماء"
+      ]
+    },
+    es: {
+      title: "El ciclo del agua — Explicado de forma clara y sencilla",
+      excerpt: "Aprende cómo el agua se mueve en la naturaleza a través de evaporación, condensación, precipitación y recolección.",
+      content: `El ciclo del agua, también llamado ciclo hidrológico, es el proceso mediante el cual la naturaleza recicla el agua. Es un ciclo constante y vital para la vida en la Tierra.
+
+**1. Evaporación**  
+El sol calienta el agua de los océanos, ríos y lagos, lo que provoca su evaporación y su transformación en vapor que sube a la atmósfera.
+
+**2. Condensación**  
+A medida que el vapor se eleva y se enfría, se condensa y forma pequeñas gotas que crean las nubes.
+
+**3. Precipitación**  
+Cuando las nubes están cargadas de agua, esta cae en forma de lluvia, nieve o granizo.
+
+**4. Recolección**  
+El agua caída se acumula en ríos, lagos, océanos o se filtra al subsuelo. Posteriormente, puede volver a evaporarse y repetir el ciclo.
+
+Este ciclo regula el clima, mantiene los ecosistemas, permite la agricultura y garantiza el agua potable. Es una maravilla natural esencial para la vida.`,
+      notes: [
+        "El ciclo del agua es impulsado por la energía solar.",
+        "Conecta océanos, atmósfera y tierra.",
+        "Esencial para el agua potable, la agricultura y el clima."
+      ],
+      resources: [
+        "National Geographic: https://www.nationalgeographic.com.es/medio-ambiente/ciclo-del-agua_18171",
+        "AEMET: https://www.aemet.es/es/conocermas/educacion/clima/ciclo_agua"
+      ]
+    }
+  },
+  availableLanguages: ["en", "fr", "ar", "es"],
+  featured: true
+},
+
       // Environment articles
       {
         title: "Ocean Conservation Breakthroughs",
