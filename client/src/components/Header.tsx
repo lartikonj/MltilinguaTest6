@@ -60,14 +60,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
       <div className="container mx-auto px-1">
-        <div className="flex h-12 items-center justify-between">
+        <div className="flex h-12 items-center justify-between gap-1">
           {/* Logo and site name */}
           <div className="flex items-center flex-shrink-0">
             <Link href="/" className="flex items-center gap-0.5">
               <div className="w-4 h-4 rounded-lg bg-orange-800 flex items-center justify-center">
                 <Globe className="h-2.5 w-2.5 text-white" />
               </div>
-              <span className="font-bold text-xs truncate max-w-[80px]">{t('site.name', 'MultiLingua')}</span>
+              <span className="hidden sm:inline font-bold text-xs">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
@@ -109,20 +109,20 @@ export default function Header() {
           </div>
 
           {/* User controls */}
-          <div className="flex items-center gap-1 min-w-fit">
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-1 shrink-0">
+          <div className="flex items-center gap-0.5">
+            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
               <SearchDialog className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-1 shrink-0">
+            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
               <LanguageSwitcher className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-1 shrink-0">
+            <Button variant="ghost" size="sm" className="h-7 w-7 p-0.5">
               <ThemeToggle className="h-4 w-4" />
             </Button>
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden h-8 w-8 p-1 shrink-0"
+              className="md:hidden h-7 w-7 p-0.5"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
