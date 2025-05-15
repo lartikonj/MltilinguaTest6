@@ -134,8 +134,8 @@ export default function Header() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0 top-16 z-50 max-h-screen overflow-y-auto">
-          <div className="py-3 px-3 space-y-1 shadow-lg pb-[env(safe-area-inset-bottom)]">
+        <div className="md:hidden fixed inset-0 top-16 z-50 bg-white dark:bg-gray-900 overflow-y-auto">
+          <div className="py-3 px-3 space-y-1 shadow-lg bg-white dark:bg-gray-900 pb-[env(safe-area-inset-bottom)]">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -161,7 +161,7 @@ export default function Header() {
             </button>
 
             {mobileSubjectsOpen && (
-              <div className="pl-6 pr-4 space-y-2">
+              <div className="pl-6 pr-4 pt-2 pb-4 space-y-2 border-l border-gray-200 dark:border-gray-700">
                 {subjects.map((subject) => (
                   <Link
                     key={subject.slug}
