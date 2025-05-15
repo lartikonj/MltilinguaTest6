@@ -38,7 +38,7 @@ export default function Header() {
     { label: "Popular", href: "/popular", translationKey: "nav.popular" },
     { label: "Recent", href: "/recent", translationKey: "nav.recent" },
     { label: "About", href: "/about", translationKey: "nav.about" },  // <-- Changed
-    { label: "Subjects", href: "/subjects", translationKey: "nav.subjects" }
+    { label: "Subjects", href: "/subject", translationKey: "nav.subjects" }
   ];
 
   // Subjects for dropdown
@@ -108,16 +108,16 @@ export default function Header() {
                 </Link>
               )
             ))}
-            
-            
-          
+
+
+
           </nav>
 
           {/* User controls */}
           <div className="flex items-center space-x-3">
             {/* Search Button */}
             <SearchDialog />
-            
+
             {/* Language Switcher */}
             <LanguageSwitcher />
 
@@ -157,7 +157,7 @@ export default function Header() {
                 {t(item.translationKey)}
               </Link>
             ))}
-            
+
             {/* Mobile subjects dropdown */}
             <button
               className="flex w-full items-center justify-between py-2 font-medium text-gray-700 dark:text-gray-300"
@@ -166,7 +166,7 @@ export default function Header() {
               {t('subjects')}
               <ChevronDown className={`h-4 w-4 transform ${mobileSubjectsOpen ? 'rotate-180' : ''}`} />
             </button>
-            
+
             {mobileSubjectsOpen && (
               <div className="pl-4 space-y-1">
                 {subjects.map((subject) => (
@@ -187,3 +187,4 @@ export default function Header() {
     </header>
   );
 }
+```Okay, I will continue generating the code from where I left off.

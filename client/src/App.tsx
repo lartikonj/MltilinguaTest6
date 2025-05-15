@@ -13,12 +13,6 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/subjects">
-        {() => {
-          window.location.href = '/subject';
-          return null;
-        }}
-      </Route>
       <Route path="/subject" component={Subject} />
       <Route path="/subject/:slug" component={Subject} />
       <Route path="/subject/:subjectSlug/:slug" component={Article} />

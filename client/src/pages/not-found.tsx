@@ -29,7 +29,7 @@ export default function NotFound() {
               </Button>
             </Link>
             
-            <Link href="/subjects">
+            <Link href="/subject">
               <Button variant="outline" className="flex items-center gap-2">
                 <Search className="h-4 w-4" />
                 {t('browse.subjects')}
