@@ -121,7 +121,7 @@ const resources = {
       'footer.terms': 'Términos de servicio',
       'footer.contributors': 'Colaboradores',
       'footer.copyright': '© 2025 MultiLingua. Todos los derechos reservados.',
-      'footer.cookies': 'Cookies'
+      'footer.cookies': 'Cookies',
       'cta.title': 'Únete a nosotros',
       'cta.subtitle': 'Hacemos que el conocimiento sea divertido!',
       'learn.more': 'Saber más',
@@ -187,7 +187,7 @@ const resources = {
       'footer.terms': 'Conditions d\'utilisation',
       'footer.contributors': 'Contributeurs',
       'footer.copyright': '© 2023 MultiLingua. Tous droits réservés.',
-      'footer.cookies': 'Cookies'
+      'footer.cookies': 'Cookies',
       'cta.title': 'Rejoignez-nous',
       'cta.subtitle': 'Nous rendons le savoir amusant!',
       'learn.more': 'En savoir plus',
@@ -251,7 +251,7 @@ const resources = {
       'footer.terms': 'شروط الخدمة',
       'footer.contributors': 'المساهمون',
       'footer.copyright': '© 2025 مالتي لينجوا. جميع الحقوق محفوظة.',
-      'footer.cookies': 'ملفات تعريف الارتباط'
+      'footer.cookies': 'ملفات تعريف الارتباط',
       'cta.title': 'انضم إلينا',
       'cta.subtitle': '!نجعل من المعرفة متعة!',
       'learn.more': 'تعرف على المزيد',
