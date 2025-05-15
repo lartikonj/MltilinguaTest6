@@ -17,7 +17,6 @@ interface NavItem {
   label: string;
   href: string;
   translationKey: string;
-  isActive: boolean;
 }
 
 interface SubjectNavItem {
@@ -87,7 +86,7 @@ export default function Header() {
                 {t(item.translationKey)}
               </Link>
             ))}
-            
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
@@ -105,40 +104,6 @@ export default function Header() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-                <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
-                  {t("nav.subjects")}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {subjects.map((subject) => (
-                  <DropdownMenuItem key={subject.slug} asChild>
-                    <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
-                      {t(subject.translationKey)}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`font-medium ${
-                    item.isActive
-                      ? "text-primary-600 dark:text-primary-400"
-                      : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
-                  } transition-colors`}
-                >
-                  {t(item.translationKey)}
-                </Link>
-              )
-            ))}
-
-
-
           </nav>
 
           {/* User controls */}
@@ -176,7 +141,7 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 className={`block py-2 font-medium ${
-                  item.isActive
+                  location === item.href
                     ? "text-primary-600 dark:text-primary-400"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
@@ -191,7 +156,7 @@ export default function Header() {
               className="flex w-full items-center justify-between py-2 font-medium text-gray-700 dark:text-gray-300"
               onClick={toggleMobileSubjects}
             >
-              {t('subjects')}
+              {t('nav.subjects')}
               <ChevronDown className={`h-4 w-4 transform ${mobileSubjectsOpen ? 'rotate-180' : ''}`} />
             </button>
 
