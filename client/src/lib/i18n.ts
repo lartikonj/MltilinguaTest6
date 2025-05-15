@@ -199,7 +199,7 @@ const resources = {
       'learn.more': 'En savoir plus',
       'footer.home': 'Accueil',
       'home': 'Accueil',
-      'popular': 'Populaire,
+      'popular': 'Populaire',
       'available.in': 'Disponible en',
       'read.time': 'Temps de lecture',
       'additional.resources': 'Ressources supplémentaires',
