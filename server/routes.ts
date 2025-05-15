@@ -1,6 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { generateSitemap } from "./generateSitemap";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up API routes
@@ -95,6 +96,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Error fetching article" });
     }
   });
+
+  // Generate initial sitemap
+  await generateSitemap();
+
+  // Set up scheduled sitemap generation (every 24 hours)
+  setInterval(generateSitemap, 24 * 60 * 60 * 1000);
 
   const httpServer = createServer(app);
   return httpServer;
