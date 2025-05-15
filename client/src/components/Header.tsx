@@ -106,29 +106,41 @@ export default function Header() {
             </DropdownMenu>
           </nav>
 
-          {/* User controls */}
-          <div className="flex items-center space-x-3">
-            {/* Search Button */}
-            <SearchDialog />
-
-            {/* Language Switcher */}
-            <LanguageSwitcher />
-
-            {/* Theme Toggle */}
-            <ThemeToggle />
-
-            {/* Mobile Menu Button */}
+          {/* Mobile Menu Button */}
             <Button
               variant="default"
-              size="icon"
-              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-2"
+              size="sm"
+              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-1"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
-              <Menu className="h-4 w-4" />
+              <Menu className="h-3.5 w-3.5" />
               <span className="sr-only">Open menu</span>
             </Button>
           </div>
+
+          {/* User controls */}
+          <div className="flex items-center space-x-2">
+            {/* Search Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-7 w-7 p-0"
+              asChild
+            >
+              <SearchDialog />
+            </Button>
+
+            {/* Language Switcher */}
+            <div className="scale-90">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Theme Toggle */}
+            <div className="scale-90">
+              <ThemeToggle />
+            </div>
+
         </div>
       </div>
 
