@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import { Subject } from "@shared/schema";
 import { useTranslation } from "react-i18next";
@@ -67,4 +68,3 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
     </Link>
   );
 }
-```
