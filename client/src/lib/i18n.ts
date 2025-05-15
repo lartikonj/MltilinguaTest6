@@ -1,75 +1,27 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Default translations for UI elements
 const resources = {
   en: {
     translation: {
       // Site
       'site.name': 'MultiLingua',
       'site.description': 'Multilingual Learning Platform',
-      
+
       // Navigation
       'nav.home': 'Home',
       'nav.subjects': 'Subjects',
       'nav.popular': 'Popular',
       'nav.recent': 'Recent',
       'nav.about': 'About',
-      
+      'nav.featured': 'Featured',
+
       // Language names
       'english': 'English',
       'french': 'French',
       'spanish': 'Spanish',
       'arabic': 'Arabic',
-      
-      // About page
-      'about': {
-        'title': 'About MultiLingua',
-        'mission': {
-          'title': 'Our Mission',
-          'content': 'MultiLingua bridges language barriers by providing high-quality educational content in multiple languages, making knowledge accessible to all.'
-        },
-        'values': {
-          'accessibility': 'Make knowledge accessible to everyone',
-          'quality': 'Maintain high-quality, accurate content',
-          'diversity': 'Celebrate linguistic and cultural diversity',
-          'innovation': 'Continuously improve the learning experience'
-        },
-        'features': {
-          'title': 'Key Features',
-          'multilingual': {
-            'title': 'Multilingual Content',
-            'description': 'Read the same article in different languages to enhance comprehension.'
-          },
-          'subjects': {
-            'title': 'Diverse Subjects',
-            'description': 'Explore technology, science, health, arts, culture and travel.'
-          },
-          'learning': {
-            'title': 'Language Learning',
-            'description': 'Compare translations to improve your language skills.'
-          }
-        },
-        'stats': {
-          'languages': 'Languages',
-          'articles': 'Articles',
-          'subjects': 'Subjects',
-          'users': 'Active Learners'
-        },
-        'cta': {
-          'explore': 'Explore Subjects',
-          'read': 'Start Reading'
-        }
-      },
-      
-      // Subject names
-      'technology': 'Technology',
-      'science': 'Science',
-      'environment': 'Environment',
-      'health': 'Health',
-      'arts-culture': 'Arts & Culture',
-      'travel': 'Travel',
-      
+
       // Homepage
       'hero.title': 'Discover Knowledge Across Languages',
       'hero.subtitle': 'Explore articles on diverse subjects and enhance your learning by reading in multiple languages.',
@@ -83,30 +35,15 @@ const resources = {
       'recent.updates': 'Recent Updates',
       'min.read': 'min read',
       'articles': 'articles',
-      
-      // CTA section
-      // Subject page
-      'no.articles.found': 'No articles found in this subject',
-      'available.in.multiple.languages': 'available in multiple languages',
-      'explore.subjects': 'Explore Subjects',
-      'subjects': 'Subjects',
 
-      // Article page
-      'additional.resources': 'Additional Resources',
-      'key.notes': 'Key Notes',
-      'useful.resources': 'Useful Resources',
-      'no.notes': 'No notes available',
-      'no.resources': 'No resources available',
-      'read.time': 'min read',
-      'author': 'Author',
-      'published.on': 'Published on',
+      // Subjects
+      'technology': 'Technology',
+      'science': 'Science',
+      'environment': 'Environment',
+      'health': 'Health',
+      'arts-culture': 'Arts & Culture',
+      'travel': 'Travel',
 
-      // CTA section
-      'cta.title': 'Ready to explore in your language?',
-      'cta.subtitle': 'Enhance your learning experience by reading content in multiple languages. Start your journey today.',
-      'get.started': 'Get Started',
-      'learn.more': 'Learn More',
-      
       // Footer
       'footer.description': 'A multilingual platform for knowledge sharing and language learning through diverse content.',
       'footer.explore': 'Explore',
@@ -118,115 +55,142 @@ const resources = {
       'footer.terms': 'Terms of Service',
       'footer.contributors': 'Contributors',
       'footer.copyright': '© 2023 MultiLingua. All rights reserved.',
-      'footer.cookies': 'Cookies',
-      
-      // Theme
-      'theme.toggle': 'Toggle theme',
-      'language.switch': 'Switch language',
-      
-      // Search
-      'search': 'Search',
-      'search.title': 'Search Articles',
-      'search.placeholder': 'Enter keywords to search...',
-      'search.no.results': 'No articles found matching your search.',
-      
-      // Not found page
-      'not.found.title': '404 Page Not Found',
-      'not.found.description': 'The page you are looking for does not exist.',
-      'back.home': 'Back to Home',
-      'popular.topics': 'Popular Topics'
+      'footer.cookies': 'Cookies'
     }
   },
   fr: {
     translation: {
-      // Navigation
+      'site.name': 'MultiLingua',
+      'site.description': 'Plateforme d\'apprentissage multilingue',
       'nav.home': 'Accueil',
       'nav.subjects': 'Sujets',
       'nav.popular': 'Populaire',
       'nav.recent': 'Récent',
       'nav.about': 'À propos',
-      
-      // Language names
+      'nav.featured': 'En vedette',
       'english': 'Anglais',
       'french': 'Français',
       'spanish': 'Espagnol',
       'arabic': 'Arabe',
-      
-      // About page
-      'about': {
-        'title': 'À propos de MultiLingua',
-        'mission': {
-          'title': 'Notre Mission',
-          'content': 'MultiLingua brise les barrières linguistiques en fournissant du contenu éducatif de haute qualité en plusieurs langues, rendant la connaissance accessible à tous.'
-        },
-        // ... add other about translations following same structure
-      },
-      
-      // Subject names
+      'hero.title': 'Découvrez les connaissances à travers les langues',
+      'hero.subtitle': 'Explorez des articles sur divers sujets et améliorez votre apprentissage en lisant en plusieurs langues.',
+      'start.reading': 'Commencer la lecture',
+      'browse.subjects': 'Parcourir les sujets',
+      'featured.articles': 'Articles en vedette',
+      'view.all': 'Voir tout',
+      'explore.by.subject': 'Explorer par sujet',
+      'explore.description': 'Découvrez des articles dans diverses catégories en plusieurs langues',
+      'latest.articles': 'Derniers articles',
+      'recent.updates': 'Mises à jour récentes',
+      'min.read': 'min de lecture',
+      'articles': 'articles',
       'technology': 'Technologie',
       'science': 'Science',
       'environment': 'Environnement',
       'health': 'Santé',
-      'arts-culture': 'Arts & Culture',
+      'arts-culture': 'Arts et Culture',
       'travel': 'Voyage',
-      
-      // ... rest of French translations remain same
+      'footer.description': 'Une plateforme multilingue pour le partage des connaissances et l\'apprentissage des langues.',
+      'footer.explore': 'Explorer',
+      'footer.languages': 'Langues',
+      'footer.about': 'À propos',
+      'footer.mission': 'Notre mission',
+      'footer.contact': 'Contactez-nous',
+      'footer.privacy': 'Politique de confidentialité',
+      'footer.terms': 'Conditions d\'utilisation',
+      'footer.contributors': 'Contributeurs',
+      'footer.copyright': '© 2023 MultiLingua. Tous droits réservés.',
+      'footer.cookies': 'Cookies'
     }
   },
   es: {
     translation: {
-      // Navigation
+      'site.name': 'MultiLingua',
+      'site.description': 'Plataforma de aprendizaje multilingüe',
       'nav.home': 'Inicio',
       'nav.subjects': 'Temas',
       'nav.popular': 'Popular',
       'nav.recent': 'Reciente',
       'nav.about': 'Acerca de',
-      
-      // Language names
+      'nav.featured': 'Destacado',
       'english': 'Inglés',
       'french': 'Francés',
       'spanish': 'Español',
       'arabic': 'Árabe',
-      
-      // About page
-      'about': {
-        'title': 'Acerca de MultiLingua',
-        'mission': {
-          'title': 'Nuestra Misión',
-          'content': 'MultiLingua elimina barreras lingüísticas proporcionando contenido educativo de alta calidad en múltiples idiomas, haciendo el conocimiento accesible para todos.'
-        },
-        // ... add other about translations following same structure
-      },
-      
-      // ... rest of Spanish translations remain same
+      'hero.title': 'Descubre conocimiento en varios idiomas',
+      'hero.subtitle': 'Explora artículos sobre diversos temas y mejora tu aprendizaje leyendo en múltiples idiomas.',
+      'start.reading': 'Empezar a leer',
+      'browse.subjects': 'Explorar temas',
+      'featured.articles': 'Artículos destacados',
+      'view.all': 'Ver todo',
+      'explore.by.subject': 'Explorar por tema',
+      'explore.description': 'Descubre artículos en varias categorías en múltiples idiomas',
+      'latest.articles': 'Últimos artículos',
+      'recent.updates': 'Actualizaciones recientes',
+      'min.read': 'min de lectura',
+      'articles': 'artículos',
+      'technology': 'Tecnología',
+      'science': 'Ciencia',
+      'environment': 'Medio ambiente',
+      'health': 'Salud',
+      'arts-culture': 'Arte y Cultura',
+      'travel': 'Viajes',
+      'footer.description': 'Una plataforma multilingüe para compartir conocimientos y aprender idiomas.',
+      'footer.explore': 'Explorar',
+      'footer.languages': 'Idiomas',
+      'footer.about': 'Acerca de',
+      'footer.mission': 'Nuestra misión',
+      'footer.contact': 'Contáctenos',
+      'footer.privacy': 'Política de privacidad',
+      'footer.terms': 'Términos de servicio',
+      'footer.contributors': 'Colaboradores',
+      'footer.copyright': '© 2023 MultiLingua. Todos los derechos reservados.',
+      'footer.cookies': 'Cookies'
     }
   },
   ar: {
     translation: {
-      // Navigation
+      'site.name': 'مالتي لينجوا',
+      'site.description': 'منصة تعلم متعددة اللغات',
       'nav.home': 'الرئيسية',
       'nav.subjects': 'المواضيع',
       'nav.popular': 'شائع',
       'nav.recent': 'حديث',
       'nav.about': 'حول',
-      
-      // Language names
+      'nav.featured': 'مميز',
       'english': 'الإنجليزية',
       'french': 'الفرنسية',
       'spanish': 'الإسبانية',
       'arabic': 'العربية',
-      
-      // About page
-      'about': {
-        'title': 'حول مالتي لينجوا',
-        'mission': {
-          'title': 'مهمتنا',
-          'content': 'تزيل مالتي لينجوا الحواجز اللغوية من خلال توفير محتوى تعليمي عالي الجودة بعدة لغات، مما يجعل المعرفة في متناول الجميع.'
-        },
-        // ... add other about translations following same structure
-      },
-      
-      // ... rest of Arabic translations remain same
+      'hero.title': 'اكتشف المعرفة بلغات متعددة',
+      'hero.subtitle': 'استكشف مقالات في مواضيع متنوعة وحسن تعلمك بالقراءة بلغات متعددة.',
+      'start.reading': 'ابدأ القراءة',
+      'browse.subjects': 'تصفح المواضيع',
+      'featured.articles': 'مقالات مميزة',
+      'view.all': 'عرض الكل',
+      'explore.by.subject': 'استكشف حسب الموضوع',
+      'explore.description': 'اكتشف مقالات في فئات متنوعة بلغات متعددة',
+      'latest.articles': 'أحدث المقالات',
+      'recent.updates': 'آخر التحديثات',
+      'min.read': 'دقيقة قراءة',
+      'articles': 'مقالات',
+      'technology': 'التكنولوجيا',
+      'science': 'العلوم',
+      'environment': 'البيئة',
+      'health': 'الصحة',
+      'arts-culture': 'الفنون والثقافة',
+      'travel': 'السفر',
+      'footer.description': 'منصة متعددة اللغات لمشاركة المعرفة وتعلم اللغات.',
+      'footer.explore': 'استكشف',
+      'footer.languages': 'اللغات',
+      'footer.about': 'حول',
+      'footer.mission': 'مهمتنا',
+      'footer.contact': 'اتصل بنا',
+      'footer.privacy': 'سياسة الخصوصية',
+      'footer.terms': 'شروط الخدمة',
+      'footer.contributors': 'المساهمون',
+      'footer.copyright': '© 2023 مالتي لينجوا. جميع الحقوق محفوظة.',
+      'footer.cookies': 'ملفات تعريف الارتباط'
     }
   }
 };
@@ -242,21 +206,7 @@ i18n
     },
     react: {
       useSuspense: true
-    },
-    keySeparator: '.',
-    nsSeparator: ':',
-    returnEmptyString: false,
-    returnNull: false
+    }
   });
-
-// Add language change listener
-i18n.on('languageChanged', () => {
-  document.documentElement.lang = i18n.language;
-  if (i18n.language === 'ar') {
-    document.documentElement.dir = 'rtl';
-  } else {
-    document.documentElement.dir = 'ltr';
-  }
-});
 
 export default i18n;

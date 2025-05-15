@@ -35,12 +35,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         document.documentElement.lang = newLang;
         document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
         
-        // Force reload translations throughout the app
+        // Update CSS for RTL support
+        if (newLang === "ar") {
+          document.documentElement.classList.add("rtl");
+        } else {
+          document.documentElement.classList.remove("rtl");
+        }
+        
+        // Force immediate re-render
         window.dispatchEvent(new Event('languageChanged'));
         
-        // Refresh dynamic content
+        // Reload dynamic content with delay
         setTimeout(() => {
-          window.dispatchEvent(new Event('contentRefresh'));
+          window.location.reload();
         }, 100);
       } catch (error) {
         console.error('Failed to change language:', error);
