@@ -60,19 +60,19 @@ export default function Header() {
   return (
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-center justify-between px-2">
           {/* Logo and site name */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-1.5 md:space-x-2">
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-orange-800 flex items-center justify-center">
-                <Globe className="h-4 w-4 md:h-5 md:w-5 text-white" />
+          <div className="flex items-center flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-1">
+              <div className="w-6 h-6 rounded-lg bg-orange-800 flex items-center justify-center">
+                <Globe className="h-3.5 w-3.5 text-white" />
               </div>
-              <span className="font-bold text-lg md:text-xl">{t('site.name', 'MultiLingua')}</span>
+              <span className="font-bold text-base">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
           {/* Main navigation - Desktop */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-3">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -109,14 +109,14 @@ export default function Header() {
           </div>
 
           {/* User controls */}
-          <div className="flex items-center gap-2">
-            <SearchDialog className="h-7 w-7" />
-            <LanguageSwitcher className="scale-90" />
-            <ThemeToggle className="scale-90" />
+          <div className="flex items-center gap-1">
+            <SearchDialog className="h-6 w-6" />
+            <LanguageSwitcher className="scale-75" />
+            <ThemeToggle className="scale-75" />
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden h-7 w-7 p-1"
+              className="md:hidden h-6 w-6 p-0.5"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
