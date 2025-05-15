@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useRoute } from "wouter";
@@ -12,23 +11,23 @@ export default function SubjectPage() {
   const { t } = useTranslation();
   const [, params] = useRoute<{ slug: string }>("/subject/:slug");
   const slug = params?.slug;
-  
+
   // Fetch all subjects
   const { data: subjects, isLoading: isLoadingSubjects } = useQuery<Subject[]>({
     queryKey: ['/api/subjects'],
   });
-  
+
   // If there's a slug, fetch subject data and its articles
   const { data: subject, isLoading: isLoadingSubject } = useQuery<Subject>({
     queryKey: [`/api/subjects/${slug}`],
     enabled: !!slug,
   });
-  
+
   const { data: articles, isLoading: isLoadingArticles } = useQuery<Article[]>({
     queryKey: [`/api/articles/subject/${subject?.id}`],
     enabled: !!subject?.id,
   });
-  
+
   const isLoading = isLoadingSubjects || (slug && (isLoadingSubject || isLoadingArticles));
 
   // If no slug is provided, show all subjects
@@ -37,10 +36,10 @@ export default function SubjectPage() {
       <Layout>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold">{t('subjects')}</h1>
+            <h1 className="text-3xl font-bold">{t('nav.subjects')}</h1>
             <p className="text-gray-600 dark:text-gray-400 mt-2">{t('explore.description')}</p>
           </div>
-          
+
           {isLoadingSubjects ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
               {[1, 2, 3, 4, 5, 6].map(i => (
@@ -75,7 +74,7 @@ export default function SubjectPage() {
             ]} 
           />
         </div>
-        
+
         {/* Subject header */}
         <div className="mb-12 text-center">
           {isLoadingSubject ? (
@@ -96,7 +95,7 @@ export default function SubjectPage() {
             </>
           )}
         </div>
-        
+
         {/* Articles grid */}
         {isLoadingArticles ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
