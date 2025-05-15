@@ -135,12 +135,12 @@ export default function Header() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0 top-16 z-50">
-          <div className="py-2 px-4 sm:px-6 lg:px-8 space-y-1 shadow-lg">
+          <div className="py-1.5 px-3 sm:px-4 space-y-0.5 shadow-lg">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`block py-2 font-medium ${
+                className={`block py-1.5 px-2 font-medium text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 ${
                   location === item.href
                     ? "text-primary-600 dark:text-primary-400"
                     : "text-gray-700 dark:text-gray-300"
