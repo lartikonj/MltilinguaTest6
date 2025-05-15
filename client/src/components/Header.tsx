@@ -59,15 +59,15 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
-      <div className="container mx-auto px-2 sm:px-4">
-        <div className="flex h-14 items-center justify-between">
+      <div className="container mx-auto px-1">
+        <div className="flex h-12 items-center justify-between">
           {/* Logo and site name */}
           <div className="flex items-center flex-shrink-0">
-            <Link href="/" className="flex items-center gap-1">
-              <div className="w-5 h-5 rounded-lg bg-orange-800 flex items-center justify-center">
-                <Globe className="h-3 w-3 text-white" />
+            <Link href="/" className="flex items-center gap-0.5">
+              <div className="w-4 h-4 rounded-lg bg-orange-800 flex items-center justify-center">
+                <Globe className="h-2.5 w-2.5 text-white" />
               </div>
-              <span className="font-bold text-sm">{t('site.name', 'MultiLingua')}</span>
+              <span className="font-bold text-xs truncate max-w-[80px]">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
@@ -110,13 +110,13 @@ export default function Header() {
 
           {/* User controls */}
           <div className="flex items-center gap-0.5">
-            <SearchDialog className="h-5 w-5" />
-            <LanguageSwitcher className="scale-70" />
-            <ThemeToggle className="scale-70" />
+            <SearchDialog className="h-4 w-4" />
+            <LanguageSwitcher className="scale-60" />
+            <ThemeToggle className="scale-60" />
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden h-5 w-5 p-0"
+              className="md:hidden h-4 w-4 p-0"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
