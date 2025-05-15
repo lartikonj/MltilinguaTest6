@@ -106,32 +106,21 @@ export default function Header() {
             </DropdownMenu>
           </nav>
 
-          {/* Mobile Menu Button */}
-            <Button
-              variant="default"
-              size="sm"
-              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-1"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-            >
-              <Menu className="h-3.5 w-3.5" />
-              <span className="sr-only">Open menu</span>
-            </Button>
           </div>
 
           {/* User controls */}
-          <div className="flex items-center gap-1 ml-auto">
+          <div className="flex items-center gap-2">
             <SearchDialog className="h-7 w-7" />
-            <LanguageSwitcher className="scale-75" />
-            <ThemeToggle className="scale-75" />
+            <LanguageSwitcher className="scale-90" />
+            <ThemeToggle className="scale-90" />
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden h-7 w-7 p-1 ml-1"
+              className="md:hidden h-7 w-7 p-1"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
-              <Menu className="h-4 w-4" />
+              <Menu className="h-4 w-4 text-orange-800" />
             </Button>
           </div>
       </div>
