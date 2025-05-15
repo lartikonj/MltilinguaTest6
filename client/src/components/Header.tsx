@@ -63,11 +63,11 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo and site name */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-                <Globe className="text-white" />
+            <Link href="/" className="flex items-center space-x-1.5 md:space-x-2">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-orange-800 flex items-center justify-center">
+                <Globe className="h-4 w-4 md:h-5 md:w-5 text-white" />
               </div>
-              <span className="font-bold text-xl">{t('site.name', 'MultiLingua')}</span>
+              <span className="font-bold text-lg md:text-xl">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
