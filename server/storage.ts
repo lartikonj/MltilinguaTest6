@@ -242,6 +242,48 @@ export class MemStorage implements IStorage {
         availableLanguages: ["en", "es", "fr", "ar"],
         featured: true
       },
+      {
+        title: "The Water Cycle — A Clear and Simple Explanation",
+        slug: "the-water-cycle-a-clear-and-simple-explanation",
+        excerpt: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives",
+        content: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/54/Watercyclesummary.jpg" alt="Diagram of the water cycle" style="max-width:100%; height:auto;"",
+        readTime: 6,
+        subjectId: 2,
+        author: "Multiligua Editorial",
+        authorImage: "https://images.unsplash.com/photo-1619967161441-78b613c7dd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-09-28"),
+        translations: {
+          en: {
+            title: "The Water Cycle — A Clear and Simple Explanation",
+            excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
+            content: "Water is one of the most essential elements on Earth. It sustains ecosystems, supports agriculture, powers industries, and is a vital part of our daily lives. But the water we drink, bathe with, or see falling as rain doesn’t stay still. It constantly moves through an elegant and powerful process known as the water cycle or hydrological cycle.",
+            resources: ["NASA Earth Science: The Water Cycle : https://earthobservatory.nasa.gov/features/Water A comprehensive educational article from NASA explaining each phase with visuals.", "USGS (United States Geological Survey): The Water Cycle : https://www.usgs.gov/special-topics/water-science-school/science/water-cycle, An authoritative source on water science used by educators worldwide.", "BBC Bitesize: Water Cycle for Kids"],
+            notes: ["Ocean Conservation Guide", "Marine Protection Initiatives", "Sustainable Fishing Practices"]
+          },
+          es: {
+            title: "Avances en la Conservación Oceánica",
+            excerpt: "Están surgiendo soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
+            content: "Desde bacterias que comen plástico hasta sistemas flotantes de limpieza...",
+            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
+            resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
+          },
+          fr: {
+            title: "Avancées en Conservation des Océans",
+            excerpt: "Des solutions innovantes émergent pour protéger nos océans et la vie marine de la pollution et du changement climatique.",
+            content: "Des bactéries mangeuses de plastique aux systèmes flottants de nettoyage...",
+            notes: ["Nouvelles technologies pour le nettoyage des océans", "Projets de restauration des écosystèmes marins", "Efforts de conservation communautaires"],
+            resources: ["Guide de Conservation des Océans", "Initiatives de Protection Marine", "Pratiques de Pêche Durable"]
+          },
+          ar: {
+            title: "اختراقات في حماية المحيطات",
+            excerpt: "تظهر حلول مبتكرة لحماية محيطاتنا والحياة البحرية من التلوث وتغير المناخ.",
+            content: "من البكتيريا التي تأكل البلاستيك إلى أنظمة التنظيف العائمة...",
+            notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
+            resources: ["دليل حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
+          }
+        availableLanguages: ["en", "es", "fr", "ar"],
+        featured: false    
       // Environment articles
       {
         title: "Ocean Conservation Breakthroughs",
