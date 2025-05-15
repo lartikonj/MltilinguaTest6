@@ -91,7 +91,7 @@ export default function Header() {
                   <ChevronDown className="h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="z-[60] absolute mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md ring-1 ring-black/5 focus:outline-none">
                 {subjects.map((subject) => (
                   <DropdownMenuItem key={subject.slug} asChild>
                     <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
