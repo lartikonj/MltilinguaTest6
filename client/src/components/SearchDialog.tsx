@@ -62,7 +62,7 @@ export function SearchDialog() {
           <Search className="h-4 w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[600px] sm:top-[20%]">
         <DialogHeader>
           <DialogTitle>{t('search.title')}</DialogTitle>
         </DialogHeader>
@@ -100,7 +100,7 @@ export function SearchDialog() {
             return (
               <Link 
                 key={article.id} 
-                href={`/article/${article.slug}`}
+                href={`/subject/${article.subject?.slug}/${article.slug}`}
                 onClick={() => {
                   closeDialog();
                   window.scrollTo(0, 0);
