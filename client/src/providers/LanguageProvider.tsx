@@ -31,11 +31,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         setLanguageState(newLang);
         localStorage.setItem("language", newLang);
         
-        // Trigger a re-render throughout the app
+        // Update document attributes
+        document.documentElement.lang = newLang;
+        document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+        
+        // Force reload translations throughout the app
         window.dispatchEvent(new Event('languageChanged'));
         
-        // Force reload of dynamic content
-        window.dispatchEvent(new Event('contentRefresh'));
+        // Refresh dynamic content
+        setTimeout(() => {
+          window.dispatchEvent(new Event('contentRefresh'));
+        }, 100);
       } catch (error) {
         console.error('Failed to change language:', error);
       }

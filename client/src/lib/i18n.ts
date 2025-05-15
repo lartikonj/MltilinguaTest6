@@ -5,6 +5,10 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
+      // Site
+      'site.name': 'MultiLingua',
+      'site.description': 'Multilingual Learning Platform',
+      
       // Navigation
       'nav.home': 'Home',
       'nav.subjects': 'Subjects',

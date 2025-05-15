@@ -68,7 +68,7 @@ export default function Header() {
               <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
                 <Globe className="text-white" />
               </div>
-              <span className="font-bold text-xl">MultiLingua</span>
+              <span className="font-bold text-xl">{t('site.name', 'MultiLingua')}</span>
             </Link>
           </div>
 
