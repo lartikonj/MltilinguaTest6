@@ -54,7 +54,16 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+  }
+
+  #root {
+    @apply overflow-x-hidden;
+    width: 100vw;
+  }
+
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 max-w-full lg:max-w-7xl mx-auto;
   }
 }
 
