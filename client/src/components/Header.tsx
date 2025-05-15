@@ -75,7 +75,36 @@ export default function Header() {
           {/* Main navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              item.label === "Subjects" ? (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`font-medium ${
+                  location === item.href
+                    ? "text-primary-600 dark:text-primary-400"
+                    : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+                } transition-colors`}
+              >
+                {t(item.translationKey)}
+              </Link>
+            ))}
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
+                  {t("nav.subjects")}
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {subjects.map((subject) => (
+                  <DropdownMenuItem key={subject.slug} asChild>
+                    <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
+                      {t(subject.translationKey)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
                 <DropdownMenu key={item.label}>
                   <DropdownMenuTrigger asChild>
                     <button className="flex items-center font-medium text-primary-600 dark:text-primary-400 gap-1">
