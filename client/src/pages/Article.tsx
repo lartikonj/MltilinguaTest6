@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import Breadcrumb from "@/components/Breadcrumb";
 import LanguageBadge from "@/components/LanguageBadge";
 import { useLanguage } from "@/providers/LanguageProvider";
+import ReactMarkdown from 'react-markdown';
 
 export default function ArticlePage() {
   const { t } = useTranslation();
@@ -112,9 +113,7 @@ export default function ArticlePage() {
 
             {/* Article content */}
             <div className="prose dark:prose-invert max-w-none mb-12">
-              {translation.content.split('\n').map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
+              <ReactMarkdown>{translation.content}</ReactMarkdown>
             </div>
 
             {/* Notes and Resources */}
