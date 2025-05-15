@@ -76,8 +76,8 @@ export default function SubjectPage() {
         <div className="mb-8">
           <Breadcrumb 
             items={[
-              { name: t('subjects'), href: "/subject", translationKey: "subjects" },
-              { name: subject?.name || slug, translationKey: slug }
+              { name: t('nav.subjects'), href: "/subject", translationKey: "nav.subjects" },
+              { name: t(slug || ''), href: `/subject/${slug}`, translationKey: slug }
             ]} 
           />
         </div>

@@ -79,7 +79,7 @@ export default function Header() {
                 <DropdownMenu key={item.label}>
                   <DropdownMenuTrigger asChild>
                     <button className="flex items-center font-medium text-primary-600 dark:text-primary-400 gap-1">
-                      {t("subjects")}
+                      {t("nav.subjects")}
                       <ChevronDown className="h-4 w-4" />
                     </button>
                   </DropdownMenuTrigger>
