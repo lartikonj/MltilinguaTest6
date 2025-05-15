@@ -37,8 +37,7 @@ export default function Header() {
     { label: "Home", href: "/", translationKey: "nav.home" },
     { label: "Popular", href: "/popular", translationKey: "nav.popular" },
     { label: "Recent", href: "/recent", translationKey: "nav.recent" },
-    { label: "About", href: "/about", translationKey: "nav.about" },  // <-- Changed
-    { label: "Subjects", href: "/subject", translationKey: "nav.subjects" }
+    { label: "About", href: "/about", translationKey: "nav.about" }
   ];
 
   // Subjects for dropdown
