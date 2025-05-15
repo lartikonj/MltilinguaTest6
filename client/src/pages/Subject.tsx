@@ -97,7 +97,7 @@ export default function SubjectPage() {
               </div>
               <h1 className="text-3xl font-bold mb-2">{subject ? t(subject.slug) : t('subjects')}</h1>
               <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                {subject?.articleCount} {t('articles')} {t('available.in.multiple.languages')}
+                {subject?.articleCount} {t('articles')} {t('available')}
               </p>
             </>
           )}
