@@ -26,24 +26,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Update language when it changes
   const setLanguage = async (newLang: string) => {
     if (LANGUAGES.some((lang) => lang.code === newLang)) {
-      setLanguageState(newLang);
-      localStorage.setItem("language", newLang);
-      await i18n.changeLanguage(newLang);
-      
-      // Set RTL attribute for Arabic
-      if (newLang === "ar") {
-        document.documentElement.classList.add("rtl");
-        document.documentElement.dir = "rtl";
-      } else {
-        document.documentElement.classList.remove("rtl");
-        document.documentElement.dir = "ltr";
+      try {
+        await i18n.changeLanguage(newLang);
+        setLanguageState(newLang);
+        localStorage.setItem("language", newLang);
+        
+        // Trigger a re-render throughout the app
+        window.dispatchEvent(new Event('languageChanged'));
+        
+        // Force reload of dynamic content
+        window.dispatchEvent(new Event('contentRefresh'));
+      } catch (error) {
+        console.error('Failed to change language:', error);
       }
-      
-      // Update HTML lang attribute
-      document.documentElement.lang = newLang;
-      
-      // Force re-render of translated content
-      window.dispatchEvent(new Event('languageChanged'));
     }
   };
 

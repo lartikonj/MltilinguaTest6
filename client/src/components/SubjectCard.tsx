@@ -7,8 +7,18 @@ interface SubjectCardProps {
 }
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
-  const { t } = useTranslation();
-  const localizedTitle = t(subject.slug);
+  const { t, i18n } = useTranslation();
+  const localizedTitle = t(`subjects.${subject.slug}`, { defaultValue: subject.name });
+  
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      // Force re-render when language changes
+      forceUpdate({});
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
 
   // Convert subject.icon (e.g., "ri-computer-line") to actual icon component
   const getIconClass = (iconName: string) => {

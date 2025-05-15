@@ -234,11 +234,25 @@ i18n
     lng: localStorage.getItem('language') || 'en',
     fallbackLng: 'en',
     interpolation: {
-      escapeValue: false // React already safes from XSS
+      escapeValue: false
     },
     react: {
       useSuspense: true
-    }
+    },
+    keySeparator: '.',
+    nsSeparator: ':',
+    returnEmptyString: false,
+    returnNull: false
   });
+
+// Add language change listener
+i18n.on('languageChanged', () => {
+  document.documentElement.lang = i18n.language;
+  if (i18n.language === 'ar') {
+    document.documentElement.dir = 'rtl';
+  } else {
+    document.documentElement.dir = 'ltr';
+  }
+});
 
 export default i18n;
