@@ -8,12 +8,12 @@ interface SubjectCardProps {
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const { t } = useTranslation();
-  
+
   // Convert subject.icon (e.g., "ri-computer-line") to actual icon component
   const getIconClass = (iconName: string) => {
     return iconName;
   };
-  
+
   // Get background and text color based on subject
   const getColorClass = (subjectId: number) => {
     const colorMap: Record<number, { bg: string, hover: string, text: string }> = {
@@ -48,21 +48,23 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         text: "text-indigo-700 dark:text-indigo-400"
       }
     };
-    
+
     return colorMap[subjectId] || colorMap[1]; // Default to Technology colors
   };
-  
+
   const colorClass = getColorClass(subject.id);
-  
+  const subjectName = t(subject.slug);
+
   return (
     <Link href={`/subject/${subject.slug}`}>
       <div className="group flex flex-col items-center p-5 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary-400 dark:hover:border-primary-600 hover:shadow-md transition-all cursor-pointer">
         <div className={`w-12 h-12 rounded-full ${colorClass.bg} ${colorClass.hover} flex items-center justify-center mb-3 transition-colors`}>
           <i className={`${getIconClass(subject.icon)} text-xl ${colorClass.text}`}></i>
         </div>
-        <h3 className="font-medium">{t(subject.slug)}</h3>
+        <h3 className="font-medium">{subjectName}</h3>
         <span className="text-sm text-gray-500 dark:text-gray-400">{subject.articleCount} {t('articles')}</span>
       </div>
     </Link>
   );
 }
+```

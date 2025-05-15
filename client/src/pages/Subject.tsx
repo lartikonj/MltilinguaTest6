@@ -89,7 +89,7 @@ export default function SubjectPage() {
               <div className="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mb-4 mx-auto">
                 <i className={`${subject?.icon} text-2xl text-primary-700 dark:text-primary-400`}></i>
               </div>
-              <h1 className="text-3xl font-bold mb-2">{subject ? t(subject.slug) : ''}</h1>
+              <h1 className="text-3xl font-bold mb-2">{subject ? t(subject.slug) : t('subjects')}</h1>
               <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 {subject?.articleCount} {t('articles')} {t('available.in.multiple.languages')}
               </p>
