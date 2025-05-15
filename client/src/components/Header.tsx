@@ -119,13 +119,13 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <Button
-              variant="outline"
+              variant="default"
               size="icon"
-              className="md:hidden"
+              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-2"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-4 w-4" />
               <span className="sr-only">Open menu</span>
             </Button>
           </div>
@@ -135,15 +135,15 @@ export default function Header() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0 top-16 z-50">
-          <div className="py-2 px-4 space-y-2 shadow-lg">
+          <div className="py-3 px-3 space-y-1 shadow-lg">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`block py-2.5 px-4 font-medium text-base rounded-lg transition-colors ${
+                className={`block py-2 px-3 font-medium text-sm rounded-md transition-colors ${
                   location === item.href
-                    ? "bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300"
-                    : "text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    ? "bg-primary-500 text-white"
+                    : "text-gray-800 dark:text-gray-200 hover:bg-primary-100 dark:hover:bg-primary-900"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
