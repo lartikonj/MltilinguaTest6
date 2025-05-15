@@ -58,7 +58,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 shadow-sm">
+    <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo and site name */}
@@ -134,7 +134,7 @@ export default function Header() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-gray-700">
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0">
           <div className="py-2 px-4 sm:px-6 lg:px-8 space-y-1">
             {navItems.map((item) => (
               <Link
