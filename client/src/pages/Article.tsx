@@ -41,7 +41,7 @@ export default function ArticlePage() {
         <div className="mb-8">
           <Breadcrumb 
             items={[
-              { name: t('subjects'), href: "/subject", translationKey: "subjects" },
+              { name: t('nav.subjects'), href: "/subject", translationKey: "nav.subjects" },
               ...(subject ? [{
                 name: subject.name,
                 href: `/subject/${subject.slug}`,
