@@ -36,21 +36,19 @@ export default function ArticlePage() {
     <Layout>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
-        {!isLoading && article && subject && (
-          <div className="mb-8">
-            <Breadcrumb 
-              items={[
-                { name: t('subjects'), href: "/subjects", translationKey: "subjects" },
-                { 
-                  name: subject.name, 
-                  href: `/subject/${subject.slug}`, 
-                  translationKey: subject.slug
-                },
-                { name: translation?.title || article.title }
-              ]} 
-            />
-          </div>
-        )}
+        <div className="mb-8">
+          <Breadcrumb 
+            items={[
+              { name: t('subjects'), href: "/subject", translationKey: "subjects" },
+              ...(subject ? [{
+                name: subject.name,
+                href: `/subject/${subject.slug}`,
+                translationKey: subject.slug
+              }] : []),
+              { name: translation?.title || article?.title || '' }
+            ]} 
+          />
+        </div>
         
         {isLoadingArticle ? (
           <div className="max-w-3xl mx-auto animate-pulse">
