@@ -282,8 +282,10 @@ export class MemStorage implements IStorage {
             notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
             resources: ["دليل حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
           }
+        },    
         availableLanguages: ["en", "es", "fr", "ar"],
-        featured: false    
+        featured: false
+      },    
       // Environment articles
       {
         title: "Ocean Conservation Breakthroughs",
