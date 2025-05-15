@@ -109,19 +109,27 @@ export default function Header() {
           </div>
 
           {/* User controls */}
-          <div className="flex items-center gap-0.5">
-            <SearchDialog className="h-4 w-4" />
-            <LanguageSwitcher className="scale-60" />
-            <ThemeToggle className="scale-60" />
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden h-4 w-4 p-0"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-            >
-              <Menu className="h-4 w-4 text-orange-800" />
-            </Button>
+          <div className="flex items-center space-x-1">
+            <div className="flex items-center">
+              <Button variant="ghost" size="sm" className="h-8 w-8 p-1">
+                <SearchDialog className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="sm" className="h-8 w-8 p-1">
+                <LanguageSwitcher className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="sm" className="h-8 w-8 p-1">
+                <ThemeToggle className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="md:hidden h-8 w-8 p-1"
+                onClick={toggleMobileMenu}
+                aria-label="Toggle menu"
+              >
+                <Menu className="h-4 w-4 text-orange-800" />
+              </Button>
+            </div>
           </div>
       </div>
 
