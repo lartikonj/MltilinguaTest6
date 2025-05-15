@@ -135,15 +135,15 @@ export default function Header() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 absolute w-full left-0 top-16 z-50">
-          <div className="py-1.5 px-3 sm:px-4 space-y-0.5 shadow-lg">
+          <div className="py-2 px-4 space-y-2 shadow-lg">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`block py-1.5 px-2 font-medium text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                className={`block py-2.5 px-4 font-medium text-base rounded-lg transition-colors ${
                   location === item.href
-                    ? "text-primary-600 dark:text-primary-400"
-                    : "text-gray-700 dark:text-gray-300"
+                    ? "bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300"
+                    : "text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -153,20 +153,20 @@ export default function Header() {
 
             {/* Mobile subjects dropdown */}
             <button
-              className="flex w-full items-center justify-between py-2 font-medium text-gray-700 dark:text-gray-300"
+              className="flex w-full items-center justify-between py-2.5 px-4 font-medium text-base rounded-lg text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               onClick={toggleMobileSubjects}
             >
               {t('nav.subjects')}
-              <ChevronDown className={`h-4 w-4 transform ${mobileSubjectsOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 transform transition-transform ${mobileSubjectsOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {mobileSubjectsOpen && (
-              <div className="pl-4 space-y-1">
+              <div className="pl-6 pr-4 space-y-2">
                 {subjects.map((subject) => (
                   <Link
                     key={subject.slug}
                     href={`/subject/${subject.slug}`}
-                    className="block py-2 text-gray-700 dark:text-gray-300"
+                    className="block py-2 px-4 text-base text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t(subject.translationKey)}
