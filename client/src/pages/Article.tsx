@@ -113,8 +113,6 @@ export default function ArticlePage() {
                   <LanguageBadge key={langCode} code={langCode} />
                 ))}
               </div>
-            </div>
-            
             {/* Featured image */}
             <div className="mb-8 rounded-lg overflow-hidden">
               <img 
