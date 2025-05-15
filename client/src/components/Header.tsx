@@ -31,15 +31,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubjectsOpen, setMobileSubjectsOpen] = useState(false);
 
-  // Navigation items
   const navItems: NavItem[] = [
     { label: "Home", href: "/", translationKey: "nav.home" },
     { label: "Popular", href: "/popular", translationKey: "nav.popular" },
     { label: "Recent", href: "/recent", translationKey: "nav.recent" },
-    { label: "About", href: "/about", translationKey: "nav.about" }
+    { label: "About", href: "/about", translationKey: "nav.about" },
   ];
 
-  // Subjects for dropdown
   const subjects: SubjectNavItem[] = [
     { name: "Technology", slug: "technology", translationKey: "technology" },
     { name: "Science", slug: "science", translationKey: "science" },
@@ -61,7 +59,7 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full bg-white/95 dark:bg-gray-900/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/75 supports-[backdrop-filter]:dark:bg-gray-900/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo and site name */}
+          {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-1.5 md:space-x-2">
               <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-orange-800 flex items-center justify-center">
@@ -71,7 +69,7 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Main navigation - Desktop */}
+          {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
@@ -86,7 +84,6 @@ export default function Header() {
                 {t(item.translationKey)}
               </Link>
             ))}
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
@@ -108,16 +105,11 @@ export default function Header() {
 
           {/* User controls */}
           <div className="flex items-center space-x-3">
-            {/* Search Button */}
             <SearchDialog />
-
-            {/* Language Switcher */}
             <LanguageSwitcher />
-
-            {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu toggle */}
             <Button
               variant="default"
               size="icon"
@@ -132,51 +124,61 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Background overlay for mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-50 bg-white dark:bg-gray-900 overflow-y-auto">
-          <div className="py-3 px-3 space-y-1 shadow-lg bg-white dark:bg-gray-900 pb-[env(safe-area-inset-bottom)]">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`block py-2 px-3 font-medium text-sm rounded-md transition-colors ${
-                  location === item.href
-                    ? "bg-primary-500 text-white"
-                    : "text-gray-800 dark:text-gray-200 hover:bg-primary-100 dark:hover:bg-primary-900"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t(item.translationKey)}
-              </Link>
-            ))}
-
-            {/* Mobile subjects dropdown */}
-            <button
-              className="flex w-full items-center justify-between py-2.5 px-4 font-medium text-base rounded-lg text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              onClick={toggleMobileSubjects}
-            >
-              {t('nav.subjects')}
-              <ChevronDown className={`h-5 w-5 transform transition-transform ${mobileSubjectsOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            {mobileSubjectsOpen && (
-              <div className="pl-6 pr-4 pt-2 pb-4 space-y-2 border-l border-gray-200 dark:border-gray-700">
-                {subjects.map((subject) => (
-                  <Link
-                    key={subject.slug}
-                    href={`/subject/${subject.slug}`}
-                    className="block py-2 px-4 text-base text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {t(subject.translationKey)}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <div
+          className="fixed inset-0 z-40 bg-black/40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
       )}
+
+      {/* Animated mobile menu */}
+      <div
+        className={`md:hidden fixed inset-0 top-16 z-50 transform transition-transform duration-300 ease-in-out bg-white dark:bg-gray-900 overflow-y-auto ${
+          mobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="py-4 px-4 space-y-1 shadow-lg pb-[env(safe-area-inset-bottom)]">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`block py-2 px-3 font-medium text-sm rounded-md transition-colors ${
+                location === item.href
+                  ? "bg-primary-500 text-white"
+                  : "text-gray-800 dark:text-gray-200 hover:bg-primary-100 dark:hover:bg-primary-900"
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t(item.translationKey)}
+            </Link>
+          ))}
+
+          {/* Subjects */}
+          <button
+            className="flex w-full items-center justify-between py-2.5 px-4 font-medium text-base rounded-lg text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            onClick={toggleMobileSubjects}
+          >
+            {t("nav.subjects")}
+            <ChevronDown className={`h-5 w-5 transform transition-transform ${mobileSubjectsOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {mobileSubjectsOpen && (
+            <div className="pl-6 pr-4 space-y-2">
+              {subjects.map((subject) => (
+                <Link
+                  key={subject.slug}
+                  href={`/subject/${subject.slug}`}
+                  className="block py-2 px-4 text-base text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t(subject.translationKey)}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </header>
   );
 }
