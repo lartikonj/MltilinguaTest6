@@ -115,7 +115,7 @@ export default function ArticleCard({
 
   // Default card
   return (
-    <Link href={`/subject/${article.subject?.slug || subjectSlug}/${article.slug}`}  aria-label={`Read article: ${translation.title}`}>
+    <Link href={`/subject/${subjectSlug || article.subject?.slug}/${article.slug}`}  aria-label={`Read article: ${translation.title}`}>
       <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800 transition-all hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600 cursor-pointer">
         <img 
           src={article.imageUrl} 
