@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Subject } from "@shared/schema";
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,7 @@ interface SubjectCardProps {
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const { t, i18n } = useTranslation();
   const localizedTitle = t(`subjects.${subject.slug}`, { defaultValue: subject.name });
+  const [, setUpdate] = useState({});
   
   useEffect(() => {
     const handleLanguageChange = () => {
