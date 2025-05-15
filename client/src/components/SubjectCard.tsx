@@ -8,6 +8,7 @@ interface SubjectCardProps {
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const { t } = useTranslation();
+  const localizedTitle = t(subject.slug);
 
   // Convert subject.icon (e.g., "ri-computer-line") to actual icon component
   const getIconClass = (iconName: string) => {
@@ -61,7 +62,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         <div className={`w-12 h-12 rounded-full ${colorClass.bg} ${colorClass.hover} flex items-center justify-center mb-3 transition-colors`}>
           <i className={`${getIconClass(subject.icon)} text-xl ${colorClass.text}`}></i>
         </div>
-        <h3 className="font-medium">{t(`${subject.slug}`)}</h3>
+        <h3 className="font-medium">{localizedTitle}</h3>
         <span className="text-sm text-gray-500 dark:text-gray-400">{subject.articleCount} {t('articles')}</span>
       </div>
     </Link>

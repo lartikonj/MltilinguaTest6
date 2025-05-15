@@ -53,7 +53,14 @@ export default function SubjectPage() {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
               {subjects?.map((subject) => (
-                <SubjectCard key={subject.id} subject={subject} />
+                <SubjectCard
+                  key={subject.slug}
+                  subject={{
+                    ...subject,
+                    name: t(subject.slug),
+                  }}
+                  articleCount={articles?.filter(a => a.subjectSlug === subject.slug).length || 0}
+                />
               ))}
             </div>
           )}
