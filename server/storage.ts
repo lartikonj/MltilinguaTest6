@@ -26,7 +26,7 @@ export interface IStorage {
   createArticle(article: InsertArticle): Promise<Article>;
 }
 
-export class MemStorage implements IStorage {
+class MemStorage implements IStorage {
   private users: Map<number, User>;
   private subjects: Map<number, Subject>;
   private articles: Map<number, Article>;
@@ -748,3 +748,6 @@ Implementing good sleep hygiene practices can significantly improve your sleep q
     });
   }
 }
+
+
+export const storage = new MemStorage();
