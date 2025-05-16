@@ -8,7 +8,7 @@ interface LanguageBadgeProps {
   onClick?: () => void;
 }
 
-export default function LanguageBadge({ 
+export function LanguageBadge({ 
   code, 
   active = false, 
   size = "medium", 

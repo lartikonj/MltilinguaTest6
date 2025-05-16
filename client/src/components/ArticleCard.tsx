@@ -1,8 +1,8 @@
+
 import { Link } from "wouter";
 import { Article } from "shared/schema";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { LanguageBadge } from "./LanguageBadge";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
@@ -14,7 +14,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
   const { i18n } = useTranslation();
   const { currentLanguage } = useLanguage();
 
-  if (!article) {
+  if (!article || !article.translations) {
     return (
       <Card className="animate-pulse">
         <CardHeader className="h-48 bg-gray-200 dark:bg-gray-800" />
@@ -49,13 +49,15 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <div className="flex items-center space-x-2">
             <Avatar className="h-8 w-8">
               <AvatarImage src={article.authorImage} />
-              <AvatarFallback>{article.author[0]}</AvatarFallback>
+              <AvatarFallback>{article.author?.[0]}</AvatarFallback>
             </Avatar>
             <span className="text-sm">{article.author}</span>
           </div>
           <div className="flex space-x-2">
-            {article.availableLanguages.map(lang => (
-              <LanguageBadge key={lang} language={lang} />
+            {article.availableLanguages?.map(lang => (
+              <span key={lang} className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                {lang}
+              </span>
             ))}
           </div>
         </CardFooter>
