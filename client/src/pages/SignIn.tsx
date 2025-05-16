@@ -43,16 +43,24 @@ export default function SignIn() {
         })
       });
 
+      const contentType = response.headers.get('content-type');
+      if (!contentType?.includes('application/json')) {
+        throw new Error('Server returned non-JSON response');
+      }
+
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.message || 'Authentication failed');
+        throw new Error(data.message || 'Invalid credentials');
       }
 
       window.location.href = data.role === 'admin' ? '/admin' : '/';
     } catch (error: any) {
       console.error(`${mode} error:`, error);
-      alert(error.message || `Failed to ${mode}`);
+      const errorMessage = error.message === 'Server returned non-JSON response' 
+        ? 'Server error, please try again'
+        : error.message || `Failed to ${mode}`;
+      alert(errorMessage);
     }
   };
 

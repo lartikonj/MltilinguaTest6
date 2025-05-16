@@ -45,16 +45,35 @@ export async function authenticateUser(email: string, password: string) {
 }
 
 export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader('Content-Type', 'application/json');
+  
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+    return res.status(405).json({ 
+      success: false,
+      message: 'Method Not Allowed' 
+    });
   }
 
   const { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
+  if (!email || !password) {
+    return res.status(400).json({ 
+      success: false,
+      message: 'Email and password required',
+      errors: { 
+        email: !email ? 'Email is required' : null,
+        password: !password ? 'Password is required' : null
+      }
+    });
+  }
 
   try {
     const result = await authenticateUser(email, password);
-    if (!result) return res.status(401).json({ message: 'Invalid email or password' });
+    if (!result) {
+      return res.status(401).json({ 
+        success: false,
+        message: 'Invalid email or password'
+      });
+    }
 
     res.setHeader(
       'Set-Cookie',
@@ -67,10 +86,17 @@ export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
       })
     );
 
-    res.status(200).json({ message: 'Logged in successfully', role: result.role });
+    res.status(200).json({
+      success: true,
+      message: 'Logged in successfully',
+      role: result.role
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error('Login error:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Internal server error'
+    });
   }
 }
 
