@@ -127,12 +127,6 @@ export default function Header() {
                 {t(item.translationKey)}
               </Link>
             ))}
-            <button 
-              onClick={() => window.location.href = 'https://replit.com/auth'}
-              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              {t('nav.signin')}
-            </button>
           </div>
         )}
       </nav>
