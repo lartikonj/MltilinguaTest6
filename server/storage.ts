@@ -302,22 +302,34 @@ class MemStorage implements IStorage {
             title: "Avances en la Conservación Oceánica",
             excerpt: "Están surgiendo soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
             content: "Desde bacterias que comen plástico hasta sistemas flotantes de limpieza...",
-            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
-            resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
-          },
-          fr: {
-            title: "Avancées en Conservation des Océans",
-            excerpt: "Des solutions innovantes émergent pour protéger nos océans et la vie marine de la pollution et du changement climatique.",
-            content: "Des bactéries mangeuses de plastique aux systèmes flottants de nettoyage...",
-            notes: ["Nouvelles technologies pour le nettoyage des océans", "Projets de restauration des écosystèmes marins", "Efforts de conservation communautaires"],
-            resources: ["Guide de Conservation des Océans", "Initiatives de Protection Marine", "Pratiques de Pêche Durable"]
-          },
-          ar: {
-            title: "اختراقات في حماية المحيطات",
-            excerpt: "تظهر حلول مبتكرة لحماية محيطاتنا والحياة البحرية من التلوث وتغير المناخ.",
-            content: "من البكتيريا التي تأكل البلاستيك إلى أنظمة التنظيف العائمة...",
-            notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
-            resources: ["دليل حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
+            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de en: {
+    title: "Ocean Conservation Breakthroughs",
+    excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
+    content: "# The Fight for Our Oceans\n\nOur oceans face unprecedented challenges from pollution, climate change, and overfishing. However, breakthrough technologies and innovative approaches are offering new hope for marine conservation.\n\n# Technological Solutions\n\nFrom plastic-eating bacteria to autonomous cleanup systems, technology is leading the charge in ocean conservation. These solutions are scalable and showing promising results in real-world applications.\n\n# Community-Led Initiatives\n\nLocal communities around the world are taking action to protect their marine ecosystems. These grassroots efforts are proving that small-scale interventions can have significant impacts.",
+    notes: ["New technologies for ocean cleanup", "Marine ecosystem restoration projects", "Community-led conservation efforts"],
+    resources: ["Ocean Conservation Guide", "Marine Protection Initiatives", "Sustainable Fishing Practices"]
+  },
+  es: {
+    title: "Avances en la Conservación Oceánica",
+    excerpt: "Surgen soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
+    content: "# La Lucha por Nuestros Océanos\n\nNuestros océanos enfrentan desafíos sin precedentes debido a la contaminación, el cambio climático y la sobrepesca. Sin embargo, las tecnologías revolucionarias y los enfoques innovadores están ofreciendo nueva esperanza para la conservación marina.\n\n# Soluciones Tecnológicas\n\nDesde bacterias que comen plástico hasta sistemas autónomos de limpieza, la tecnología está liderando la lucha en la conservación oceánica. Estas soluciones son escalables y muestran resultados prometedores en aplicaciones del mundo real.\n\n# Iniciativas Comunitarias\n\nLas comunidades locales de todo el mundo están tomando medidas para proteger sus ecosistemas marinos. Estos esfuerzos de base están demostrando que las intervenciones a pequeña escala pueden tener impactos significativos.",
+    notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
+    resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
+  },
+  fr: {
+    title: "Avancées en Conservation des Océans",
+    excerpt: "Des solutions innovantes émergent pour protéger nos océans et la vie marine de la pollution et du changement climatique.",
+    content: "# La Lutte pour Nos Océans\n\nNos océans font face à des défis sans précédent dus à la pollution, au changement climatique et à la surpêche. Cependant, les technologies révolutionnaires et les approches innovantes offrent un nouvel espoir pour la conservation marine.\n\n# Solutions Technologiques\n\nDes bactéries mangeuses de plastique aux systèmes autonomes de nettoyage, la technologie mène la charge dans la conservation des océans. Ces solutions sont évolutives et montrent des résultats prometteurs dans les applications réelles.\n\n# Initiatives Communautaires\n\nLes communautés locales du monde entier prennent des mesures pour protéger leurs écosystèmes marins. Ces efforts de base prouvent que les interventions à petite échelle peuvent avoir des impacts significatifs.",
+    notes: ["Nouvelles technologies pour le nettoyage des océans", "Projets de restauration des écosystèmes marins", "Efforts de conservation communautaires"],
+    resources: ["Guide de Conservation des Océans", "Initiatives de Protection Marine", "Pratiques de Pêche Durable"]
+  },
+  ar: {
+    title: "اختراقات في حماية المحيطات",
+    excerpt: "تظهر حلول مبتكرة لحماية محيطاتنا والحياة البحرية من التلوث وتغير المناخ.",
+    content: "# النضال من أجل محيطاتنا\n\nتواجه محيطاتنا تحديات غير مسبوقة من التلوث وتغير المناخ والصيد الجائر. ومع ذلك، تقدم التقنيات المبتكرة والأساليب المبتكرة أملاً جديداً للحفاظ على البيئة البحرية.\n\n# الحلول التكنولوجية\n\nمن البكتيريا التي تأكل البلاستيك إلى أنظمة التنظيف الذاتي، تقود التكنولوجيا المعركة في الحفاظ على المحيطات. هذه الحلول قابلة للتطوير وتظهر نتائج واعدة في التطبيقات الواقعية.\n\n# مبادرات المجتمع\n\nتتخذ المجتمعات المحلية في جميع أنحاء العالم إجراءات لحماية نظمها البيئية البحرية. تثبت هذه الجهود الشعبية أن التدخلات الصغيرة يمكن أن يكون لها تأثيرات كبيرة.",
+    notes: ["تقنيات جديدة لتنظيف المحيطات", "مشاريع استعادة النظم البيئية البحرية", "جهود الحفظ التي يقودها المجتمع"],
+    resources: ["دليل الحفاظ على المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
+  } حماية المحيطات", "مبادرات حماية البحار", "ممارسات الصيد المستدام"]
           }
         },
         availableLanguages: ["en", "es", "fr", "ar"],
