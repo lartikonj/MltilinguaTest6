@@ -127,7 +127,7 @@ export default function Header() {
             <Button 
               variant="default"
               className="w-full justify-start mt-2"
-              onClick={() => window.location.href = 'https://replit.com/auth'}
+              onClick={() => setLocation('/signin')}
             >
               {t('nav.signin')}
             </Button>
