@@ -85,22 +85,26 @@ export default function Header() {
               </Link>
             ))}
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
-                  {t("nav.subjects")}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="z-[60] absolute mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md ring-1 ring-black/5 focus:outline-none">
-                {subjects.map((subject) => (
-                  <DropdownMenuItem key={subject.slug} asChild>
-                    <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
-                      {t(subject.translationKey)}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <button className="relative z-50 flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
+      {t("nav.subjects")}
+      <ChevronDown className="h-4 w-4" />
+    </button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent
+    className="z-[100] mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl rounded-md ring-1 ring-black/5"
+    side="bottom"
+    align="start"
+  >
+    {subjects.map((subject) => (
+      <DropdownMenuItem key={subject.slug} asChild>
+        <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
+          {t(subject.translationKey)}
+        </Link>
+      </DropdownMenuItem>
+    ))}
+  </DropdownMenuContent>
+</DropdownMenu>
           </nav>
 
           {/* User controls */}
