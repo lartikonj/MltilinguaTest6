@@ -111,9 +111,37 @@ export default function ArticlePage() {
               />
             </div>
 
+            {/* Table of Contents */}
+            <div className="mb-8 p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+              <h2 className="text-xl font-bold mb-4">{t('table.of.contents')}</h2>
+              <nav className="space-y-2">
+                {translation.content.split('\n#').slice(1).map((section, index) => {
+                  const title = section.split('\n')[0].trim();
+                  return (
+                    <a
+                      key={index}
+                      href={`#section-${index + 1}`}
+                      className="block text-primary hover:underline"
+                    >
+                      {title}
+                    </a>
+                  );
+                })}
+              </nav>
+            </div>
+
             {/* Article content */}
             <div className="prose dark:prose-invert max-w-none mb-12">
-              <ReactMarkdown>{translation.content}</ReactMarkdown>
+              {translation.content.split('\n#').map((section, index) => {
+                if (index === 0) return null;
+                const [title, ...content] = section.split('\n');
+                return (
+                  <section key={index} id={`section-${index}`} className="scroll-mt-20">
+                    <h2 className="text-2xl font-bold mb-4">#{title}</h2>
+                    <ReactMarkdown>{content.join('\n')}</ReactMarkdown>
+                  </section>
+                );
+              })}
             </div>
 
             {/* Notes and Resources */}

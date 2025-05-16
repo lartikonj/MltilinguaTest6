@@ -9,13 +9,13 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   // Subject methods
   getAllSubjects(): Promise<Subject[]>;
   getSubjectBySlug(slug: string): Promise<Subject | undefined>;
   getSubject(id: number): Promise<Subject | undefined>;
   createSubject(subject: InsertSubject): Promise<Subject>;
-  
+
   // Article methods
   getAllArticles(): Promise<Article[]>;
   getFeaturedArticles(): Promise<Article[]>;
@@ -41,11 +41,11 @@ export class MemStorage implements IStorage {
     this.currentUserId = 1;
     this.currentSubjectId = 1;
     this.currentArticleId = 1;
-    
+
     // Initialize with sample data
     this.initializeData();
   }
-  
+
   // User methods
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
@@ -63,77 +63,77 @@ export class MemStorage implements IStorage {
     this.users.set(id, user);
     return user;
   }
-  
+
   // Subject methods
   async getAllSubjects(): Promise<Subject[]> {
     return Array.from(this.subjects.values());
   }
-  
+
   async getSubjectBySlug(slug: string): Promise<Subject | undefined> {
     return Array.from(this.subjects.values()).find(
       (subject) => subject.slug === slug,
     );
   }
-  
+
   async getSubject(id: number): Promise<Subject | undefined> {
     return this.subjects.get(id);
   }
-  
+
   async createSubject(insertSubject: InsertSubject): Promise<Subject> {
     const id = this.currentSubjectId++;
     const subject: Subject = { ...insertSubject, id };
     this.subjects.set(id, subject);
     return subject;
   }
-  
+
   // Article methods
   async getAllArticles(): Promise<Article[]> {
     return Array.from(this.articles.values());
   }
-  
+
   async getFeaturedArticles(): Promise<Article[]> {
     return Array.from(this.articles.values())
       .filter(article => article.featured)
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
   }
-  
+
   async getRecentArticles(limit: number): Promise<Article[]> {
     return Array.from(this.articles.values())
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
       .slice(0, limit);
   }
-  
+
   async getArticlesBySubject(subjectId: number): Promise<Article[]> {
     return Array.from(this.articles.values())
       .filter(article => article.subjectId === subjectId)
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
   }
-  
+
   async getArticleBySlug(slug: string): Promise<Article | undefined> {
     return Array.from(this.articles.values()).find(
       (article) => article.slug === slug,
     );
   }
-  
+
   async getArticle(id: number): Promise<Article | undefined> {
     return this.articles.get(id);
   }
-  
+
   async createArticle(insertArticle: InsertArticle): Promise<Article> {
     const id = this.currentArticleId++;
     const article: Article = { ...insertArticle, id };
     this.articles.set(id, article);
-    
+
     // Update the article count for the subject
     const subject = this.subjects.get(article.subjectId);
     if (subject) {
       subject.articleCount = (subject.articleCount || 0) + 1;
       this.subjects.set(subject.id, subject);
     }
-    
+
     return article;
   }
-  
+
   // Initialize with sample data
   private initializeData() {
     // Add subjects
@@ -145,11 +145,11 @@ export class MemStorage implements IStorage {
       { name: "Arts & Culture", slug: "arts-culture", icon: "ri-palette-line", articleCount: 0 },
       { name: "Travel", slug: "travel", icon: "ri-plane-line", articleCount: 0 },
     ];
-    
+
     subjects.forEach(subject => {
       this.createSubject(subject);
     });
-    
+
     // Add articles
     const articles: InsertArticle[] = [
       // Technology articles
@@ -365,50 +365,6 @@ Le cycle de l’eau est un **système autonome** alimenté par le soleil. Il tra
         "https://www.futura-sciences.com/planete/definitions/eau-cycle-eau-249/",
         "https://fr.vikidia.org/wiki/Cycle_de_l%27eau",
         "https://www.lumni.fr/article/le-cycle-de-l-eau"
-      ]
-    },
-    ar: {
-      title: "دورة الماء - شرح مبسط وواضح",
-      excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
-      content: `# دورة الماء - شرح مبسط وواضح
-
-الماء ضروري للحياة، وهو في حركة دائمة فيما يُعرف بـ **دورة الماء** أو **الدورة الهيدرولوجية**. هذه الدورة تنقل الماء في الطبيعة لضمان توفره للنباتات والحيوانات والبشر.
-
-## 🌞 1. التبخر
-
-تقوم الشمس بتسخين المياه في المحيطات والأنهار والبحيرات وحتى التربة، مما يؤدي إلى **تبخرها** وتحولها إلى بخار يرتفع إلى الجو.
-
-## ☁️ 2. التكاثف
-
-عندما يرتفع البخار ويبرد في الطبقات العليا من الغلاف الجوي، يتحول إلى قطرات ماء صغيرة تُكوِّن **السحب**. وتُعرف هذه المرحلة بـ **التكاثف**.
-
-## 🌧️ 3. الهطول
-
-عندما تصبح السحب مشبعة بالماء، يسقط الماء على الأرض على شكل **هطول**: مطر أو ثلج أو برد.
-
-## 💧 4. التجميع
-
-تعود المياه إلى سطح الأرض، وتتجمع في **المحيطات والأنهار والبحيرات**، أو تُخزن في **المياه الجوفية**، لتتبخر مرة أخرى وتعيد الدورة.
-
----
-
-## 🌍 أهمية دورة الماء
-
-- تُساهم في **تنظيم مناخ الأرض**.
-- تُوفر **الماء العذب** للشرب والزراعة.
-- تُدعم **الأنظمة البيئية** والطقس.
-- بدونها، لن تستمر الحياة على الأرض.
-
-دورة الماء هي **نظام ذاتي التشغيل** تعمل عليه الشمس باستمرار لدعم الحياة على كوكبنا.`,
-      notes: [
-        "دورة الماء تعتمد على طاقة الشمس.",
-        "تربط بين المحيطات والغلاف الجوي واليابسة.",
-        "أساسية لمياه الشرب والزراعة والطقس."
-      ],
-      resources: [
-        "https://www.noor-book.com/كتاب-دورة-الماء-pdf",
-        "https://mawdoo3.com/ما_هي_دورة_الماء",
-        "https://school-kw.com/file/3176/"
       ]
     },
     es: {
@@ -768,14 +724,85 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
         },
         availableLanguages: ["en", "es", "fr", "ar"],
         featured: false
-      }
-      
-    ];
-    
-    articles.forEach(article => {
-      this.createArticle(article);
-    });
-  }
-}
+      },
+      // Health article
+      {
+        title: "Understanding Sleep Cycles",
+        slug: "understanding-sleep-cycles",
+        excerpt: "Learn about the different stages of sleep and how they affect your overall health and well-being.",
+        content: `# Introduction
+Sleep is essential for our physical and mental health. Understanding how sleep cycles work can help us optimize our rest and improve our overall well-being.
 
-export const storage = new MemStorage();
+# The Stages of Sleep
+Sleep consists of multiple stages, each serving a unique purpose in our rest and recovery process. The main stages are N1, N2, N3 (deep sleep), and REM sleep.
+
+# The Role of REM Sleep
+REM (Rapid Eye Movement) sleep is crucial for memory consolidation and emotional processing. During this stage, our brains are highly active, and we experience most of our dreams.
+
+# Factors Affecting Sleep Quality
+Several factors can impact our sleep quality, including:
+- Light exposure
+- Room temperature
+- Caffeine intake
+- Exercise timing
+- Screen time before bed
+
+# Tips for Better Sleep
+Implementing good sleep hygiene practices can significantly improve your sleep quality:
+1. Maintain a consistent sleep schedule
+2. Create a relaxing bedtime routine
+3. Optimize your sleep environment
+4. Limit screen time before bed
+5. Watch your diet and exercise habits`,
+        imageUrl: "https://images.unsplash.com/photo-1541199249251-f713e6145474?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 8,
+        subjectId: 4,
+        author: "Dr. Sarah Chen",
+        authorImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-10-15"),
+        translations: {
+          en: {
+            title: "Understanding Sleep Cycles",
+            excerpt: "Learn about the different stages of sleep and how they affect your overall health and well-being.",
+            content: `# Introduction
+Sleep is essential for our physical and mental health. Understanding how sleep cycles work can help us optimize our rest and improve our overall well-being.
+
+# The Stages of Sleep
+Sleep consists of multiple stages, each serving a unique purpose in our rest and recovery process. The main stages are N1, N2, N3 (deep sleep), and REM sleep.
+
+# The Role of REM Sleep
+REM (Rapid Eye Movement) sleep is crucial for memory consolidation and emotional processing. During this stage, our brains are highly active, and we experience most of our dreams.
+
+# Factors Affecting Sleep Quality
+Several factors can impact our sleep quality, including:
+- Light exposure
+- Room temperature
+- Caffeine intake
+- Exercise timing
+- Screen time before bed
+
+# Tips for Better Sleep
+Implementing good sleep hygiene practices can significantly improve your sleep quality:
+1. Maintain a consistent sleep schedule
+2. Create a relaxing bedtime routine
+3. Optimize your sleep environment
+4. Limit screen time before bed
+5. Watch your diet and exercise habits`,
+            notes: [
+              "Sleep cycles typically last 90-120 minutes",
+              "Adults need 7-9 hours of sleep per night",
+              "REM sleep makes up about 25% of total sleep time"
+            ],
+            resources: [
+              "National Sleep Foundation Guidelines",
+              "Sleep Cycle Research Studies",
+              "Harvard Health Sleep Guide"
+            ]
+          }
+        },
+        availableLanguages: ["en"],
+        featured: true
+      },
+      "ar": {
+        title: "دورة الماء - شرح مبسط وواضح",
+        excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
