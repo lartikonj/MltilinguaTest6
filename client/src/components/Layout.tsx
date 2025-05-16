@@ -19,7 +19,7 @@ export default function Layout({
   image = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
 }) {
   return (
-    <div className="min-h-screen flex flex-col w-full overflow-x-hidden pt-16">
+    <div className="relative min-h-screen flex flex-col w-full pt-16">
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
