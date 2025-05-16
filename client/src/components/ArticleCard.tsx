@@ -1,4 +1,3 @@
-
 import { Link } from "wouter";
 import { Article } from "shared/schema";
 import { useTranslation } from "react-i18next";
