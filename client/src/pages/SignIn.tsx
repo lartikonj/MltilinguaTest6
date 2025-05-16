@@ -17,7 +17,15 @@ export default function SignIn() {
       <Button 
         variant="outline" 
         className="w-full"
-        onClick={() => window.location.href = `/api/auth/google?mode=${mode}`}
+        onClick={async () => {
+          try {
+            const response = await fetch('/api/auth/google/init');
+            const { url } = await response.json();
+            window.location.href = url;
+          } catch (error) {
+            console.error('Google auth error:', error);
+          }
+        }}
       >
         {t('auth.oauth_message')} {t('auth.google')}
       </Button>

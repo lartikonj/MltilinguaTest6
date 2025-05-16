@@ -1,5 +1,6 @@
 
-import { OAuth2Client } from 'google-auth-library';
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { users, sessions, type User } from '@shared/schema';
@@ -7,8 +8,15 @@ import { db } from './db';
 import { eq } from 'drizzle-orm';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
+
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export async function createUser(email: string, name: string, password?: string, googleId?: string): Promise<User> {
   const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
