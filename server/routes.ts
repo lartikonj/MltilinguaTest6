@@ -15,17 +15,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Auth endpoints
   app.post(`${api}/auth/register`, async (req: Request, res: Response) => {
-    const { email, password, name } = req.body;
-    
-    if (!email || !password || !name) {
-      return res.status(400).json({ message: "Missing required fields" });
-    }
+    try {
+      const { email, password, name } = req.body;
+      
+      if (!email || !password || !name) {
+        return res.status(400).json({ message: "Missing required fields" });
+      }
 
-    const success = await registerUser(email, password, name);
-    if (success) {
-      res.status(201).json({ message: "User registered successfully" });
-    } else {
-      res.status(400).json({ message: "Registration failed" });
+      const success = await registerUser(email, password, name);
+      if (success) {
+        res.status(201).json({ message: "User registered successfully" });
+      } else {
+        res.status(400).json({ message: "Registration failed - user may already exist" });
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      res.status(500).json({ message: "Internal server error during registration" });
     }
   });
 
