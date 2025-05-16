@@ -1,3 +1,4 @@
+
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Layout from "@/components/Layout";
@@ -11,14 +12,16 @@ export default function SignIn() {
     email: '',
     password: '',
     name: '',
-    username: ''
+    username: '',
+    confirmPassword: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
@@ -53,7 +56,7 @@ export default function SignIn() {
     setActiveTab("signup");
   };
 
-  const AuthButtons = ({ mode }) => (
+  const AuthButtons = ({ mode }: { mode: 'signin' | 'signup' }) => (
     <div className="space-y-4">
       <Button 
         variant="outline" 
@@ -91,13 +94,14 @@ export default function SignIn() {
       </div>
 
       <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
-        {mode === 'signup' ? (
+        {mode === 'signup' && (
           <>
             <div>
               <input
                 type="text"
                 placeholder="Full Name"
                 name="name"
+                value={formData.name}
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
                 onChange={handleChange}
@@ -108,18 +112,20 @@ export default function SignIn() {
                 type="text"
                 placeholder="Username"
                 name="username"
+                value={formData.username}
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
                 onChange={handleChange}
               />
             </div>
           </>
-        ) : null}
+        )}
         <div>
           <input
             type="email"
             placeholder="Email"
             name="email"
+            value={formData.email}
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
             onChange={handleChange}
@@ -130,6 +136,7 @@ export default function SignIn() {
             type="password"
             placeholder="Password"
             name="password"
+            value={formData.password}
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
             onChange={handleChange}
@@ -140,18 +147,21 @@ export default function SignIn() {
             <input
               type="password"
               placeholder="Confirm Password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
               className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
               required
+              onChange={handleChange}
             />
           </div>
         )}
         <Button 
-            variant="outline" 
-            className="w-full"
-            type="submit"
-          >
-            {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
-          </Button>
+          variant="outline" 
+          className="w-full"
+          type="submit"
+        >
+          {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
+        </Button>
       </form>
       {mode === 'signin' && (
         <div className="mt-4 text-center text-sm">
@@ -161,7 +171,7 @@ export default function SignIn() {
             variant="link"
             className="text-primary-600 dark:text-primary-400 p-0"
             onClick={switchToSignup}
-            >
+          >
             {t('auth.create_account')}
           </Button>
         </div>
