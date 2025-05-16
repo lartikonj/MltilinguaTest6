@@ -243,179 +243,41 @@ export class MemStorage implements IStorage {
         featured: true
       },
       {
-  title: "The Water Cycle — A Clear and Simple Explanation",
-  slug: "water-cycle-explained",
-  excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
-  content: `# The Water Cycle — A Clear and Simple Explanation
-
-Water is essential to life, and it’s constantly in motion in a process known as the **water cycle** or **hydrological cycle**. This natural loop moves water through the environment, ensuring its availability for plants, animals, and humans.
-
- 🌞 1. Evaporation
-
-The sun heats up water from oceans, rivers, lakes, and even soil. This heat causes the water to **evaporate**, turning it into water vapor that rises into the atmosphere.
-
- ☁️ 2. Condensation
-
-As the vapor rises and cools in the atmosphere, it turns back into liquid droplets. These droplets form **clouds**. This step is called **condensation**.
-
- 🌧️ 3. Precipitation
-
-When the clouds become heavy with condensed water, gravity pulls the water down in the form of **precipitation** — rain, snow, sleet, or hail.
-
- 💧 4. Collection
-
-The water that falls returns to the Earth’s surface. It collects in **oceans, rivers, lakes**, and underground **aquifers**. From here, it may **evaporate again**, continuing the cycle.
-
-
- 🌍 Why the Water Cycle Matters
-
-- It helps **regulate Earth’s climate**.
-- Provides **fresh water** for drinking and agriculture.
-- Supports **ecosystems** and **weather systems** around the globe.
-- Without it, life on Earth wouldn’t exist as we know it.
-
-The water cycle is a **self-sustaining system** powered by the sun. It’s one of nature’s most important engines — working silently in the background every day to support life on our planet.`,
-  imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
-  readTime: 6,
-  subjectId: 2,
-  author: "Multilingua Science Team",
-  authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
-  publishDate: new Date("2023-12-01"),
-  translations: {
-    en: {
-      title: "The Water Cycle — A Clear and Simple Explanation",
-      excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
-      content: `# The Water Cycle — A Clear and Simple Explanation
-
-Water is essential to life, and it’s constantly in motion in a process known as the **water cycle** or **hydrological cycle**. This natural loop moves water through the environment, ensuring its availability for plants, animals, and humans.
-
-## 🌞 1. Evaporation
-
-The sun heats up water from oceans, rivers, lakes, and even soil. This heat causes the water to **evaporate**, turning it into water vapor that rises into the atmosphere.
-
-## ☁️ 2. Condensation
-
-As the vapor rises and cools in the atmosphere, it turns back into liquid droplets. These droplets form **clouds**. This step is called **condensation**.
-
-## 🌧️ 3. Precipitation
-
-When the clouds become heavy with condensed water, gravity pulls the water down in the form of **precipitation** — rain, snow, sleet, or hail.
-
-## 💧 4. Collection
-
-The water that falls returns to the Earth’s surface. It collects in **oceans, rivers, lakes**, and underground **aquifers**. From here, it may **evaporate again**, continuing the cycle.
-
-
-# 🌍 Why the Water Cycle Matters
-
-- It helps **regulate Earth’s climate**.
-- Provides **fresh water** for drinking and agriculture.
-- Supports **ecosystems** and **weather systems** around the globe.
-- Without it, life on Earth wouldn’t exist as we know it.
-
-The water cycle is a **self-sustaining system** powered by the sun. It’s one of nature’s most important engines — working silently in the background every day to support life on our planet.`,// same as above
-      notes: [
-        "The water cycle is powered by solar energy.",
-        "It connects oceans, the atmosphere, and the land.",
-        "Essential for drinking water, agriculture, and weather systems."
-      ],
-      resources: [
-        "https://earthobservatory.nasa.gov/features/Water",
-        "https://www.usgs.gov/special-topics/water-science-school/science/water-cycle",
-        "https://www.bbc.co.uk/bitesize/topics/zkgg87h/articles/z3wpp39"
-      ]
-    },
-    fr: {
-      title: "Le Cycle de l’Eau — Explication Simple et Claire",
-      excerpt: "Découvrez comment l’eau circule dans la nature à travers un cycle infini d’évaporation, de condensation, de précipitation et de collecte.",
-      content: `# Le Cycle de l’Eau — Explication Simple et Claire
-
-L’eau est essentielle à la vie et se déplace constamment dans un processus appelé **cycle de l’eau** ou **cycle hydrologique**. Ce cycle naturel déplace l’eau dans l’environnement, la rendant disponible pour les plantes, les animaux et les humains.
-
-## 🌞 1. Évaporation
-
-Le soleil chauffe l’eau des océans, rivières, lacs et même du sol. Cette chaleur fait **évaporer** l’eau, qui se transforme en vapeur montant dans l’atmosphère.
-
-## ☁️ 2. Condensation
-
-La vapeur monte, se refroidit, et redevient des gouttelettes d’eau. Ces gouttelettes forment les **nuages**. Ce processus s’appelle la **condensation**.
-
-## 🌧️ 3. Précipitations
-
-Quand les nuages deviennent trop lourds, l’eau tombe sous forme de **précipitations** : pluie, neige, grêle ou bruine.
-
-## 💧 4. Collecte
-
-L’eau retourne à la surface terrestre. Elle se rassemble dans les **océans, rivières, lacs**, ou dans les **nappes souterraines**. Ensuite, elle peut **s’évaporer** à nouveau.
-
-# 🌍 Pourquoi ce Cycle est Important
-
-- Il aide à **réguler le climat terrestre**.
-- Il fournit de **l’eau douce** pour boire et cultiver.
-- Il soutient les **écosystèmes** et les **phénomènes météorologiques**.
-- Sans lui, la vie sur Terre serait impossible.
-
-Le cycle de l’eau est un **système autonome** alimenté par le soleil. Il travaille discrètement chaque jour pour maintenir la vie sur notre planète.`,
-      notes: [
-        "Le cycle de l’eau est alimenté par l’énergie solaire.",
-        "Il connecte les océans, l’atmosphère et la terre.",
-        "Indispensable pour l’eau potable, l’agriculture et le climat."
-      ],
-      resources: [
-        "https://www.futura-sciences.com/planete/definitions/eau-cycle-eau-249/",
-        "https://fr.vikidia.org/wiki/Cycle_de_l%27eau",
-        "https://www.lumni.fr/article/le-cycle-de-l-eau"
-      ]
-    },
-    es: {
-      title: "El Ciclo del Agua — Explicación Clara y Sencilla",
-      excerpt: "Descubre cómo el agua se mueve por la naturaleza en un ciclo constante de evaporación, condensación, precipitación y recolección.",
-      content: `# El Ciclo del Agua — Explicación Clara y Sencilla
-
-El agua es esencial para la vida y está en constante movimiento gracias al **ciclo del agua** o **ciclo hidrológico**. Este proceso natural transporta el agua por el medio ambiente, haciéndola accesible para plantas, animales y humanos.
-
-## 🌞 1. Evaporación
-
-El sol calienta el agua de los océanos, ríos, lagos e incluso del suelo. Este calor provoca la **evaporación**, transformando el agua en vapor que sube a la atmósfera.
-
-## ☁️ 2. Condensación
-
-El vapor asciende, se enfría y se convierte en gotas que forman **nubes**. A esto se le llama **condensación**.
-
-## 🌧️ 3. Precipitación
-
-Cuando las nubes se saturan de agua, esta cae a la Tierra como **precipitación**: lluvia, nieve o granizo.
-
-## 💧 4. Recolección
-
-El agua regresa a la superficie terrestre, se acumula en **océanos, ríos y lagos**, o se infiltra como **agua subterránea**. Luego puede **evaporarse** nuevamente y reiniciar el ciclo.
-
----
-
-# 🌍 Por qué es Importante el Ciclo del Agua
-
-- Regula el **clima del planeta**.
-- Proporciona **agua dulce** para beber y cultivar.
-- Sostiene los **ecosistemas** y los **patrones climáticos**.
-- Sin él, la vida en la Tierra no sería posible.
-
-El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno de los motores más importantes de la naturaleza, funcionando todos los días para mantener la vida.`,
-      notes: [
-        "El ciclo del agua es impulsado por el sol.",
-        "Conecta océanos, atmósfera y tierra.",
-        "Es esencial para agua potable, cultivos y clima."
-      ],
-      resources: [
-        "https://es.khanacademy.org/science/ciencia-para-todos-a/ciclo-del-agua",
-        "https://www.nationalgeographic.com.es/ciencia/ciclo-del-agua-que-es-y-como-funciona_16487",
-        "https://www.educar.org/Ecologia/ciclodelagua/"
-      ]
-    }
-  },
-  availableLanguages: ["en", "fr", "ar", "es"],
-  featured: true
-},
-
+        title: "The Water Cycle — A Clear and Simple Explanation",
+        slug: "water-cycle-explained",
+        excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+        content: "Water is essential to life, and it's constantly in motion in a process known as the water cycle or hydrological cycle...",
+        imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 6,
+        subjectId: 2,
+        author: "Multilingua Science Team",
+        authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-12-01"),
+        translations: {
+          en: {
+            title: "The Water Cycle — A Clear and Simple Explanation",
+            excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+            content: "Water is essential to life, and it's constantly in motion in a process known as the water cycle..."
+          },
+          fr: {
+            title: "Le Cycle de l'Eau — Explication Simple et Claire",
+            excerpt: "Découvrez comment l'eau circule dans la nature à travers un cycle infini d'évaporation, de condensation, de précipitation et de collecte.",
+            content: "L'eau est essentielle à la vie et se déplace constamment dans un processus appelé cycle de l'eau..."
+          },
+          es: {
+            title: "El Ciclo del Agua — Explicación Clara y Sencilla",
+            excerpt: "Descubre cómo el agua se mueve por la naturaleza en un ciclo constante de evaporación, condensación, precipitación y recolección.",
+            content: "El agua es esencial para la vida y está en constante movimiento gracias al ciclo del agua..."
+          },
+          ar: {
+            title: "دورة الماء - شرح مبسط وواضح",
+            excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
+            content: "الماء ضروري للحياة، وهو في حركة دائمة في عملية تعرف باسم دورة الماء..."
+          }
+        },
+        availableLanguages: ["en", "fr", "es", "ar"],
+        featured: true
+      },
       // Environment articles
       {
         title: "Ocean Conservation Breakthroughs",
@@ -802,53 +664,7 @@ Implementing good sleep hygiene practices can significantly improve your sleep q
         availableLanguages: ["en"],
         featured: true
       },
-      "ar": {
-        title: "دورة الماء - شرح مبسط وواضح",
-        excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
-        content: `# دورة الماء - شرح مبسط وواضح
-
-الماء ضروري للحياة، وهو في حركة دائمة في عملية تعرف باسم **دورة الماء** أو **الدورة الهيدرولوجية**. هذه الحلقة الطبيعية تحرك المياه عبر البيئة، مما يضمن توافرها للنباتات والحيوانات والبشر.
-
- 🌞 1. التبخر
-
-تسخن الشمس المياه من المحيطات والأنهار والبحيرات وحتى التربة. تتسبب هذه الحرارة في **تبخر** الماء، وتحويله إلى بخار ماء يرتفع في الغلاف الجوي.
-
- ☁️ 2. التكثيف
-
-عندما يرتفع البخار ويبرد في الغلاف الجوي، فإنه يتحول مرة أخرى إلى قطرات سائلة. هذه القطرات تشكل **الغيوم**. تسمى هذه الخطوة **التكثيف**.
-
- 🌧️ 3. الهطول
-
-عندما تصبح الغيوم ثقيلة بالماء المكثف، تسحب الجاذبية الماء إلى أسفل في شكل **هطول** - مطر أو ثلج أو صقيع أو برد.
-
- 💧 4. التجميع
-
-المياه التي تهطل تعود إلى سطح الأرض. تتجمع في **المحيطات والأنهار والبحيرات** وخزانات **المياه الجوفية**. من هنا، قد **تتبخر مرة أخرى**، وتستمر الدورة.
-
- 🌍 لماذا تهم دورة الماء
-
-- إنها تساعد في **تنظيم مناخ الأرض**.
-- توفر **المياه العذبة** للشرب والزراعة.
-- تدعم **النظم البيئية** و **الأنظمة الجوية** حول العالم.
-- بدونها، لن تكون الحياة على الأرض كما نعرفها.
-
-دورة الماء هي **نظام مكتف ذاتيًا** مدعوم من الشمس. إنه أحد أهم محركات الطبيعة - يعمل بصمت في الخلفية كل يوم لدعم الحياة على كوكبنا.`,
-        notes: [
-          "يتم تشغيل دورة الماء بواسطة الطاقة الشمسية.",
-          "وهي تربط المحيطات والغلاف الجوي والأرض.",
-          "ضروري لمياه الشرب والزراعة والطقس."
-        ],
-        resources: [
-          "https://www.aljazeera.net/encyclopedia/2017/8/16/%D8%AF%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%8A%D8%A7%D9%87-%D9%85%D9%81%D9%87%D9%88%D9%85-%D9%88%D8%A3%D9%87%D9%85%D9%8A%D8%A9",
-          "https://mawdoo3.com/%D9%85%D8%A7-%D9%87%D9%8A-%D8%AF%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%8A%D8%A7%D9%87",
-          "https://ar.wikipedia.org/wiki/%D8%AF%D9%88%D8%B1%D8%A9_%D8%A7%D9%84%D9%85%D8%A7%D8%A1"
-        ]
-      }
-    },
-        availableLanguages: ["ar"],
-        featured: true
-      },
-    {
+      {
         title: "فهم دورات النوم",
         slug: "understanding-sleep-cycles",
         excerpt: "تعرف على المراحل المختلفة للنوم وكيف تؤثر على صحتك العامة ورفاهيتك.",
