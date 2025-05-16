@@ -14,6 +14,13 @@ export default function SignIn() {
     username: ''
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
     e.preventDefault();
     const formElement = e.currentTarget;
