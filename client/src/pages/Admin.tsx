@@ -7,9 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Admin() {
   const { t } = useTranslation();
-  const { data: metrics } = useQuery(['metrics'], () => 
-    fetch('/api/metrics').then(res => res.json())
-  );
+  const { data: metrics } = useQuery({
+    queryKey: ['metrics'],
+    queryFn: () => fetch('/api/metrics').then(res => res.json())
+  });
   
   return (
     <Layout>
