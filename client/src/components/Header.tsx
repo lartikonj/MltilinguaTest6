@@ -85,26 +85,29 @@ export default function Header() {
               </Link>
             ))}
             <DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <button className="relative z-50 flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
-      {t("nav.subjects")}
-      <ChevronDown className="h-4 w-4" />
-    </button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent
-    className="z-[100] mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl rounded-md ring-1 ring-black/5"
-    side="bottom"
-    align="start"
-  >
-    {subjects.map((subject) => (
-      <DropdownMenuItem key={subject.slug} asChild>
-        <Link href={`/subject/${subject.slug}`} className="cursor-pointer">
-          {t(subject.translationKey)}
-        </Link>
-      </DropdownMenuItem>
-    ))}
-  </DropdownMenuContent>
-</DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 gap-1">
+                  {t("nav.subjects")}
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="z-[100] mt-2 w-48 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl ring-1 ring-black/5 focus:outline-none animate-in fade-in slide-in-from-top-2"
+                sideOffset={5}
+                align="start"
+              >
+                {subjects.map((subject) => (
+                  <DropdownMenuItem key={subject.slug} asChild>
+                    <Link
+                      href={`/subject/${subject.slug}`}
+                      className="block w-full px-3 py-2 text-sm text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+                    >
+                      {t(subject.translationKey)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* User controls */}
