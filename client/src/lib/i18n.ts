@@ -69,6 +69,14 @@ const resources = {
       'search.title': 'Search',
       'search.placeholder': 'Search across the website .. ',
       'available': 'Available',
+      'nav.signin': 'Sign In',
+      'auth.create_account': 'Create Account',
+      'auth.welcome': 'Welcome back',
+      'auth.oauth_message': 'Continue with',
+      'auth.or': 'or',
+      'auth.email': 'Email',
+      'auth.google': 'Google',
+      'auth.facebook': 'Facebook',
     }
   },
   es: {
@@ -138,6 +146,14 @@ const resources = {
       'search.title': 'Buscar',
       'search.placeholder': 'Buscar en todo el sitio web .. ',
       'available': 'Disponible',
+      'nav.signin': 'Iniciar Sesión',
+      'auth.create_account': 'Crear Cuenta',
+      'auth.welcome': 'Bienvenido de nuevo',
+      'auth.oauth_message': 'Continuar con',
+      'auth.or': 'o',
+      'auth.email': 'Correo',
+      'auth.google': 'Google',
+      'auth.facebook': 'Facebook',
     }
   },
   fr: {
@@ -208,6 +224,14 @@ const resources = {
       'search.title': 'Rechercher',
       'search.placeholder': "Rechercher sur l'ensemble du site .. ",
       'available': 'Disponible',
+      'nav.signin': 'Se Connecter',
+      'auth.create_account': 'Créer un Compte',
+      'auth.welcome': 'Bienvenue',
+      'auth.oauth_message': 'Continuer avec',
+      'auth.or': 'ou',
+      'auth.email': 'Email',
+      'auth.google': 'Google',
+      'auth.facebook': 'Facebook',
     }
   },
   ar: {
@@ -277,6 +301,14 @@ const resources = {
       'search.title': 'ابحث',
       'search.placeholder': ' ... ابحث في جميع أنحاء الموقع',
       'available': 'متوفرة',
+      'nav.signin': 'تسجيل الدخول',
+      'auth.create_account': 'إنشاء حساب',
+      'auth.welcome': 'مرحباً بعودتك',
+      'auth.oauth_message': 'المتابعة باستخدام',
+      'auth.or': 'أو',
+      'auth.email': 'البريد الإلكتروني',
+      'auth.google': 'جوجل',
+      'auth.facebook': 'فيسبوك',
     }
   }
 };
