@@ -120,7 +120,7 @@ export default function Header() {
             <Button
               variant="default"
               size="icon"
-              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-2"
+              className="md:hidden bg-primary-500 hover:bg-primary-600 text-white ml-2 relative z-50"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
@@ -132,16 +132,16 @@ export default function Header() {
       </div>
 
       {/* Background overlay for mobile menu */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
+      <div
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${
+          mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
 
       {/* Animated mobile menu */}
       <div
-        className={`md:hidden fixed inset-0 top-16 z-50 transform transition-all duration-300 ease-in-out bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-y-auto ${
+        className={`md:hidden fixed inset-0 top-[64px] z-50 transform transition-all duration-300 ease-in-out bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
