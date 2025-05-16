@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
@@ -12,14 +13,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useQuery } from "@tanstack/react-query";
+import { getSubjects } from "@/data/api";
 
 export default function Header() {
   const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: subjects } = useQuery({
+    queryKey: ["subjects"],
+    queryFn: getSubjects,
+  });
 
   const menuItems = [
     { label: "About", href: "/about", translationKey: "nav.about" },
-    { label: "Subjects", href: "/subject", translationKey: "nav.subjects" },
     { label: "Popular", href: "/popular", translationKey: "nav.popular" },
     { label: "Recent", href: "/recent", translationKey: "nav.recent" },
   ];
@@ -35,24 +41,24 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2">
-                  {t('nav.menu')}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {menuItems.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
-                    <Link href={item.href} className="w-full">
-                      {t(item.translationKey)}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+            {subjects?.map((subject) => (
+              <Link 
+                key={subject.slug} 
+                href={`/subject/${subject.slug}`}
+                className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {t(subject.slug)}
+              </Link>
+            ))}
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {t(item.translationKey)}
+              </Link>
+            ))}
             <SearchDialog />
             <LanguageSwitcher />
             <ThemeToggle />
@@ -80,6 +86,23 @@ export default function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden py-2 space-y-1">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="w-full justify-start">
+                  {t('nav.subjects')}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-full">
+                {subjects?.map((subject) => (
+                  <DropdownMenuItem key={subject.slug} asChild>
+                    <Link href={`/subject/${subject.slug}`} className="w-full">
+                      {t(subject.slug)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             {menuItems.map((item) => (
               <Link
                 key={item.href}
