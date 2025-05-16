@@ -69,6 +69,13 @@ const resources = {
       'search.title': 'Search',
       'search.placeholder': 'Search across the website .. ',
       'available': 'Available',
+      'admin': {
+        dashboard: 'Admin Dashboard',
+        metrics: 'Metrics',
+        users: 'Users',
+        content: 'Content',
+        totalViews: 'Total Views'
+      },
       'nav.signin': 'Sign In',
       'auth.create_account': 'Create Account',
       'auth.welcome': 'Welcome back',
@@ -146,6 +153,13 @@ const resources = {
       'search.title': 'Buscar',
       'search.placeholder': 'Buscar en todo el sitio web .. ',
       'available': 'Disponible',
+      'admin': {
+        dashboard: 'Panel de Administrador',
+        metrics: 'Métricas',
+        users: 'Usuarios',
+        content: 'Contenido',
+        totalViews: 'Vistas Totales'
+      },
       'nav.signin': 'Iniciar Sesión',
       'auth.create_account': 'Crear Cuenta',
       'auth.welcome': 'Bienvenido de nuevo',
@@ -224,6 +238,13 @@ const resources = {
       'search.title': 'Rechercher',
       'search.placeholder': "Rechercher sur l'ensemble du site .. ",
       'available': 'Disponible',
+      'admin': {
+        dashboard: 'Tableau de bord Admin',
+        metrics: 'Métriques',
+        users: 'Utilisateurs',
+        content: 'Contenu',
+        totalViews: 'Vues Totales'
+      },
       'nav.signin': 'Se Connecter',
       'auth.create_account': 'Créer un Compte',
       'auth.welcome': 'Bienvenue',
@@ -301,6 +322,13 @@ const resources = {
       'search.title': 'ابحث',
       'search.placeholder': ' ... ابحث في جميع أنحاء الموقع',
       'available': 'متوفرة',
+      'admin': {
+        dashboard: 'لوحة تحكم الأدمن',
+        metrics: 'المقاييس',
+        users: 'المستخدمون',
+        content: 'المحتوى',
+        totalViews: 'إجمالي المشاهدات'
+      },
       'nav.signin': 'تسجيل الدخول',
       'auth.create_account': 'إنشاء حساب',
       'auth.welcome': 'مرحباً بعودتك',
