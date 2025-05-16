@@ -1,6 +1,6 @@
 // server/api/auth.ts (or wherever your Next.js API routes live)
 import { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '@/db'; // adjust import path for your db.ts
+import { db } from './db';
 import * as schema from '@shared/schema';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
