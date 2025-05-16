@@ -127,7 +127,7 @@ export default function SignIn() {
 
                 if (loginResponse.ok) {
                   const data = await loginResponse.json();
-                  if (data.role === 'admin') {
+                  if (data.user && data.user.role === 'admin') {
                     window.location.href = '/admin';
                   } else {
                     window.location.href = '/';
