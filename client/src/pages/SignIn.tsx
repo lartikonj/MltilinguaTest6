@@ -8,6 +8,10 @@ export default function SignIn() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("signin");
 
+  const switchToSignup = () => {
+    setActiveTab("signup");
+  };
+
   const AuthButtons = ({ mode }) => (
     <div className="space-y-4">
       <Button 
@@ -99,13 +103,7 @@ export default function SignIn() {
             type="button"
             variant="link"
             className="text-primary-600 dark:text-primary-400 p-0"
-            onClick={() => {
-                setActiveTab('signup');
-                const signupTab = document.querySelector('[value="signup"]');
-                if (signupTab instanceof HTMLElement) {
-                  signupTab.click();
-                }
-              }}
+            onClick={switchToSignup}
             >
             {t('auth.create_account')}
           </Button>
@@ -118,7 +116,7 @@ export default function SignIn() {
     <Layout>
       <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg w-full max-w-md">
-          <Tabs defaultValue="signin" className="w-full" onValueChange={setActiveTab}>
+          <Tabs value={activeTab} className="w-full" onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">{t('auth.signin')}</TabsTrigger>
               <TabsTrigger value="signup">{t('auth.signup')}</TabsTrigger>
