@@ -23,15 +23,6 @@ export default function SignIn() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
     e.preventDefault();
-    const formElement = e.currentTarget;
-    const formInputs = formElement.querySelectorAll('input');
-    const formData: Record<string, string> = {};
-    
-    formInputs.forEach((input) => {
-      if (input.name) {
-        formData[input.name] = input.value;
-      }
-    });
 
     if (!formData.email || !formData.password || (mode === 'signup' && (!formData.name || !formData.username))) {
       alert('Please fill in all required fields');
@@ -157,7 +148,6 @@ export default function SignIn() {
         <Button 
             variant="outline" 
             className="w-full"
-            type="submit"
             type="submit"
           >
             {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
