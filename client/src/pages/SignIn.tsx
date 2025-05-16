@@ -38,13 +38,31 @@ export default function SignIn() {
         </div>
       </div>
 
-      <Button 
-        variant="outline" 
-        className="w-full"
-        onClick={() => window.location.href = `/api/auth/email?mode=${mode}`}
-      >
-        {t('auth.oauth_message')} {t('auth.email')}
-      </Button>
+      <form className="space-y-4">
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
+            required
+          />
+        </div>
+        <Button 
+          variant="outline" 
+          className="w-full"
+          type="submit"
+        >
+          {t('auth.signin_with')} {t('auth.email')}
+        </Button>
+      </form>
     </div>
   );
 
