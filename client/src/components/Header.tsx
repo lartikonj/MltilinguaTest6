@@ -141,8 +141,8 @@ export default function Header() {
 
       {/* Animated mobile menu */}
       <div
-        className={`md:hidden fixed inset-0 top-16 z-50 transform transition-transform duration-300 ease-in-out bg-white dark:bg-gray-900 overflow-y-auto ${
-          mobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        className={`md:hidden fixed inset-0 top-16 z-50 transform transition-all duration-300 ease-in-out bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-y-auto ${
+          mobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="py-4 px-4 space-y-1 shadow-lg pb-[env(safe-area-inset-bottom)]">

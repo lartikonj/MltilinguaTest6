@@ -63,7 +63,13 @@
   }
 
   .container {
-    @apply px-4 sm:px-6 lg:px-8 max-w-full lg:max-w-7xl mx-auto;
+    @apply px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-7xl mx-auto;
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      @apply safe-area-inset-x;
+    }
   }
 }
 

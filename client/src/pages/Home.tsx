@@ -31,10 +31,10 @@ export default function Home() {
     <Layout>
       {/* Hero Section */}
       <section className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">{t('hero.title')}</h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">{t('hero.subtitle')}</p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 px-2">{t('hero.title')}</h1>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 px-2 mx-auto max-w-2xl">{t('hero.subtitle')}</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/subject">
                 <button className="px-5 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">
