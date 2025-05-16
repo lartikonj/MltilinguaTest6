@@ -683,7 +683,7 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
           fr: {
             title: "Mythes Nutritionnels Démystifiés par la Science",
             excerpt: "Séparez les faits de la fiction dans le monde de la nutrition. Nous examinons les mythes alimentaires courants et présentons les preuves scientifiques derrière une alimentation saine.",
-            content: "À l'ère des médias sociaux et des régimes à solution rapide, la désinformation nutritionnelle se propage rapidement. Cet article examine certains des mythes nutritionnels les plus persistants et ce que la science dit réellement..."
+            content: "À l'ère des médias sociaux et des régimes à solution rapide, la désinformation nutritionnelle se propage rapidement. Cet article examine certains des mythes nutritionnels les plus persistents et ce que la science dit réellement..."
           }
         },
         availableLanguages: ["en", "es", "fr"],
