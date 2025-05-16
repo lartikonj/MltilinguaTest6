@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function SignIn() {
@@ -93,61 +94,49 @@ export default function SignIn() {
         </div>
       </div>
 
-      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)} autoComplete="off">
+      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
         {mode === 'signup' && (
           <>
             <div>
-              <input
+              <Input
                 type="text"
                 placeholder="Full Name"
                 name="name"
                 value={formData.name}
-                className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
-                required
                 onChange={handleChange}
-                autoComplete="name"
-                autoCapitalize="off"
+                required
               />
             </div>
             <div>
-              <input
+              <Input
                 type="text"
                 placeholder="Username"
                 name="username"
                 value={formData.username}
-                className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
-                required
                 onChange={handleChange}
-                autoComplete="username"
-                autoCapitalize="off"
+                required
               />
             </div>
           </>
         )}
         <div>
-          <input
+          <Input
             type="email"
             placeholder="Email"
             name="email"
             value={formData.email}
-            className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
-            required
             onChange={handleChange}
-            autoComplete="email"
-            autoCapitalize="off"
-            inputMode="email"
+            required
           />
         </div>
         <div>
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
             value={formData.password}
-            className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
-            required
             onChange={handleChange}
-            autoComplete="current-password"
+            required
           />
         </div>
         {mode === 'signup' && (
