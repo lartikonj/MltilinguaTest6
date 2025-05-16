@@ -9,13 +9,13 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   // Subject methods
   getAllSubjects(): Promise<Subject[]>;
   getSubjectBySlug(slug: string): Promise<Subject | undefined>;
   getSubject(id: number): Promise<Subject | undefined>;
   createSubject(subject: InsertSubject): Promise<Subject>;
-  
+
   // Article methods
   getAllArticles(): Promise<Article[]>;
   getFeaturedArticles(): Promise<Article[]>;
@@ -26,7 +26,7 @@ export interface IStorage {
   createArticle(article: InsertArticle): Promise<Article>;
 }
 
-export class MemStorage implements IStorage {
+class MemStorage implements IStorage {
   private users: Map<number, User>;
   private subjects: Map<number, Subject>;
   private articles: Map<number, Article>;
@@ -41,11 +41,11 @@ export class MemStorage implements IStorage {
     this.currentUserId = 1;
     this.currentSubjectId = 1;
     this.currentArticleId = 1;
-    
+
     // Initialize with sample data
     this.initializeData();
   }
-  
+
   // User methods
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
@@ -63,77 +63,77 @@ export class MemStorage implements IStorage {
     this.users.set(id, user);
     return user;
   }
-  
+
   // Subject methods
   async getAllSubjects(): Promise<Subject[]> {
     return Array.from(this.subjects.values());
   }
-  
+
   async getSubjectBySlug(slug: string): Promise<Subject | undefined> {
     return Array.from(this.subjects.values()).find(
       (subject) => subject.slug === slug,
     );
   }
-  
+
   async getSubject(id: number): Promise<Subject | undefined> {
     return this.subjects.get(id);
   }
-  
+
   async createSubject(insertSubject: InsertSubject): Promise<Subject> {
     const id = this.currentSubjectId++;
     const subject: Subject = { ...insertSubject, id };
     this.subjects.set(id, subject);
     return subject;
   }
-  
+
   // Article methods
   async getAllArticles(): Promise<Article[]> {
     return Array.from(this.articles.values());
   }
-  
+
   async getFeaturedArticles(): Promise<Article[]> {
     return Array.from(this.articles.values())
       .filter(article => article.featured)
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
   }
-  
+
   async getRecentArticles(limit: number): Promise<Article[]> {
     return Array.from(this.articles.values())
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
       .slice(0, limit);
   }
-  
+
   async getArticlesBySubject(subjectId: number): Promise<Article[]> {
     return Array.from(this.articles.values())
       .filter(article => article.subjectId === subjectId)
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
   }
-  
+
   async getArticleBySlug(slug: string): Promise<Article | undefined> {
     return Array.from(this.articles.values()).find(
       (article) => article.slug === slug,
     );
   }
-  
+
   async getArticle(id: number): Promise<Article | undefined> {
     return this.articles.get(id);
   }
-  
+
   async createArticle(insertArticle: InsertArticle): Promise<Article> {
     const id = this.currentArticleId++;
     const article: Article = { ...insertArticle, id };
     this.articles.set(id, article);
-    
+
     // Update the article count for the subject
     const subject = this.subjects.get(article.subjectId);
     if (subject) {
       subject.articleCount = (subject.articleCount || 0) + 1;
       this.subjects.set(subject.id, subject);
     }
-    
+
     return article;
   }
-  
+
   // Initialize with sample data
   private initializeData() {
     // Add subjects
@@ -145,11 +145,11 @@ export class MemStorage implements IStorage {
       { name: "Arts & Culture", slug: "arts-culture", icon: "ri-palette-line", articleCount: 0 },
       { name: "Travel", slug: "travel", icon: "ri-plane-line", articleCount: 0 },
     ];
-    
+
     subjects.forEach(subject => {
       this.createSubject(subject);
     });
-    
+
     // Add articles
     const articles: InsertArticle[] = [
       // Technology articles
@@ -243,223 +243,41 @@ export class MemStorage implements IStorage {
         featured: true
       },
       {
-  title: "The Water Cycle — A Clear and Simple Explanation",
-  slug: "water-cycle-explained",
-  excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
-  content: `# The Water Cycle — A Clear and Simple Explanation
-
-Water is essential to life, and it’s constantly in motion in a process known as the **water cycle** or **hydrological cycle**. This natural loop moves water through the environment, ensuring its availability for plants, animals, and humans.
-
- 🌞 1. Evaporation
-
-The sun heats up water from oceans, rivers, lakes, and even soil. This heat causes the water to **evaporate**, turning it into water vapor that rises into the atmosphere.
-
- ☁️ 2. Condensation
-
-As the vapor rises and cools in the atmosphere, it turns back into liquid droplets. These droplets form **clouds**. This step is called **condensation**.
-
- 🌧️ 3. Precipitation
-
-When the clouds become heavy with condensed water, gravity pulls the water down in the form of **precipitation** — rain, snow, sleet, or hail.
-
- 💧 4. Collection
-
-The water that falls returns to the Earth’s surface. It collects in **oceans, rivers, lakes**, and underground **aquifers**. From here, it may **evaporate again**, continuing the cycle.
-
-
- 🌍 Why the Water Cycle Matters
-
-- It helps **regulate Earth’s climate**.
-- Provides **fresh water** for drinking and agriculture.
-- Supports **ecosystems** and **weather systems** around the globe.
-- Without it, life on Earth wouldn’t exist as we know it.
-
-The water cycle is a **self-sustaining system** powered by the sun. It’s one of nature’s most important engines — working silently in the background every day to support life on our planet.`,
-  imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
-  readTime: 6,
-  subjectId: 2,
-  author: "Multilingua Science Team",
-  authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
-  publishDate: new Date("2023-12-01"),
-  translations: {
-    en: {
-      title: "The Water Cycle — A Clear and Simple Explanation",
-      excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
-      content: `# The Water Cycle — A Clear and Simple Explanation
-
-Water is essential to life, and it’s constantly in motion in a process known as the **water cycle** or **hydrological cycle**. This natural loop moves water through the environment, ensuring its availability for plants, animals, and humans.
-
-## 🌞 1. Evaporation
-
-The sun heats up water from oceans, rivers, lakes, and even soil. This heat causes the water to **evaporate**, turning it into water vapor that rises into the atmosphere.
-
-## ☁️ 2. Condensation
-
-As the vapor rises and cools in the atmosphere, it turns back into liquid droplets. These droplets form **clouds**. This step is called **condensation**.
-
-## 🌧️ 3. Precipitation
-
-When the clouds become heavy with condensed water, gravity pulls the water down in the form of **precipitation** — rain, snow, sleet, or hail.
-
-## 💧 4. Collection
-
-The water that falls returns to the Earth’s surface. It collects in **oceans, rivers, lakes**, and underground **aquifers**. From here, it may **evaporate again**, continuing the cycle.
-
-
-# 🌍 Why the Water Cycle Matters
-
-- It helps **regulate Earth’s climate**.
-- Provides **fresh water** for drinking and agriculture.
-- Supports **ecosystems** and **weather systems** around the globe.
-- Without it, life on Earth wouldn’t exist as we know it.
-
-The water cycle is a **self-sustaining system** powered by the sun. It’s one of nature’s most important engines — working silently in the background every day to support life on our planet.`,// same as above
-      notes: [
-        "The water cycle is powered by solar energy.",
-        "It connects oceans, the atmosphere, and the land.",
-        "Essential for drinking water, agriculture, and weather systems."
-      ],
-      resources: [
-        "https://earthobservatory.nasa.gov/features/Water",
-        "https://www.usgs.gov/special-topics/water-science-school/science/water-cycle",
-        "https://www.bbc.co.uk/bitesize/topics/zkgg87h/articles/z3wpp39"
-      ]
-    },
-    fr: {
-      title: "Le Cycle de l’Eau — Explication Simple et Claire",
-      excerpt: "Découvrez comment l’eau circule dans la nature à travers un cycle infini d’évaporation, de condensation, de précipitation et de collecte.",
-      content: `# Le Cycle de l’Eau — Explication Simple et Claire
-
-L’eau est essentielle à la vie et se déplace constamment dans un processus appelé **cycle de l’eau** ou **cycle hydrologique**. Ce cycle naturel déplace l’eau dans l’environnement, la rendant disponible pour les plantes, les animaux et les humains.
-
-## 🌞 1. Évaporation
-
-Le soleil chauffe l’eau des océans, rivières, lacs et même du sol. Cette chaleur fait **évaporer** l’eau, qui se transforme en vapeur montant dans l’atmosphère.
-
-## ☁️ 2. Condensation
-
-La vapeur monte, se refroidit, et redevient des gouttelettes d’eau. Ces gouttelettes forment les **nuages**. Ce processus s’appelle la **condensation**.
-
-## 🌧️ 3. Précipitations
-
-Quand les nuages deviennent trop lourds, l’eau tombe sous forme de **précipitations** : pluie, neige, grêle ou bruine.
-
-## 💧 4. Collecte
-
-L’eau retourne à la surface terrestre. Elle se rassemble dans les **océans, rivières, lacs**, ou dans les **nappes souterraines**. Ensuite, elle peut **s’évaporer** à nouveau.
-
-# 🌍 Pourquoi ce Cycle est Important
-
-- Il aide à **réguler le climat terrestre**.
-- Il fournit de **l’eau douce** pour boire et cultiver.
-- Il soutient les **écosystèmes** et les **phénomènes météorologiques**.
-- Sans lui, la vie sur Terre serait impossible.
-
-Le cycle de l’eau est un **système autonome** alimenté par le soleil. Il travaille discrètement chaque jour pour maintenir la vie sur notre planète.`,
-      notes: [
-        "Le cycle de l’eau est alimenté par l’énergie solaire.",
-        "Il connecte les océans, l’atmosphère et la terre.",
-        "Indispensable pour l’eau potable, l’agriculture et le climat."
-      ],
-      resources: [
-        "https://www.futura-sciences.com/planete/definitions/eau-cycle-eau-249/",
-        "https://fr.vikidia.org/wiki/Cycle_de_l%27eau",
-        "https://www.lumni.fr/article/le-cycle-de-l-eau"
-      ]
-    },
-    ar: {
-      title: "دورة الماء - شرح مبسط وواضح",
-      excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
-      content: `# دورة الماء - شرح مبسط وواضح
-
-الماء ضروري للحياة، وهو في حركة دائمة فيما يُعرف بـ **دورة الماء** أو **الدورة الهيدرولوجية**. هذه الدورة تنقل الماء في الطبيعة لضمان توفره للنباتات والحيوانات والبشر.
-
-## 🌞 1. التبخر
-
-تقوم الشمس بتسخين المياه في المحيطات والأنهار والبحيرات وحتى التربة، مما يؤدي إلى **تبخرها** وتحولها إلى بخار يرتفع إلى الجو.
-
-## ☁️ 2. التكاثف
-
-عندما يرتفع البخار ويبرد في الطبقات العليا من الغلاف الجوي، يتحول إلى قطرات ماء صغيرة تُكوِّن **السحب**. وتُعرف هذه المرحلة بـ **التكاثف**.
-
-## 🌧️ 3. الهطول
-
-عندما تصبح السحب مشبعة بالماء، يسقط الماء على الأرض على شكل **هطول**: مطر أو ثلج أو برد.
-
-## 💧 4. التجميع
-
-تعود المياه إلى سطح الأرض، وتتجمع في **المحيطات والأنهار والبحيرات**، أو تُخزن في **المياه الجوفية**، لتتبخر مرة أخرى وتعيد الدورة.
-
----
-
-## 🌍 أهمية دورة الماء
-
-- تُساهم في **تنظيم مناخ الأرض**.
-- تُوفر **الماء العذب** للشرب والزراعة.
-- تُدعم **الأنظمة البيئية** والطقس.
-- بدونها، لن تستمر الحياة على الأرض.
-
-دورة الماء هي **نظام ذاتي التشغيل** تعمل عليه الشمس باستمرار لدعم الحياة على كوكبنا.`,
-      notes: [
-        "دورة الماء تعتمد على طاقة الشمس.",
-        "تربط بين المحيطات والغلاف الجوي واليابسة.",
-        "أساسية لمياه الشرب والزراعة والطقس."
-      ],
-      resources: [
-        "https://www.noor-book.com/كتاب-دورة-الماء-pdf",
-        "https://mawdoo3.com/ما_هي_دورة_الماء",
-        "https://school-kw.com/file/3176/"
-      ]
-    },
-    es: {
-      title: "El Ciclo del Agua — Explicación Clara y Sencilla",
-      excerpt: "Descubre cómo el agua se mueve por la naturaleza en un ciclo constante de evaporación, condensación, precipitación y recolección.",
-      content: `# El Ciclo del Agua — Explicación Clara y Sencilla
-
-El agua es esencial para la vida y está en constante movimiento gracias al **ciclo del agua** o **ciclo hidrológico**. Este proceso natural transporta el agua por el medio ambiente, haciéndola accesible para plantas, animales y humanos.
-
-## 🌞 1. Evaporación
-
-El sol calienta el agua de los océanos, ríos, lagos e incluso del suelo. Este calor provoca la **evaporación**, transformando el agua en vapor que sube a la atmósfera.
-
-## ☁️ 2. Condensación
-
-El vapor asciende, se enfría y se convierte en gotas que forman **nubes**. A esto se le llama **condensación**.
-
-## 🌧️ 3. Precipitación
-
-Cuando las nubes se saturan de agua, esta cae a la Tierra como **precipitación**: lluvia, nieve o granizo.
-
-## 💧 4. Recolección
-
-El agua regresa a la superficie terrestre, se acumula en **océanos, ríos y lagos**, o se infiltra como **agua subterránea**. Luego puede **evaporarse** nuevamente y reiniciar el ciclo.
-
----
-
-# 🌍 Por qué es Importante el Ciclo del Agua
-
-- Regula el **clima del planeta**.
-- Proporciona **agua dulce** para beber y cultivar.
-- Sostiene los **ecosistemas** y los **patrones climáticos**.
-- Sin él, la vida en la Tierra no sería posible.
-
-El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno de los motores más importantes de la naturaleza, funcionando todos los días para mantener la vida.`,
-      notes: [
-        "El ciclo del agua es impulsado por el sol.",
-        "Conecta océanos, atmósfera y tierra.",
-        "Es esencial para agua potable, cultivos y clima."
-      ],
-      resources: [
-        "https://es.khanacademy.org/science/ciencia-para-todos-a/ciclo-del-agua",
-        "https://www.nationalgeographic.com.es/ciencia/ciclo-del-agua-que-es-y-como-funciona_16487",
-        "https://www.educar.org/Ecologia/ciclodelagua/"
-      ]
-    }
-  },
-  availableLanguages: ["en", "fr", "ar", "es"],
-  featured: true
-},
-
+        title: "The Water Cycle — A Clear and Simple Explanation",
+        slug: "water-cycle-explained",
+        excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+        content: "Water is essential to life, and it's constantly in motion in a process known as the water cycle or hydrological cycle...",
+        imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 6,
+        subjectId: 2,
+        author: "Multilingua Science Team",
+        authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-12-01"),
+        translations: {
+          en: {
+            title: "The Water Cycle — A Clear and Simple Explanation",
+            excerpt: "Discover how water moves through nature in a never-ending cycle of evaporation, condensation, precipitation, and collection.",
+            content: "Water is essential to life, and it's constantly in motion in a process known as the water cycle..."
+          },
+          fr: {
+            title: "Le Cycle de l'Eau — Explication Simple et Claire",
+            excerpt: "Découvrez comment l'eau circule dans la nature à travers un cycle infini d'évaporation, de condensation, de précipitation et de collecte.",
+            content: "L'eau est essentielle à la vie et se déplace constamment dans un processus appelé cycle de l'eau..."
+          },
+          es: {
+            title: "El Ciclo del Agua — Explicación Clara y Sencilla",
+            excerpt: "Descubre cómo el agua se mueve por la naturaleza en un ciclo constante de evaporación, condensación, precipitación y recolección.",
+            content: "El agua es esencial para la vida y está en constante movimiento gracias al ciclo del agua..."
+          },
+          ar: {
+            title: "دورة الماء - شرح مبسط وواضح",
+            excerpt: "اكتشف كيف تتحرك المياه في الطبيعة في دورة لا تنتهي من التبخر والتكاثف والهطول والتجميع.",
+            content: "الماء ضروري للحياة، وهو في حركة دائمة في عملية تعرف باسم دورة الماء..."
+          }
+        },
+        availableLanguages: ["en", "fr", "es", "ar"],
+        featured: true
+      },
       // Environment articles
       {
         title: "Ocean Conservation Breakthroughs",
@@ -601,8 +419,7 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
         slug: "sustainable-tourism-trends",
         excerpt: "Discover how eco-friendly travel practices are shaping the future of tourism and protecting destinations worldwide.",
         content: "Sustainable tourism is more than just a trend - it's a necessary evolution in how we explore our world. From carbon-neutral accommodations to community-based tourism...",
-        imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
-        readTime: 6,
+        imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",        readTime: 6,
         subjectId: 6,
         author: "Emma Wilson",
         authorImage: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
@@ -727,7 +544,7 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
           fr: {
             title: "Mythes Nutritionnels Démystifiés par la Science",
             excerpt: "Séparez les faits de la fiction dans le monde de la nutrition. Nous examinons les mythes alimentaires courants et présentons les preuves scientifiques derrière une alimentation saine.",
-            content: "À l'ère des médias sociaux et des régimes à solution rapide, la désinformation nutritionnelle se propage rapidement. Cet article examine certains des mythes nutritionnels les plus persistants et ce que la science dit réellement..."
+            content: "À l'ère des médias sociaux et des régimes à solution rapide, la désinformation nutritionnelle se propage rapidement. Cet article examine certains des mythes nutritionnels les plus persistents et ce que la science dit réellement..."
           }
         },
         availableLanguages: ["en", "es", "fr"],
@@ -768,14 +585,278 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
         },
         availableLanguages: ["en", "es", "fr", "ar"],
         featured: false
-      }
-      
-    ];
-    
+      },
+      // Health article
+      {
+        title: "Understanding Sleep Cycles",
+        slug: "understanding-sleep-cycles",
+        excerpt: "Learn about the different stages of sleep and how they affect your overall health and well-being.",
+        content: `# Introduction
+Sleep is essential for our physical and mental health. Understanding how sleep cycles work can help us optimize our rest and improve our overall well-being.
+
+# The Stages of Sleep
+Sleep consists of multiple stages, each serving a unique purpose in our rest and recovery process. The main stages are N1, N2, N3 (deep sleep), and REM sleep.
+
+# The Role of REM Sleep
+REM (Rapid Eye Movement) sleep is crucial for memory consolidation and emotional processing. During this stage, our brains are highly active, and we experience most of our dreams.
+
+# Factors Affecting Sleep Quality
+Several factors can impact our sleep quality, including:
+- Light exposure
+- Room temperature
+- Caffeine intake
+- Exercise timing
+- Screen time before bed
+
+# Tips for Better Sleep
+Implementing good sleep hygiene practices can significantly improve your sleep quality:
+1. Maintain a consistent sleep schedule
+2. Create a relaxing bedtime routine
+3. Optimize your sleep environment
+4. Limit screen time before bed
+5. Watch your diet and exercise habits`,
+        imageUrl: "https://images.unsplash.com/photo-1541199249251-f713e6145474?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 8,
+        subjectId: 4,
+        author: "Dr. Sarah Chen",
+        authorImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-10-15"),
+        translations: {
+          en: {
+            title: "Understanding Sleep Cycles",
+            excerpt: "Learn about the different stages of sleep and how they affect your overall health and well-being.",
+            content: `# Introduction
+Sleep is essential for our physical and mental health. Understanding how sleep cycles work can help us optimize our rest and improve our overall well-being.
+
+# The Stages of Sleep
+Sleep consists of multiple stages, each serving a unique purpose in our rest and recovery process. The main stages are N1, N2, N3 (deep sleep), and REM sleep.
+
+# The Role of REM Sleep
+REM (Rapid Eye Movement) sleep is crucial for memory consolidation and emotional processing. During this stage, our brains are highly active, and we experience most of our dreams.
+
+# Factors Affecting Sleep Quality
+Several factors can impact our sleep quality, including:
+- Light exposure
+- Room temperature
+- Caffeine intake
+- Exercise timing
+- Screen time before bed
+
+# Tips for Better Sleep
+Implementing good sleep hygiene practices can significantly improve your sleep quality:
+1. Maintain a consistent sleep schedule
+2. Create a relaxing bedtime routine
+3. Optimize your sleep environment
+4. Limit screen time before bed
+5. Watch your diet and exercise habits`,
+            notes: [
+              "Sleep cycles typically last 90-120 minutes",
+              "Adults need 7-9 hours of sleep per night",
+              "REM sleep makes up about 25% of total sleep time"
+            ],
+            resources: [
+              "National Sleep Foundation Guidelines",
+              "Sleep Cycle Research Studies",
+              "Harvard Health Sleep Guide"
+            ]
+          }
+        },
+        availableLanguages: ["en"],
+        featured: true
+      },
+      {
+        title: "فهم دورات النوم",
+        slug: "understanding-sleep-cycles",
+        excerpt: "تعرف على المراحل المختلفة للنوم وكيف تؤثر على صحتك العامة ورفاهيتك.",
+        content: `# مقدمة
+النوم ضروري لصحتنا الجسدية والعقلية. يمكن أن يساعدنا فهم كيفية عمل دورات النوم في تحسين راحتنا وتحسين صحتنا العامة.
+
+# مراحل النوم
+يتكون النوم من مراحل متعددة، تخدم كل منها غرضًا فريدًا في عملية الراحة والتعافي لدينا. المراحل الرئيسية هي N1 و N2 و N3 (النوم العميق) ونوم حركة العين السريعة.
+
+# دور نوم حركة العين السريعة
+يعتبر نوم حركة العين السريعة (REM) أمرًا بالغ الأهمية لتوحيد الذاكرة ومعالجة المشاعر. خلال هذه المرحلة، تكون أدمغتنا نشطة للغاية، ونختبر معظم أحلامنا.
+
+# العوامل المؤثرة على جودة النوم
+هناك عدة عوامل يمكن أن تؤثر على جودة نومنا، بما في ذلك:
+- التعرض للضوء
+- درجة حرارة الغرفة
+- تناول الكافيين
+- توقيت التمرين
+- وقت الشاشة قبل النوم
+
+# نصائح لنوم أفضل
+يمكن أن يؤدي تطبيق ممارسات النظافة الصحية الجيدة للنوم إلى تحسين جودة نومك بشكل كبير:
+1. الحفاظ على جدول نوم ثابت
+2. إنشاء روتين مريح لوقت النوم
+3. تحسين بيئة نومك
+4. الحد من وقت الشاشة قبل النوم
+5. راقب عاداتك الغذائية والتمارين الرياضية`,
+        imageUrl: "https://images.unsplash.com/photo-1541199249251-f713e6145474?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+        readTime: 8,
+        subjectId: 4,
+        author: "د. سارة تشن",
+        authorImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
+        publishDate: new Date("2023-10-15"),
+        translations: {
+          ar: {
+            title: "فهم دورات النوم",
+            excerpt: "تعرف على المراحل المختلفة للنوم وكيف تؤثر على صحتك العامة ورفاهيتك.",
+            content: `# مقدمة
+النوم ضروري لصحتنا الجسدية والعقلية. يمكن أن يساعدنا فهم كيفية عمل دورات النوم في تحسين راحتنا وتحسين صحتنا العامة.
+
+# مراحل النوم
+يتكون النوم من مراحل متعددة، تخدم كل منها غرضًا فريدًا في عملية الراحة والتعافي لدينا. المراحل الرئيسية هي N1 و N2 و N3 (النوم العميق) ونوم حركة العين السريعة.
+
+# دور نوم حركة العين السريعة
+يعتبر نوم حركة العين السريعة (REM) أمرًا بالغ الأهمية لتوحيد الذاكرة ومعالجة المشاعر. خلال هذه المرحلة، تكون أدمغتنا نشطة للغاية، ونختبر معظم أحلامنا.
+
+# العوامل المؤثرة على جودة النوم
+هناك عدة عوامل يمكن أن تؤثر على جودة نومنا، بما في ذلك:
+- التعرض للضوء
+- درجة حرارة الغرفة
+- تناول الكافيين
+- توقيت التمرين
+- وقت الشاشة قبل النوم
+
+# نصائح لنوم أفضل
+يمكن أن يؤدي تطبيق ممارسات النظافة الصحية الجيدة للنوم إلى تحسين جودة نومك بشكل كبير:
+1. الحفاظ على جدول نوم ثابت
+2. إنشاء روتين مريح لوقت النوم
+3. تحسين بيئة نومك
+4. الحد من وقت الشاشة قبل النوم
+5. راقب عاداتك الغذائية والتمارين الرياضية`,
+            notes: [
+              "تستغرق دورات النوم عادة 90-120 دقيقة",
+              "يحتاج البالغون إلى 7-9 ساعات من النوم في الليلة",
+              "يشكل نوم حركة العين السريعة حوالي 25٪ من إجمالي وقت النوم"
+            ],
+            resources: [
+              "إرشادات المؤسسة الوطنية للنوم",
+              "دراسات بحثية حول دورة النوم",
+              "دليل هارفارد الصحي للنوم"
+            ]
+          }
+        },
+        availableLanguages: ["ar"],
+        featured: true
+      },
+    {
+      title: "The Complete Guide to Machine Learning",
+      slug: "complete-guide-machine-learning",
+      excerpt: "Explore the fundamentals of machine learning, from basic concepts to advanced applications.",
+      content: `# Introduction
+Machine learning is revolutionizing how we solve complex problems. This guide will help you understand the core concepts and practical applications.
+
+# Basic Concepts
+Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Key concepts include:
+- Supervised Learning
+- Unsupervised Learning
+- Reinforcement Learning
+
+# Types of Machine Learning
+## Supervised Learning
+In supervised learning, algorithms learn from labeled data to make predictions about new, unseen data.
+
+## Unsupervised Learning
+Unsupervised learning algorithms find patterns in unlabeled data, often used for clustering and dimensionality reduction.
+
+## Reinforcement Learning
+This type involves agents learning optimal actions through trial and error in an environment.
+
+# Common Algorithms
+- Linear Regression
+- Decision Trees
+- Neural Networks
+- Support Vector Machines
+- K-Means Clustering
+
+# Applications
+Machine learning is used in various fields:
+1. Healthcare
+2. Finance
+3. Autonomous Vehicles
+4. Natural Language Processing
+5. Computer Vision
+
+# Future Trends
+The field continues to evolve with:
+- Advanced Neural Architectures
+- Automated Machine Learning
+- Edge Computing
+- Quantum Machine Learning`,
+      imageUrl: "https://images.unsplash.com/photo-1519389950473-47a0478938c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+      readTime: 10,
+      subjectId: 1, // Technology
+      author: "AI Insights Team",
+      authorImage: "https://images.unsplash.com/photo-1544005313-94ddf02864ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aW50ZWxsZWN0dWFsJTIwcGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      publishDate: new Date("2024-01-20"),
+      translations: {
+        en: {
+          title: "The Complete Guide to Machine Learning",
+          excerpt: "Explore the fundamentals of machine learning, from basic concepts to advanced applications.",
+          content: `# Introduction
+Machine learning is revolutionizing how we solve complex problems. This guide will help you understand the core concepts and practical applications.
+
+# Basic Concepts
+Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Key concepts include:
+- Supervised Learning
+- Unsupervised Learning
+- Reinforcement Learning
+
+# Types of Machine Learning
+## Supervised Learning
+In supervised learning, algorithms learn from labeled data to make predictions about new, unseen data.
+
+## Unsupervised Learning
+Unsupervised learning algorithms find patterns in unlabeled data, often used for clustering and dimensionality reduction.
+
+## Reinforcement Learning
+This type involves agents learning optimal actions through trial and error in an environment.
+
+# Common Algorithms
+- Linear Regression
+- Decision Trees
+- Neural Networks
+- Support Vector Machines
+- K-Means Clustering
+
+# Applications
+Machine learning is used in various fields:
+1. Healthcare
+2. Finance
+3. Autonomous Vehicles
+4. Natural Language Processing
+5. Computer Vision
+
+# Future Trends
+The field continues to evolve with:
+- Advanced Neural Architectures
+- Automated Machine Learning
+- Edge Computing
+- Quantum Machine Learning`,
+          notes: [
+            "Machine learning requires quality data",
+            "Choose algorithms based on your problem",
+            "Consider ethical implications"
+          ],
+          resources: [
+            "Machine Learning Basics",
+            "Popular ML Frameworks",
+            "Ethics in AI"
+          ]
+        }
+      },
+      availableLanguages: ["en"],
+      featured: true
+    }
+]
+
     articles.forEach(article => {
       this.createArticle(article);
     });
   }
 }
+
 
 export const storage = new MemStorage();
