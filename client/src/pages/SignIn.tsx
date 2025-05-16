@@ -1,4 +1,3 @@
-
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Layout from "@/components/Layout";
@@ -100,8 +99,14 @@ export default function SignIn() {
             type="button"
             variant="link"
             className="text-primary-600 dark:text-primary-400 p-0"
-            onClick={() => setActiveTab('signup')}
-          >
+            onClick={() => {
+                setActiveTab('signup');
+                const signupTab = document.querySelector('[value="signup"]');
+                if (signupTab instanceof HTMLElement) {
+                  signupTab.click();
+                }
+              }}
+            >
             {t('auth.create_account')}
           </Button>
         </div>
