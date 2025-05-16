@@ -41,24 +41,35 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            {subjects?.map((subject) => (
-              <Link 
-                key={subject.slug} 
-                href={`/subject/${subject.slug}`}
-                className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                {t(subject.slug)}
-              </Link>
-            ))}
-            {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                {t(item.translationKey)}
-              </Link>
-            ))}
+            <Link
+              href="/about"
+              className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              {t('nav.about')}
+            </Link>
+            <Link
+              href="/featured"
+              className="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              {t('nav.featured')}
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center gap-2">
+                  {t('nav.subjects')}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {subjects?.map((subject) => (
+                  <DropdownMenuItem key={subject.slug} asChild>
+                    <Link href={`/subject/${subject.slug}`} className="w-full">
+                      {t(subject.slug)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <SearchDialog />
             <LanguageSwitcher />
             <ThemeToggle />
