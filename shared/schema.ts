@@ -7,11 +7,9 @@ export const users = pgTable("users", {
     id: serial("id").primaryKey(),
     email: text("email").notNull().unique(),
     name: text("name").notNull(),
-    password: text("password"), // Null if using OAuth
-    avatar: text("avatar_url"),
-    googleId: text("google_id").unique(),
-    role: text("role").notNull().default("user"), // user, admin
-    createdAt: timestamp("created_at").notNull().defaultNow(),
+    password: text("password").notNull(),
+    role: text("role").default("user").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const sessions = pgTable("sessions", {
