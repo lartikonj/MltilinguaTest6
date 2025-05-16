@@ -10,6 +10,7 @@ import Recent from "@/pages/Recent";
 import Popular from "@/pages/Popular";
 import NotFound from "@/pages/not-found";
 import SignIn from "@/pages/SignIn";
+import Admin from "@/pages/Admin";
 
 function Router() {
   return (
