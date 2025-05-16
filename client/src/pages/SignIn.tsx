@@ -14,18 +14,25 @@ export default function SignIn() {
     username: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent, mode: 'signin' | 'signup') => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
     e.preventDefault();
-    const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+    const formElement = e.currentTarget;
+    const formInputs = formElement.querySelectorAll('input');
+    const formData: Record<string, string> = {};
+    
+    formInputs.forEach((input) => {
+      if (input.name) {
+        formData[input.name] = input.value;
+      }
+    });
+
+    if (!formData.email || !formData.password || (mode === 'signup' && (!formData.name || !formData.username))) {
+      alert('Please fill in all required fields');
+      return;
+    }
 
     try {
+      const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -85,7 +92,7 @@ export default function SignIn() {
         </div>
       </div>
 
-      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
         {mode === 'signup' ? (
           <>
             <div>
@@ -144,7 +151,7 @@ export default function SignIn() {
             variant="outline" 
             className="w-full"
             type="submit"
-            onClick={(e) => handleSubmit(e, mode)}
+            type="submit"
           >
             {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
           </Button>
