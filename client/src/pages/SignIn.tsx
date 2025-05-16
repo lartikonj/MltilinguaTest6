@@ -97,20 +97,42 @@ export default function SignIn() {
               const form = e.currentTarget.closest('form');
               const email = form?.querySelector('input[type="email"]')?.value;
               const password = form?.querySelector('input[type="password"]')?.value;
+              const name = mode === 'signup' ? form?.querySelector('input[placeholder="Full Name"]')?.value : undefined;
 
-              const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-              });
+              const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+              
+              try {
+                if (mode === 'signup') {
+                  const registerResponse = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, name }),
+                  });
 
-              if (response.ok) {
-                const data = await response.json();
-                if (data.role === 'admin') {
-                  window.location.href = '/admin';
+                  if (!registerResponse.ok) {
+                    throw new Error('Registration failed');
+                  }
                 }
+
+                const loginResponse = await fetch('/api/auth/login', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email, password }),
+                });
+
+                if (loginResponse.ok) {
+                  const data = await loginResponse.json();
+                  if (data.role === 'admin') {
+                    window.location.href = '/admin';
+                  } else {
+                    window.location.href = '/';
+                  }
+                } else {
+                  throw new Error('Authentication failed');
+                }
+              } catch (error) {
+                console.error('Auth error:', error);
+                // You might want to show an error message to the user here
               }
             }}
           >

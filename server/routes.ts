@@ -2,6 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { generateSitemap } from "./generateSitemap";
+import { registerUser, authenticateUser } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up API routes
@@ -11,6 +12,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get(`${api}/subjects`, async (req: Request, res: Response) => {
     try {
       const subjects = await storage.getAllSubjects();
+
+  // Auth endpoints
+  app.post(`${api}/auth/register`, async (req: Request, res: Response) => {
+    const { email, password, name } = req.body;
+    
+    if (!email || !password || !name) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const success = await registerUser(email, password, name);
+    if (success) {
+      res.status(201).json({ message: "User registered successfully" });
+    } else {
+      res.status(400).json({ message: "Registration failed" });
+    }
+  });
+
+  app.post(`${api}/auth/login`, async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({ message: "Missing credentials" });
+    }
+
+    const token = await authenticateUser(email, password);
+    if (token) {
+      res.json({ token, role: 'user' });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  });
+
+
       res.json(subjects);
     } catch (error) {
       res.status(500).json({ message: "Error fetching subjects" });

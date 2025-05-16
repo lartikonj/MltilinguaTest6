@@ -47,16 +47,38 @@ export async function verifyGoogleToken(token: string) {
 }
 
 export async function authenticateUser(email: string, password: string): Promise<string | null> {
-  const user = await db.query.users.findFirst({
-    where: eq(users.email, email)
-  });
-  
-  if (!user || !user.password) return null;
-  
-  const validPassword = await bcrypt.compare(password, user.password);
-  if (!validPassword) return null;
-  
-  return createSession(user.id);
+  try {
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, email)
+    });
+    
+    if (!user || !user.password) return null;
+    
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) return null;
+    
+    return createSession(user.id);
+  } catch (error) {
+    console.error('Authentication error:', error);
+    return null;
+  }
+}
+
+export async function registerUser(email: string, password: string, name: string): Promise<boolean> {
+  try {
+    const existingUser = await db.query.users.findFirst({
+      where: eq(users.email, email)
+    });
+    
+    if (existingUser) return false;
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await createUser(email, name, hashedPassword);
+    return true;
+  } catch (error) {
+    console.error('Registration error:', error);
+    return false;
+  }
 }
 
 export async function validateSession(token: string): Promise<User | null> {
