@@ -1,128 +1,82 @@
-
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+// server/api/auth.ts (or wherever your Next.js API routes live)
+import { NextApiRequest, NextApiResponse } from 'next';
+import { db } from '@/db'; // adjust import path for your db.ts
+import * as schema from '@shared/schema';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { users, sessions, type User } from '@shared/schema';
-import { db } from './db';
-import { eq } from 'drizzle-orm';
+import { serialize, parse } from 'cookie';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_here';
+const TOKEN_NAME = 'token';
 
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID
-};
-
-let app;
-try {
-  app = initializeApp(firebaseConfig);
-} catch (error) {
-  app = getApp(); // Use existing app if already initialized
-}
-const auth = getAuth(app);
-
-export async function createUser(email: string, name: string, password?: string, googleId?: string): Promise<User> {
-  const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
-  
-  const [user] = await db.insert(users).values({
-    email,
-    name,
-    password: hashedPassword,
-    googleId,
-    role: 'user'
-  }).returning();
-  
-  return user;
+async function findUserByEmail(email: string) {
+  const users = await db.select().from(schema.users).where(schema.users.email.eq(email));
+  return users.length > 0 ? users[0] : null;
 }
 
-export async function createSession(userId: number): Promise<string> {
-  const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
-  
-  await db.insert(sessions).values({
-    userId,
-    token,
-    expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-  });
-  
-  return token;
-}
+export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
 
-export async function verifyGoogleToken(token: string) {
-  const ticket = await googleClient.verifyIdToken({
-    idToken: token,
-    audience: GOOGLE_CLIENT_ID
-  });
-  
-  const payload = ticket.getPayload();
-  return payload;
-}
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
 
-export async function authenticateUser(email: string, password: string): Promise<string | null> {
   try {
-    // Check for admin credentials
-    const adminEmail = process.env.ADMIN_EMAIL;
-    const adminPassword = process.env.ADMIN_PASSWORD;
-    
-    if (email === adminEmail && password === adminPassword) {
-      return { token: 'admin-token', role: 'admin' };
-    }
+    const user = await findUserByEmail(email);
+    if (!user) return res.status(401).json({ message: 'Invalid email or password' });
 
-    // Regular user authentication
-    const user = await db.query.users.findFirst({
-      where: eq(users.email, email)
-    });
-    
-    if (!user || !user.password) return null;
-    
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) return null;
-    
-    const token = await createSession(user.id);
-    return { token, role: 'user' };
+    const valid = await bcrypt.compare(password, user.password_hash); // Adjust field name as per your schema
+    if (!valid) return res.status(401).json({ message: 'Invalid email or password' });
+
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        role: user.role,
+      },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    res.setHeader(
+      'Set-Cookie',
+      serialize(TOKEN_NAME, token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 24 * 7,
+        path: '/',
+        sameSite: 'lax',
+      })
+    );
+
+    res.status(200).json({ message: 'Logged in successfully' });
   } catch (error) {
-    console.error('Authentication error:', error);
-    return null;
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 }
 
-export async function registerUser(email: string, password: string, name: string): Promise<boolean> {
-  try {
-    const existingUser = await db.query.users.findFirst({
-      where: eq(users.email, email)
-    });
-    
-    if (existingUser) return false;
-    
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await createUser(email, name, hashedPassword);
-    return true;
-  } catch (error) {
-    console.error('Registration error:', error);
-    return false;
-  }
+export async function logoutHandler(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader(
+    'Set-Cookie',
+    serialize(TOKEN_NAME, '', {
+      maxAge: -1,
+      path: '/',
+    })
+  );
+  res.status(200).json({ message: 'Logged out' });
 }
 
-export async function validateSession(token: string): Promise<User | null> {
+export async function checkAuth(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { userId } = jwt.verify(token, JWT_SECRET) as { userId: number };
-    
-    const user = await db.query.users.findFirst({
-      where: eq(users.id, userId)
-    });
-    
-    return user || null;
+    const cookies = req.headers.cookie ? parse(req.headers.cookie) : {};
+    const token = cookies[TOKEN_NAME];
+    if (!token) return res.status(401).json({ message: 'Not authenticated' });
+
+    const payload = jwt.verify(token, JWT_SECRET);
+    res.status(200).json({ authenticated: true, user: payload });
   } catch {
-    return null;
+    res.status(401).json({ message: 'Not authenticated' });
   }
-}
-
-export async function requireAdmin(token: string): Promise<User | null> {
-  const user = await validateSession(token);
-  if (!user || user.role !== 'admin') return null;
-  return user;
 }
