@@ -15,6 +15,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Auth endpoints
   app.post(`${api}/auth/register`, async (req: Request, res: Response) => {
+    res.setHeader('Content-Type', 'application/json');
     try {
       const { email, password, name } = req.body;
       
@@ -35,6 +36,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post(`${api}/auth/login`, async (req: Request, res: Response) => {
+    res.setHeader('Content-Type', 'application/json');
     try {
       const { email, password } = req.body;
       
