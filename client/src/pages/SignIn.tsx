@@ -89,12 +89,33 @@ export default function SignIn() {
           </div>
         )}
         <Button 
-          variant="outline" 
-          className="w-full"
-          type="submit"
-        >
-          {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
-        </Button>
+            variant="outline" 
+            className="w-full"
+            type="submit"
+            onClick={async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget.closest('form');
+              const email = form?.querySelector('input[type="email"]')?.value;
+              const password = form?.querySelector('input[type="password"]')?.value;
+
+              const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+              });
+
+              if (response.ok) {
+                const data = await response.json();
+                if (data.role === 'admin') {
+                  window.location.href = '/admin';
+                }
+              }
+            }}
+          >
+            {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
+          </Button>
       </form>
       {mode === 'signin' && (
         <div className="mt-4 text-center text-sm">

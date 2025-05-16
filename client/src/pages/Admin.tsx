@@ -13,6 +13,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function Admin() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/admin/check')
+      .then(res => {
+        if (!res.ok) {
+          window.location.href = '/signin';
+        } else {
+          setIsAuthorized(true);
+        }
+      })
+      .catch(() => {
+        window.location.href = '/signin';
+      });
+  }, []);
+
+  if (!isAuthorized) {
+    return null;
+  }
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const { data: metrics } = useQuery({
