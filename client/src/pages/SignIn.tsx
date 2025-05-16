@@ -1,4 +1,3 @@
-
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Layout from "@/components/Layout";
@@ -121,13 +120,15 @@ export default function SignIn() {
         )}
         <div>
           <Input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              autoComplete="email"
+              inputMode="email"
+            />
         </div>
         <div>
           <Input
