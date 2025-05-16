@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -16,13 +16,13 @@ export default function SignIn() {
     confirmPassword: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
     e.preventDefault();
@@ -52,51 +52,12 @@ export default function SignIn() {
     }
   };
 
-  const switchToSignup = () => {
-    setActiveTab("signup");
-  };
-
-  const AuthButtons = ({ mode }: { mode: 'signin' | 'signup' }) => (
+  const AuthForm = ({ mode }: { mode: 'signin' | 'signup' }) => (
     <div className="space-y-4">
-      <Button 
-        variant="outline" 
-        className="w-full"
-        onClick={async () => {
-          try {
-            const response = await fetch('/api/auth/google/init');
-            const { url } = await response.json();
-            window.location.href = url;
-          } catch (error) {
-            console.error('Google auth error:', error);
-          }
-        }}
-      >
-        {t('auth.oauth_message')} {t('auth.google')}
-      </Button>
-
-      <Button 
-        variant="outline" 
-        className="w-full"
-        onClick={() => window.location.href = `/api/auth/facebook?mode=${mode}`}
-      >
-        {t('auth.oauth_message')} {t('auth.facebook')}
-      </Button>
-
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-white dark:bg-gray-900 text-gray-500">
-            {t('auth.or')}
-          </span>
-        </div>
-      </div>
-
-      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
-        {mode === 'signup' && (
-          <>
-            <div>
+      <div className="space-y-4">
+        <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
+          {mode === 'signup' && (
+            <>
               <Input
                 type="text"
                 placeholder="Full Name"
@@ -104,9 +65,8 @@ export default function SignIn() {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="bg-background"
               />
-            </div>
-            <div>
               <Input
                 type="text"
                 placeholder="Username"
@@ -114,23 +74,20 @@ export default function SignIn() {
                 value={formData.username}
                 onChange={handleChange}
                 required
+                className="bg-background"
               />
-            </div>
-          </>
-        )}
-        <div>
+            </>
+          )}
           <Input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              autoComplete="email"
-              inputMode="email"
-            />
-        </div>
-        <div>
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="bg-background"
+            inputMode="email"
+          />
           <Input
             type="password"
             placeholder="Password"
@@ -138,49 +95,48 @@ export default function SignIn() {
             value={formData.password}
             onChange={handleChange}
             required
+            className="bg-background"
           />
-        </div>
-        {mode === 'signup' && (
-          <div>
-            <input
+          {mode === 'signup' && (
+            <Input
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
               value={formData.confirmPassword}
-              className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
-              required
               onChange={handleChange}
+              required
+              className="bg-background"
             />
+          )}
+          <Button 
+            type="submit"
+            className="w-full"
+          >
+            {mode === 'signup' ? t('auth.create_account') : t('auth.signin')}
+          </Button>
+        </form>
+
+        {mode === 'signin' && (
+          <div className="text-center text-sm">
+            <span className="text-muted-foreground">{t('auth.no_account')} </span>
+            <Button
+              type="button"
+              variant="link"
+              className="p-0"
+              onClick={() => setActiveTab('signup')}
+            >
+              {t('auth.create_account')}
+            </Button>
           </div>
         )}
-        <Button 
-          variant="outline" 
-          className="w-full"
-          type="submit"
-        >
-          {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
-        </Button>
-      </form>
-      {mode === 'signin' && (
-        <div className="mt-4 text-center text-sm">
-          <span className="text-gray-600 dark:text-gray-400">{t('auth.no_account')} </span>
-          <Button
-            type="button"
-            variant="link"
-            className="text-primary-600 dark:text-primary-400 p-0"
-            onClick={switchToSignup}
-          >
-            {t('auth.create_account')}
-          </Button>
-        </div>
-      )}
+      </div>
     </div>
   );
 
   return (
     <Layout>
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg w-full max-w-md">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="w-full max-w-md space-y-6 bg-card p-6 rounded-lg shadow-lg">
           <Tabs value={activeTab} className="w-full" onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">{t('auth.signin')}</TabsTrigger>
@@ -188,11 +144,11 @@ export default function SignIn() {
             </TabsList>
             <TabsContent value="signin" className="mt-6">
               <h2 className="text-2xl font-bold text-center mb-6">{t('auth.welcome_back')}</h2>
-              <AuthButtons mode="signin" />
+              <AuthForm mode="signin" />
             </TabsContent>
             <TabsContent value="signup" className="mt-6">
               <h2 className="text-2xl font-bold text-center mb-6">{t('auth.create_account')}</h2>
-              <AuthButtons mode="signup" />
+              <AuthForm mode="signup" />
             </TabsContent>
           </Tabs>
         </div>
