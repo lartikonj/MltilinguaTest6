@@ -49,23 +49,33 @@ export default function SignIn() {
         </div>
       </div>
 
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
         {mode === 'signup' ? (
           <>
             <div>
               <input
                 type="text"
                 placeholder="Full Name"
+                name="name"
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
+                onChange={(e) => {
+                  const form = e.currentTarget.form;
+                  if (form) form.name = e.target.value;
+                }}
               />
             </div>
             <div>
               <input
                 type="text"
                 placeholder="Username"
+                name="username"
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
+                onChange={(e) => {
+                  const form = e.currentTarget.form;
+                  if (form) form.username = e.target.value;
+                }}
               />
             </div>
           </>
@@ -74,16 +84,26 @@ export default function SignIn() {
           <input
             type="email"
             placeholder="Email"
+            name="email"
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
+            onChange={(e) => {
+              const form = e.currentTarget.form;
+              if (form) form.email = e.target.value;
+            }}
           />
         </div>
         <div>
           <input
             type="password"
             placeholder="Password"
+            name="password"
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
+            onChange={(e) => {
+              const form = e.currentTarget.form;
+              if (form) form.password = e.target.value;
+            }}
           />
         </div>
         {mode === 'signup' && (
@@ -103,9 +123,16 @@ export default function SignIn() {
             onClick={async (e) => {
               e.preventDefault();
               const form = e.currentTarget.closest('form');
-              const email = form?.querySelector('input[type="email"]')?.value;
-              const password = form?.querySelector('input[type="password"]')?.value;
-              const name = mode === 'signup' ? form?.querySelector('input[placeholder="Full Name"]')?.value : undefined;
+              if (!form) return;
+              
+              const email = form.querySelector('input[name="email"]')?.value;
+              const password = form.querySelector('input[name="password"]')?.value;
+              const name = mode === 'signup' ? form.querySelector('input[name="name"]')?.value : undefined;
+
+              if (!email || !password || (mode === 'signup' && !name)) {
+                alert('Please fill in all required fields');
+                return;
+              }
 
               const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
               
