@@ -1,4 +1,4 @@
-// server/api/auth.ts (or wherever your Next.js API routes live)
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from './db';
 import * as schema from '@shared/schema';
@@ -14,6 +14,36 @@ async function findUserByEmail(email: string) {
   return users.length > 0 ? users[0] : null;
 }
 
+export async function registerUser(email: string, password: string, name: string) {
+  const existingUser = await findUserByEmail(email);
+  if (existingUser) return false;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await db.insert(schema.users).values({
+    email,
+    name,
+    password_hash: hashedPassword,
+    role: 'user'
+  });
+  return true;
+}
+
+export async function authenticateUser(email: string, password: string) {
+  const user = await findUserByEmail(email);
+  if (!user) return null;
+
+  const valid = await bcrypt.compare(password, user.password_hash);
+  if (!valid) return null;
+
+  const token = jwt.sign(
+    { userId: user.id, email: user.email, role: user.role },
+    JWT_SECRET,
+    { expiresIn: '7d' }
+  );
+
+  return { token, role: user.role };
+}
+
 export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
@@ -23,25 +53,12 @@ export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
   if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
 
   try {
-    const user = await findUserByEmail(email);
-    if (!user) return res.status(401).json({ message: 'Invalid email or password' });
-
-    const valid = await bcrypt.compare(password, user.password_hash); // Adjust field name as per your schema
-    if (!valid) return res.status(401).json({ message: 'Invalid email or password' });
-
-    const token = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role,
-      },
-      JWT_SECRET,
-      { expiresIn: '7d' }
-    );
+    const result = await authenticateUser(email, password);
+    if (!result) return res.status(401).json({ message: 'Invalid email or password' });
 
     res.setHeader(
       'Set-Cookie',
-      serialize(TOKEN_NAME, token, {
+      serialize(TOKEN_NAME, result.token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24 * 7,
@@ -50,7 +67,7 @@ export async function loginHandler(req: NextApiRequest, res: NextApiResponse) {
       })
     );
 
-    res.status(200).json({ message: 'Logged in successfully' });
+    res.status(200).json({ message: 'Logged in successfully', role: result.role });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
