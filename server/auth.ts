@@ -64,6 +64,15 @@ export async function verifyGoogleToken(token: string) {
 
 export async function authenticateUser(email: string, password: string): Promise<string | null> {
   try {
+    // Check for admin credentials
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    
+    if (email === adminEmail && password === adminPassword) {
+      return { token: 'admin-token', role: 'admin' };
+    }
+
+    // Regular user authentication
     const user = await db.query.users.findFirst({
       where: eq(users.email, email)
     });
@@ -73,7 +82,8 @@ export async function authenticateUser(email: string, password: string): Promise
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) return null;
     
-    return createSession(user.id);
+    const token = await createSession(user.id);
+    return { token, role: 'user' };
   } catch (error) {
     console.error('Authentication error:', error);
     return null;

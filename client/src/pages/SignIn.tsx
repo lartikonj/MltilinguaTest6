@@ -41,7 +41,7 @@ export default function SignIn() {
       }
 
       const data = await response.json();
-      window.location.href = data.user?.role === 'admin' ? '/admin' : '/';
+      window.location.href = data.role === 'admin' ? '/admin' : '/';
     } catch (error: any) {
       console.error(`${mode} error:`, error);
       alert(error.message || `Failed to ${mode}`);
