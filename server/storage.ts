@@ -638,7 +638,7 @@ El ciclo del agua es un **sistema autosostenible** impulsado por el sol. Es uno 
         author: "Maria González",
         authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
         publishDate: new Date("2023-06-03"),
-        translations: {
+        translations: {: {
           en: {
             title: "Hidden Gems: 10 Breathtaking Destinations",
             excerpt: "Discover less-known but stunning places around the world that will take your breath away. These destinations offer unique experiences away from tourist crowds.",
