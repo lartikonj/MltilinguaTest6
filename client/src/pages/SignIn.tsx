@@ -39,6 +39,26 @@ export default function SignIn() {
       </div>
 
       <form className="space-y-4">
+        {mode === 'signup' ? (
+          <>
+            <div>
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Username"
+                className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
+                required
+              />
+            </div>
+          </>
+        ) : null}
         <div>
           <input
             type="email"
@@ -55,12 +75,22 @@ export default function SignIn() {
             required
           />
         </div>
+        {mode === 'signup' && (
+          <div>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
+              required
+            />
+          </div>
+        )}
         <Button 
           variant="outline" 
           className="w-full"
           type="submit"
         >
-          {t('auth.signin_with')} {t('auth.email')}
+          {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
         </Button>
       </form>
     </div>
