@@ -95,12 +95,13 @@ export default function SignIn() {
         {mode === 'signin' && (
           <div className="mt-4 text-center text-sm">
             <span className="text-gray-600 dark:text-gray-400">{t('auth.no_account')} </span>
-            <button 
-              className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
+            <Button
+              variant="link"
+              className="text-primary-600 dark:text-primary-400 p-0"
               onClick={() => setActiveTab('signup')}
             >
               {t('auth.create_account')}
-            </button>
+            </Button>
           </div>
         )}
       </form>
