@@ -740,7 +740,116 @@ Implementing good sleep hygiene practices can significantly improve your sleep q
         },
         availableLanguages: ["ar"],
         featured: true
-      }
+      },
+    {
+      title: "The Complete Guide to Machine Learning",
+      slug: "complete-guide-machine-learning",
+      excerpt: "Explore the fundamentals of machine learning, from basic concepts to advanced applications.",
+      content: `# Introduction
+Machine learning is revolutionizing how we solve complex problems. This guide will help you understand the core concepts and practical applications.
+
+# Basic Concepts
+Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Key concepts include:
+- Supervised Learning
+- Unsupervised Learning
+- Reinforcement Learning
+
+# Types of Machine Learning
+## Supervised Learning
+In supervised learning, algorithms learn from labeled data to make predictions about new, unseen data.
+
+## Unsupervised Learning
+Unsupervised learning algorithms find patterns in unlabeled data, often used for clustering and dimensionality reduction.
+
+## Reinforcement Learning
+This type involves agents learning optimal actions through trial and error in an environment.
+
+# Common Algorithms
+- Linear Regression
+- Decision Trees
+- Neural Networks
+- Support Vector Machines
+- K-Means Clustering
+
+# Applications
+Machine learning is used in various fields:
+1. Healthcare
+2. Finance
+3. Autonomous Vehicles
+4. Natural Language Processing
+5. Computer Vision
+
+# Future Trends
+The field continues to evolve with:
+- Advanced Neural Architectures
+- Automated Machine Learning
+- Edge Computing
+- Quantum Machine Learning`,
+      imageUrl: "https://images.unsplash.com/photo-1519389950473-47a0478938c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+      readTime: 10,
+      subjectId: 1, // Technology
+      author: "AI Insights Team",
+      authorImage: "https://images.unsplash.com/photo-1544005313-94ddf02864ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aW50ZWxsZWN0dWFsJTIwcGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      publishDate: new Date("2024-01-20"),
+      translations: {
+        en: {
+          title: "The Complete Guide to Machine Learning",
+          excerpt: "Explore the fundamentals of machine learning, from basic concepts to advanced applications.",
+          content: `# Introduction
+Machine learning is revolutionizing how we solve complex problems. This guide will help you understand the core concepts and practical applications.
+
+# Basic Concepts
+Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Key concepts include:
+- Supervised Learning
+- Unsupervised Learning
+- Reinforcement Learning
+
+# Types of Machine Learning
+## Supervised Learning
+In supervised learning, algorithms learn from labeled data to make predictions about new, unseen data.
+
+## Unsupervised Learning
+Unsupervised learning algorithms find patterns in unlabeled data, often used for clustering and dimensionality reduction.
+
+## Reinforcement Learning
+This type involves agents learning optimal actions through trial and error in an environment.
+
+# Common Algorithms
+- Linear Regression
+- Decision Trees
+- Neural Networks
+- Support Vector Machines
+- K-Means Clustering
+
+# Applications
+Machine learning is used in various fields:
+1. Healthcare
+2. Finance
+3. Autonomous Vehicles
+4. Natural Language Processing
+5. Computer Vision
+
+# Future Trends
+The field continues to evolve with:
+- Advanced Neural Architectures
+- Automated Machine Learning
+- Edge Computing
+- Quantum Machine Learning`,
+          notes: [
+            "Machine learning requires quality data",
+            "Choose algorithms based on your problem",
+            "Consider ethical implications"
+          ],
+          resources: [
+            "Machine Learning Basics",
+            "Popular ML Frameworks",
+            "Ethics in AI"
+          ]
+        }
+      },
+      availableLanguages: ["en"],
+      featured: true
+    }
 ]
 
     articles.forEach(article => {
