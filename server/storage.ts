@@ -302,8 +302,8 @@ class MemStorage implements IStorage {
             title: "Avances en la Conservación Oceánica",
             excerpt: "Están surgiendo soluciones innovadoras para proteger nuestros océanos y la vida marina de la contaminación y el cambio climático.",
             content: "Desde bacterias que comen plástico hasta sistemas flotantes de limpieza...",
-            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de en: {
-    title: "Ocean Conservation Breakthroughs",
+            notes: ["Nuevas tecnologías para limpieza oceánica", "Proyectos de restauración de ecosistemas marinos", "Esfuerzos de conservación liderados por la comunidad"],
+            resources: ["Guía de Conservación Oceánica", "Iniciativas de Protección Marina", "Prácticas de Pesca Sostenible"]
     excerpt: "Innovative solutions are emerging to protect our oceans and marine life from pollution and climate change.",
     content: "# The Fight for Our Oceans\n\nOur oceans face unprecedented challenges from pollution, climate change, and overfishing. However, breakthrough technologies and innovative approaches are offering new hope for marine conservation.\n\n# Technological Solutions\n\nFrom plastic-eating bacteria to autonomous cleanup systems, technology is leading the charge in ocean conservation. These solutions are scalable and showing promising results in real-world applications.\n\n# Community-Led Initiatives\n\nLocal communities around the world are taking action to protect their marine ecosystems. These grassroots efforts are proving that small-scale interventions can have significant impacts.",
     notes: ["New technologies for ocean cleanup", "Marine ecosystem restoration projects", "Community-led conservation efforts"],
