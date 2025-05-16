@@ -10,7 +10,7 @@ interface ArticleCardProps {
   article: Article;
 }
 
-export function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article }: ArticleCardProps) {
   const { i18n } = useTranslation();
   const { currentLanguage } = useLanguage();
 
