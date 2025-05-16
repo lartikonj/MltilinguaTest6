@@ -41,6 +41,10 @@ export default function Home() {
                   {t('browse.subjects')}
                 </button>
               </Link>
+              <button onClick={() => window.location.href = 'https://replit.com/auth'} 
+                      className="px-5 py-3 bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 rounded-lg font-medium transition-colors">
+                {t('nav.signin')}
+              </button>
             </div>
           </div>
         </div>

@@ -80,6 +80,9 @@ export default function Header() {
             <SearchDialog />
             <LanguageSwitcher />
             <ThemeToggle />
+            <Button variant="default" size="sm" onClick={() => window.location.href = 'https://replit.com/auth'}>
+              {t('nav.signin')}
+            </Button>
             <Button
               variant="ghost"
               size="icon"
