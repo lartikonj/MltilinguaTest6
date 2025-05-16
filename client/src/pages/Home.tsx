@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Article, Subject } from "@shared/schema";
 import Layout from "@/components/Layout";
@@ -9,6 +9,7 @@ import SubjectCard from "@/components/SubjectCard";
 
 export default function Home() {
   const { t } = useTranslation();
+  const [, setLocation] = useLocation();
   
   // Fetch featured articles
   const { data: featuredArticles, isLoading: isLoadingFeatured } = useQuery<Article[]>({
