@@ -19,19 +19,15 @@ export default function SignIn() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value.trim()
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: 'signin' | 'signup') => {
     e.preventDefault();
-    if (!formData.email || !formData.password || (mode === 'signup' && (!formData.name || !formData.username))) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
+    
     try {
       const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
       const response = await fetch(endpoint, {
@@ -56,11 +52,12 @@ export default function SignIn() {
     <Layout>
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md space-y-6 bg-card p-6 rounded-lg shadow-lg">
-          <Tabs defaultValue={activeTab} className="w-full" onValueChange={setActiveTab}>
+          <Tabs value={activeTab} className="w-full" onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">{t('auth.signin')}</TabsTrigger>
               <TabsTrigger value="signup">{t('auth.signup')}</TabsTrigger>
             </TabsList>
+
             <TabsContent value="signin">
               <form onSubmit={(e) => handleSubmit(e, 'signin')} className="space-y-4">
                 <Input
@@ -69,9 +66,6 @@ export default function SignIn() {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  autoCapitalize="off"
-                  autoComplete="email"
-                  inputMode="email"
                   required
                 />
                 <Input
@@ -80,7 +74,6 @@ export default function SignIn() {
                   placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
-                  autoComplete="current-password"
                   required
                 />
                 <Button type="submit" className="w-full">
@@ -88,6 +81,7 @@ export default function SignIn() {
                 </Button>
               </form>
             </TabsContent>
+
             <TabsContent value="signup">
               <form onSubmit={(e) => handleSubmit(e, 'signup')} className="space-y-4">
                 <Input
@@ -96,7 +90,6 @@ export default function SignIn() {
                   placeholder="Full Name"
                   value={formData.name}
                   onChange={handleChange}
-                  autoComplete="name"
                   required
                 />
                 <Input
@@ -105,8 +98,6 @@ export default function SignIn() {
                   placeholder="Username"
                   value={formData.username}
                   onChange={handleChange}
-                  autoComplete="username"
-                  autoCapitalize="off"
                   required
                 />
                 <Input
@@ -115,9 +106,6 @@ export default function SignIn() {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  autoCapitalize="off"
-                  autoComplete="email"
-                  inputMode="email"
                   required
                 />
                 <Input
@@ -126,7 +114,6 @@ export default function SignIn() {
                   placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
-                  autoComplete="new-password"
                   required
                 />
                 <Input
@@ -135,7 +122,6 @@ export default function SignIn() {
                   placeholder="Confirm Password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  autoComplete="new-password"
                   required
                 />
                 <Button type="submit" className="w-full">
