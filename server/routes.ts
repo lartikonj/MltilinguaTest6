@@ -97,6 +97,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post(`${api}/articles`, async (req: Request, res: Response) => {
+    try {
+      const article = await storage.createArticle(req.body);
+      res.status(201).json(article);
+    } catch (error) {
+      res.status(500).json({ message: "Error creating article" });
+    }
+  });
+
+  app.put(`${api}/articles/:id`, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const article = await storage.updateArticle(parseInt(id), req.body);
+      res.json(article);
+    } catch (error) {
+      res.status(500).json({ message: "Error updating article" });
+    }
+  });
+
+  app.delete(`${api}/articles/:id`, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteArticle(parseInt(id));
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Error deleting article" });
+    }
+  });
+
   // Generate initial sitemap
   await generateSitemap();
 
