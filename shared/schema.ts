@@ -42,7 +42,15 @@ export const articles = pgTable("articles", {
   author: text("author").notNull(),
   authorImage: text("author_image"),
   publishDate: timestamp("publish_date").notNull().defaultNow(),
-  translations: json("translations").notNull(),
+  translations: json("translations").$type<{
+    [key: string]: {
+      title: string;
+      excerpt: string;
+      content: string;
+      notes?: string[];
+      resources?: string[];
+    };
+  }>().notNull(),
   availableLanguages: text("available_languages").array().notNull(),
   featured: boolean("featured").default(false),
   viewCount: integer("view_count").default(0),

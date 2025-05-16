@@ -100,23 +100,42 @@ export default function Admin() {
                   <form onSubmit={(e) => {
                     e.preventDefault();
                     const formData = new FormData(e.target);
+                    const languages = ['en', 'es', 'fr', 'ar'];
+                    const translations = {};
+                    const availableLanguages = [];
+
+                    languages.forEach(lang => {
+                      const hasContent = formData.get(`title_${lang}`) && 
+                                      formData.get(`excerpt_${lang}`) && 
+                                      formData.get(`content_${lang}`);
+                      
+                      if (hasContent) {
+                        availableLanguages.push(lang);
+                        translations[lang] = {
+                          title: formData.get(`title_${lang}`),
+                          excerpt: formData.get(`excerpt_${lang}`),
+                          content: formData.get(`content_${lang}`),
+                          notes: formData.get(`notes_${lang}`)?.split('\n').filter(Boolean) || [],
+                          resources: formData.get(`resources_${lang}`)?.split('\n').filter(Boolean) || []
+                        };
+                      }
+                    });
+
                     const article = {
                       ...selectedArticle,
-                      title: formData.get('title'),
+                      title: formData.get('title_en'),
                       slug: formData.get('slug'),
-                      excerpt: formData.get('excerpt'),
-                      content: formData.get('content'),
+                      excerpt: formData.get('excerpt_en'),
+                      content: formData.get('content_en'),
                       imageUrl: formData.get('imageUrl'),
                       readTime: parseInt(formData.get('readTime')),
                       subjectId: parseInt(formData.get('subjectId')),
                       author: formData.get('author'),
                       authorImage: formData.get('authorImage'),
-                      translations: { en: {
-                        title: formData.get('title'),
-                        excerpt: formData.get('excerpt'),
-                        content: formData.get('content')
-                      }},
-                      availableLanguages: ['en']
+                      featured: formData.get('featured') === 'true',
+                      translations,
+                      availableLanguages,
+                      publishDate: new Date()
                     };
                     
                     if (selectedArticle.id) {
@@ -125,27 +144,90 @@ export default function Admin() {
                       createArticle.mutate(article);
                     }
                   }}>
-                    <div className="space-y-4">
-                      <Input name="title" defaultValue={selectedArticle.title} placeholder="Title" required />
-                      <Input name="slug" defaultValue={selectedArticle.slug} placeholder="Slug" required />
-                      <Textarea name="excerpt" defaultValue={selectedArticle.excerpt} placeholder="Excerpt" required />
-                      <Textarea name="content" defaultValue={selectedArticle.content} placeholder="Content" required />
-                      <Input name="imageUrl" defaultValue={selectedArticle.imageUrl} placeholder="Image URL" required />
-                      <Input name="readTime" type="number" defaultValue={selectedArticle.readTime} placeholder="Read Time (minutes)" required />
-                      <Select name="subjectId" defaultValue={selectedArticle.subjectId?.toString()}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Subject" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {subjects?.map(subject => (
-                            <SelectItem key={subject.id} value={subject.id.toString()}>
-                              {subject.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Input name="author" defaultValue={selectedArticle.author} placeholder="Author" required />
-                      <Input name="authorImage" defaultValue={selectedArticle.authorImage} placeholder="Author Image URL" required />
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-2">
+                        <Input name="slug" defaultValue={selectedArticle.slug} placeholder="URL Slug" required />
+                        <Input name="readTime" type="number" defaultValue={selectedArticle.readTime} placeholder="Read Time (minutes)" required />
+                        <Select name="subjectId" defaultValue={selectedArticle.subjectId?.toString()}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select Subject" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {subjects?.map(subject => (
+                              <SelectItem key={subject.id} value={subject.id.toString()}>
+                                {subject.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Input name="author" defaultValue={selectedArticle.author} placeholder="Author" required />
+                        <Input name="authorImage" defaultValue={selectedArticle.authorImage} placeholder="Author Image URL" required />
+                        <Input name="imageUrl" defaultValue={selectedArticle.imageUrl} placeholder="Article Cover Image URL" required />
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <label className="flex items-center space-x-2">
+                          <input
+                            type="checkbox"
+                            name="featured"
+                            value="true"
+                            defaultChecked={selectedArticle.featured}
+                            className="h-4 w-4"
+                          />
+                          <span>Featured Article</span>
+                        </label>
+                      </div>
+
+                      <Tabs defaultValue="en" className="w-full">
+                        <TabsList>
+                          <TabsTrigger value="en">English</TabsTrigger>
+                          <TabsTrigger value="es">Spanish</TabsTrigger>
+                          <TabsTrigger value="fr">French</TabsTrigger>
+                          <TabsTrigger value="ar">Arabic</TabsTrigger>
+                        </TabsList>
+
+                        {['en', 'es', 'fr', 'ar'].map(lang => (
+                          <TabsContent key={lang} value={lang} className="space-y-4">
+                            <Input
+                              name={`title_${lang}`}
+                              defaultValue={selectedArticle.translations?.[lang]?.title}
+                              placeholder={`Title (${lang})`}
+                              required={lang === 'en'}
+                              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                            />
+                            <Textarea
+                              name={`excerpt_${lang}`}
+                              defaultValue={selectedArticle.translations?.[lang]?.excerpt}
+                              placeholder={`Excerpt (${lang})`}
+                              required={lang === 'en'}
+                              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                            />
+                            <Textarea
+                              name={`content_${lang}`}
+                              defaultValue={selectedArticle.translations?.[lang]?.content}
+                              placeholder={`Content (${lang}) - Use Markdown formatting. Use # for main headings and ## for subheadings to make them clickable`}
+                              required={lang === 'en'}
+                              className="min-h-[200px]"
+                              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                            />
+                            <Textarea
+                              name={`notes_${lang}`}
+                              defaultValue={selectedArticle.translations?.[lang]?.notes?.join('\n')}
+                              placeholder={`Notes (${lang}) - One per line`}
+                              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                            />
+                            <Textarea
+                              name={`resources_${lang}`}
+                              defaultValue={selectedArticle.translations?.[lang]?.resources?.join('\n')}
+                              placeholder={`Resources (${lang}) - One per line`}
+                              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                            />
+                          </TabsContent>
+                        ))}
+                      </Tabs>
                       <div className="flex gap-2">
                         <Button type="submit">
                           {selectedArticle.id ? t('admin.updateArticle') : t('admin.createArticle')}
