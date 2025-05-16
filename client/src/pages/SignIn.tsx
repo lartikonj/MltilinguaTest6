@@ -7,6 +7,42 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function SignIn() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("signin");
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    name: '',
+    username: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent, mode: 'signin' | 'signup') => {
+    e.preventDefault();
+    const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      const data = await response.json();
+      window.location.href = data.user?.role === 'admin' ? '/admin' : '/';
+    } catch (error) {
+      console.error(`${mode} error:`, error);
+      alert(error.message || `Failed to ${mode}`);
+    }
+  };
 
   const switchToSignup = () => {
     setActiveTab("signup");
@@ -59,10 +95,7 @@ export default function SignIn() {
                 name="name"
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
-                onChange={(e) => {
-                  const form = e.currentTarget.form;
-                  if (form) form.name = e.target.value;
-                }}
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -72,10 +105,7 @@ export default function SignIn() {
                 name="username"
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
-                onChange={(e) => {
-                  const form = e.currentTarget.form;
-                  if (form) form.username = e.target.value;
-                }}
+                onChange={handleChange}
               />
             </div>
           </>
@@ -87,10 +117,7 @@ export default function SignIn() {
             name="email"
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
-            onChange={(e) => {
-              const form = e.currentTarget.form;
-              if (form) form.email = e.target.value;
-            }}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -100,10 +127,7 @@ export default function SignIn() {
             name="password"
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
-            onChange={(e) => {
-              const form = e.currentTarget.form;
-              if (form) form.password = e.target.value;
-            }}
+            onChange={handleChange}
           />
         </div>
         {mode === 'signup' && (
@@ -120,61 +144,7 @@ export default function SignIn() {
             variant="outline" 
             className="w-full"
             type="submit"
-            onClick={async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget.closest('form');
-              if (!form) return;
-              
-              const email = form.querySelector('input[name="email"]')?.value;
-              const password = form.querySelector('input[name="password"]')?.value;
-              const name = mode === 'signup' ? form.querySelector('input[name="name"]')?.value : undefined;
-
-              if (!email || !password || (mode === 'signup' && !name)) {
-                alert('Please fill in all required fields');
-                return;
-              }
-
-              const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
-              
-              try {
-                if (mode === 'signup') {
-                  const registerResponse = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password, name }),
-                  });
-
-                  if (!registerResponse.ok) {
-                    const error = await registerResponse.text();
-                    console.error('Registration failed:', error);
-                    throw new Error('Registration failed: ' + error);
-                  }
-                  
-                  // Wait a bit before trying to login to ensure the user is created
-                  await new Promise(resolve => setTimeout(resolve, 1000));
-                }
-
-                const loginResponse = await fetch('/api/auth/login', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ email, password }),
-                });
-
-                if (loginResponse.ok) {
-                  const data = await loginResponse.json();
-                  if (data.user && data.user.role === 'admin') {
-                    window.location.href = '/admin';
-                  } else {
-                    window.location.href = '/';
-                  }
-                } else {
-                  throw new Error('Authentication failed');
-                }
-              } catch (error) {
-                console.error('Auth error:', error);
-                // You might want to show an error message to the user here
-              }
-            }}
+            onClick={(e) => handleSubmit(e, mode)}
           >
             {mode === 'signup' ? t('auth.create_account') : t('auth.signin_with')} {t('auth.email')}
           </Button>

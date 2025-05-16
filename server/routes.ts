@@ -35,17 +35,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post(`${api}/auth/login`, async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    
-    if (!email || !password) {
-      return res.status(400).json({ message: "Missing credentials" });
-    }
+    try {
+      const { email, password } = req.body;
+      
+      if (!email || !password) {
+        return res.status(400).json({ message: "Missing credentials" });
+      }
 
-    const token = await authenticateUser(email, password);
-    if (token) {
-      res.json({ token, role: 'user' });
-    } else {
-      res.status(401).json({ message: "Invalid credentials" });
+      const token = await authenticateUser(email, password);
+      if (token) {
+        res.json({ token, role: 'user' });
+      } else {
+        res.status(401).json({ message: "Invalid credentials" });
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      res.status(500).json({ message: "Internal server error during login" });
     }
   });
 
