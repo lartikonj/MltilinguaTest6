@@ -18,10 +18,18 @@ export default function Admin() {
   useEffect(() => {
     fetch("/api/admin/check")
       .then((res) => {
-        if (!res.ok) {
+        const contentType = res.headers.get("content-type");
+        if (!res.ok || !contentType?.includes("application/json")) {
           window.location.href = "/signin";
-        } else {
+          return;
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data?.authenticated) {
           setIsAuthorized(true);
+        } else {
+          window.location.href = "/signin";
         }
       })
       .catch(() => {

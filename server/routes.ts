@@ -35,6 +35,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get(`${api}/admin/check`, async (req: Request, res: Response) => {
+    res.setHeader('Content-Type', 'application/json');
+    try {
+      const cookies = req.headers.cookie;
+      if (!cookies) {
+        return res.status(401).json({ authenticated: false, message: "No authentication token" });
+      }
+
+      // Use your existing auth verification logic here
+      const token = cookies.split(';').find(c => c.trim().startsWith('token='));
+      if (!token) {
+        return res.status(401).json({ authenticated: false, message: "No authentication token" });
+      }
+
+      // Verify the token and check if user is admin
+      const tokenValue = token.split('=')[1];
+      const payload = jwt.verify(tokenValue, JWT_SECRET);
+      
+      if (payload.role !== 'admin') {
+        return res.status(403).json({ authenticated: false, message: "Not authorized" });
+      }
+
+      res.status(200).json({ authenticated: true, user: payload });
+    } catch (error) {
+      res.status(401).json({ authenticated: false, message: "Invalid authentication" });
+    }
+  });
+
   app.post(`${api}/auth/login`, async (req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/json');
     try {
