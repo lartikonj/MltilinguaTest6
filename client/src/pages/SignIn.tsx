@@ -110,8 +110,13 @@ export default function SignIn() {
                   });
 
                   if (!registerResponse.ok) {
-                    throw new Error('Registration failed');
+                    const error = await registerResponse.text();
+                    console.error('Registration failed:', error);
+                    throw new Error('Registration failed: ' + error);
                   }
+                  
+                  // Wait a bit before trying to login to ensure the user is created
+                  await new Promise(resolve => setTimeout(resolve, 1000));
                 }
 
                 const loginResponse = await fetch('/api/auth/login', {
