@@ -93,7 +93,7 @@ export default function SignIn() {
         </div>
       </div>
 
-      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)}>
+      <form className="space-y-4" onSubmit={(e) => handleSubmit(e, mode)} autoComplete="off">
         {mode === 'signup' && (
           <>
             <div>
@@ -105,6 +105,8 @@ export default function SignIn() {
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
                 onChange={handleChange}
+                autoComplete="name"
+                autoCapitalize="off"
               />
             </div>
             <div>
@@ -116,6 +118,8 @@ export default function SignIn() {
                 className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
                 required
                 onChange={handleChange}
+                autoComplete="username"
+                autoCapitalize="off"
               />
             </div>
           </>
@@ -129,6 +133,9 @@ export default function SignIn() {
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
             onChange={handleChange}
+            autoComplete="email"
+            autoCapitalize="off"
+            inputMode="email"
           />
         </div>
         <div>
@@ -140,6 +147,7 @@ export default function SignIn() {
             className="w-full p-2 border rounded-md dark:bg-gray-800 dark:border-gray-700"
             required
             onChange={handleChange}
+            autoComplete="current-password"
           />
         </div>
         {mode === 'signup' && (
