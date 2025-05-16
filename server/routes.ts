@@ -44,9 +44,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Missing credentials" });
       }
 
-      const token = await authenticateUser(email, password);
-      if (token) {
-        res.json({ token, role: 'user' });
+      const result = await authenticateUser(email, password);
+      if (result) {
+        res.json({ token: result.token, role: result.role });
       } else {
         res.status(401).json({ message: "Invalid credentials" });
       }

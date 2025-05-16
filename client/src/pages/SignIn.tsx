@@ -32,15 +32,23 @@ export default function SignIn() {
       const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
       const response = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          name: formData.name
+        })
       });
 
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error(await response.text());
+        throw new Error(data.message || 'Authentication failed');
       }
 
-      const data = await response.json();
       window.location.href = data.role === 'admin' ? '/admin' : '/';
     } catch (error: any) {
       console.error(`${mode} error:`, error);
